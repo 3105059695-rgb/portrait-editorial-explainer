@@ -101,6 +101,130 @@
       "allOf": [{"if": {"properties": {"unit": {"enum": ["%", "％", "percent", "percentage", "百分比"]}}}, "then": {"properties": {"value": {"maximum": 100}, "total": {"maximum": 100}}}}],
       "additionalProperties": true
     },
+    "localTime": {
+      "type": "number", "minimum": -1.5,
+      "description": "Scene-local seconds; negative keys animate the incoming world before its scene starts. The CLI checks the upper bound against this scene's duration."
+    },
+    "positiveNumber": {"type": "number", "exclusiveMinimum": 0},
+    "editorialText": {"type": "string", "maxLength": 40},
+    "editorialLayerKey": {
+      "type": "object", "required": ["at"],
+      "properties": {
+        "at": {"$ref": "#/$defs/localTime"},
+        "x": {"type": "number"}, "y": {"type": "number"},
+        "w": {"$ref": "#/$defs/positiveNumber"}, "h": {"$ref": "#/$defs/positiveNumber"},
+        "rotation": {"type": "number"}, "scale": {"$ref": "#/$defs/positiveNumber"},
+        "opacity": {"type": "number", "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": true
+    },
+    "editorialLayer": {
+      "type": "object", "required": ["id", "assetId", "x", "y", "w", "h"],
+      "description": "Top-left placement on the 540 x 960 stage, with center-based rotation and scale. Partial keyframes carry previously supplied pose fields forward.",
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "assetId": {"$ref": "#/$defs/id"},
+        "x": {"type": "number"}, "y": {"type": "number"},
+        "w": {"$ref": "#/$defs/positiveNumber"}, "h": {"$ref": "#/$defs/positiveNumber"},
+        "rotation": {"type": "number"}, "scale": {"$ref": "#/$defs/positiveNumber"},
+        "opacity": {"type": "number", "minimum": 0, "maximum": 1},
+        "keys": {"type": "array", "items": {"$ref": "#/$defs/editorialLayerKey"}},
+        "shadow": {"type": "boolean"}, "foreground": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "editorialCameraKey": {
+      "type": "object", "required": ["at", "x", "y", "z"],
+      "properties": {
+        "at": {"$ref": "#/$defs/localTime"}, "x": {"type": "number"}, "y": {"type": "number"},
+        "z": {"$ref": "#/$defs/positiveNumber"}
+      },
+      "additionalProperties": true
+    },
+    "editorialTitleKey": {
+      "type": "object", "required": ["at", "title"],
+      "properties": {
+        "at": {"$ref": "#/$defs/localTime"},
+        "title": {"$ref": "#/$defs/editorialText"}, "eyebrow": {"$ref": "#/$defs/editorialText"}
+      },
+      "additionalProperties": true
+    },
+    "point": {
+      "type": "object", "required": ["x", "y"],
+      "properties": {"x": {"type": "number"}, "y": {"type": "number"}},
+      "additionalProperties": true
+    },
+    "editorialConnection": {
+      "type": "object", "required": ["id", "points", "start", "end"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "points": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/point"}},
+        "start": {"$ref": "#/$defs/localTime"}, "end": {"$ref": "#/$defs/localTime"},
+        "color": {"$ref": "#/$defs/color"}, "width": {"$ref": "#/$defs/positiveNumber"}
+      },
+      "additionalProperties": true
+    },
+    "editorialFilmstrip": {
+      "type": "object", "required": ["assetIds", "x", "y", "w", "h", "enterAt", "settleAt", "threadAt", "threadEnd"],
+      "properties": {
+        "assetIds": {"type": "array", "minItems": 2, "maxItems": 12, "items": {"$ref": "#/$defs/id"}},
+        "x": {"type": "number"}, "y": {"type": "number"},
+        "w": {"$ref": "#/$defs/positiveNumber"}, "h": {"$ref": "#/$defs/positiveNumber"},
+        "rotation": {"type": "number"},
+        "enterAt": {"$ref": "#/$defs/localTime"}, "settleAt": {"$ref": "#/$defs/localTime"},
+        "threadAt": {"$ref": "#/$defs/localTime"}, "threadEnd": {"$ref": "#/$defs/localTime"}
+      },
+      "additionalProperties": true
+    },
+    "editorialEvidence": {
+      "type": "object", "required": ["assetId"],
+      "properties": {
+        "assetId": {"$ref": "#/$defs/id"}, "title": {"type": "string"},
+        "subtitle": {"type": "string"}, "note": {"type": "string"},
+        "noteAt": {"$ref": "#/$defs/localTime"}, "lensStrength": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": true
+    },
+    "editorial": {
+      "type": "object", "required": ["background", "layers"],
+      "properties": {
+        "background": {"enum": ["paper", "ink", "comic"]},
+        "title": {"$ref": "#/$defs/editorialText"}, "eyebrow": {"$ref": "#/$defs/editorialText"},
+        "titleKeys": {"type": "array", "items": {"$ref": "#/$defs/editorialTitleKey"}},
+        "layers": {"type": "array", "items": {"$ref": "#/$defs/editorialLayer"}},
+        "camera": {"type": "array", "items": {"$ref": "#/$defs/editorialCameraKey"}},
+        "connections": {"type": "array", "items": {"$ref": "#/$defs/editorialConnection"}},
+        "filmstrip": {"$ref": "#/$defs/editorialFilmstrip"}, "evidence": {"$ref": "#/$defs/editorialEvidence"}
+      },
+      "additionalProperties": true
+    },
+    "transitionAnchor": {
+      "type": "object", "required": ["rect", "space", "start", "duration"],
+      "description": "An exact object surface or screen rectangle that opens into the advancing next scene. The CLI verifies layer references, rectangle bounds and that start + duration lands on the scene end.",
+      "properties": {
+        "layerId": {"$ref": "#/$defs/id"}, "space": {"enum": ["layer", "screen"]},
+        "rect": {
+          "type": "object", "required": ["x", "y", "w", "h"],
+          "properties": {
+            "x": {"type": "number", "minimum": 0}, "y": {"type": "number", "minimum": 0},
+            "w": {"$ref": "#/$defs/positiveNumber"}, "h": {"$ref": "#/$defs/positiveNumber"}
+          },
+          "additionalProperties": true
+        },
+        "start": {"$ref": "#/$defs/localTime"}, "duration": {"$ref": "#/$defs/positiveNumber"},
+        "borderRadius": {"type": "number", "minimum": 0}
+      },
+      "allOf": [{"if": {"properties": {"space": {"const": "layer"}}}, "then": {"required": ["layerId"]}}],
+      "additionalProperties": true
+    },
+    "presenterStyle": {
+      "type": "object", "required": ["shape"],
+      "properties": {
+        "shape": {"enum": ["portrait", "circle"]}, "x": {"type": "number"}, "y": {"type": "number"},
+        "w": {"$ref": "#/$defs/positiveNumber"}, "h": {"$ref": "#/$defs/positiveNumber"},
+        "rotation": {"type": "number"}, "radius": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": true
+    },
     "scene": {
       "type": "object", "required": ["id", "start", "end", "cueIds", "intent", "mechanism", "title", "objectIds", "beats", "transition", "presenter"],
       "properties": {
@@ -113,16 +237,26 @@
         "beats": {"type": "array", "items": {"$ref": "#/$defs/beat"}},
         "transition": {"enum": ["circle", "window", "match", "cut"]},
         "presenter": {"enum": ["full", "pip", "hidden"]},
-        "metric": {"$ref": "#/$defs/metric"}, "evidenceAssetId": {"$ref": "#/$defs/id"}
+        "metric": {"$ref": "#/$defs/metric"}, "evidenceAssetId": {"$ref": "#/$defs/id"},
+        "editorial": {"$ref": "#/$defs/editorial"}, "transitionAnchor": {"$ref": "#/$defs/transitionAnchor"},
+        "presenterStyle": {"$ref": "#/$defs/presenterStyle"}
       },
       "allOf": [
-        {"if": {"properties": {"mechanism": {"const": "object-focus"}}}, "then": {"properties": {"objectIds": {"minItems": 1}, "beats": {"contains": {"properties": {"action": {"enum": ["focus", "reveal", "result"]}}, "required": ["action"]}}}}},
-        {"if": {"properties": {"mechanism": {"const": "compare-pan"}}}, "then": {"properties": {"objectIds": {"minItems": 2}, "beats": {"minItems": 2, "contains": {"properties": {"action": {"enum": ["focus", "select"]}}, "required": ["action"]}, "minContains": 2}}}},
-        {"if": {"properties": {"mechanism": {"const": "route-transfer"}}}, "then": {"properties": {"objectIds": {"minItems": 3}, "beats": {"contains": {"properties": {"action": {"const": "transfer"}}, "required": ["action", "withId"]}}}}},
-        {"if": {"properties": {"mechanism": {"const": "group-sort"}}}, "then": {"properties": {"objectIds": {"minItems": 3}, "beats": {"contains": {"properties": {"action": {"const": "group"}}, "required": ["action", "withId"]}}}}},
-        {"if": {"properties": {"mechanism": {"const": "evidence-zoom"}}}, "then": {"properties": {"objectIds": {"minItems": 1}, "beats": {"contains": {"properties": {"action": {"enum": ["focus", "select", "result"]}}, "required": ["action"]}}}}},
-        {"if": {"properties": {"mechanism": {"const": "metric-build"}}}, "then": {"required": ["metric"], "properties": {"objectIds": {"minItems": 1}, "beats": {"contains": {"properties": {"action": {"const": "count"}}, "required": ["action"]}}}}},
-        {"if": {"properties": {"mechanism": {"const": "question-thread"}}}, "then": {"properties": {"objectIds": {"minItems": 2}, "beats": {"contains": {"properties": {"action": {"const": "connect"}}, "required": ["action", "withId"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "object-focus"}}, "not": {"required": ["editorial"]}}, "then": {"properties": {"objectIds": {"minItems": 1}, "beats": {"contains": {"properties": {"action": {"enum": ["focus", "reveal", "result"]}}, "required": ["action"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "compare-pan"}}, "not": {"required": ["editorial"]}}, "then": {"properties": {"objectIds": {"minItems": 2}, "beats": {"minItems": 2, "contains": {"properties": {"action": {"enum": ["focus", "select"]}}, "required": ["action"]}, "minContains": 2}}}},
+        {"if": {"properties": {"mechanism": {"const": "route-transfer"}}, "not": {"required": ["editorial"]}}, "then": {"properties": {"objectIds": {"minItems": 3}, "beats": {"contains": {"properties": {"action": {"const": "transfer"}}, "required": ["action", "withId"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "group-sort"}}, "not": {"required": ["editorial"]}}, "then": {"properties": {"objectIds": {"minItems": 3}, "beats": {"contains": {"properties": {"action": {"const": "group"}}, "required": ["action", "withId"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "evidence-zoom"}}, "not": {"required": ["editorial"]}}, "then": {"properties": {"objectIds": {"minItems": 1}, "beats": {"contains": {"properties": {"action": {"enum": ["focus", "select", "result"]}}, "required": ["action"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "metric-build"}}, "not": {"required": ["editorial"]}}, "then": {"required": ["metric"], "properties": {"objectIds": {"minItems": 1}, "beats": {"contains": {"properties": {"action": {"const": "count"}}, "required": ["action"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "question-thread"}}, "not": {"required": ["editorial"]}}, "then": {"properties": {"objectIds": {"minItems": 2}, "beats": {"contains": {"properties": {"action": {"const": "connect"}}, "required": ["action", "withId"]}}}}},
+        {"if": {"required": ["transitionAnchor"]}, "then": {"properties": {"transition": {"enum": ["circle", "window"]}}}},
+        {
+          "if": {"required": ["editorial"], "properties": {"presenter": {"not": {"const": "full"}}}},
+          "then": {"properties": {"editorial": {"anyOf": [
+            {"required": ["layers"], "properties": {"layers": {"minItems": 1}}},
+            {"required": ["evidence"]}, {"required": ["filmstrip"]}
+          ]}}}
+        },
         {"if": {"required": ["metric"]}, "then": {"properties": {"mechanism": {"const": "metric-build"}}}},
         {"if": {"required": ["evidenceAssetId"]}, "then": {"properties": {"mechanism": {"const": "evidence-zoom"}}}}
       ],

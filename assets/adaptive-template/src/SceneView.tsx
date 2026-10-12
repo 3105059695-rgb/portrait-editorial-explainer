@@ -1,6 +1,7 @@
 import React from 'react';
 import {Img, staticFile} from 'remotion';
 import {ObjectGlyph} from './ObjectGlyph';
+import {EditorialScene} from './EditorialScene';
 import type {Asset, Episode, Scene, StoryObject, Theme} from './types';
 import {back, beatProgress, cameraAt, cameraTransform, clamp, layout, mix, objectPoses, pulse, safeId, smooth, sortedBeats, transferLanding, type Camera, type Pose} from './timeline';
 
@@ -234,6 +235,7 @@ const Evidence: React.FC<{episode: Episode; scene: Scene; t: number; theme: Them
 };
 
 export const SceneView: React.FC<{episode: Episode; scene: Scene; t: number; previous?: Scene}> = ({episode, scene, t, previous}) => {
+  if (scene.editorial) return <EditorialScene episode={episode} scene={scene} t={t}/>;
   const theme = {...DEFAULT_THEME, ...episode.theme}, uid = `s-${safeId(scene.id)}`;
   const poses = objectPoses(scene, t), ownCamera = cameraAt(scene, t);
   let camera = ownCamera;

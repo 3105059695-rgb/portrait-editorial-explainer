@@ -4,6 +4,8 @@
 
 这一页说明正式制作时每一步的输入、动作与交接结果。它不要求你把工作拆成固定等长的镜头，也不把历史样例视为新一期已经完成的剪辑。
 
+**日常默认直接创作。** 读取已确认的剪辑规则后，按本期口播写动作并用 Remotion 实现，完成必要成片检查，交付开头供使用者观看。只有首次学习参考、收到明确的“不像”反馈，或使用者要求复刻对照时，才做针对性比较；不把反复出对照图、写分析报告或独立审查变成每期前置步骤。
+
 返回 [README](../README.md) · [安装教程](INSTALL.md) · [V2 分镜规范](../references/storyboard-contract.md)
 
 ## 1. 先认清本期输入
@@ -78,14 +80,14 @@
 
 ## 4. 把口播变成语义动作
 
-先写四列表，再选择素材和镜头。例如一段“AI 整理客户问题”的口播可以这样设计：
+先写四列表，再选择素材和镜头。例如一段“净水器安装准备”的口播可以这样设计：
 
 | 说了什么 | 持续存在的物体／证据 | 可见动作 | 镜头关注 |
 | --- | --- | --- | --- |
-| 客户的问题散在聊天里 | 一组经过必要处理的真实聊天条目 | 目标问题逐条被选中 | 推近被选行，保留上下文 |
-| 先把问题整理出来 | 同一组已选条目 | 条目移动进入整理窗口 | 跟随移动路径 |
-| 按主题分成几组 | 原条目与分类标题 | 条目归入对应分组 | 回拉看清组间关系 |
-| 看看还有哪些没回答 | 仍是刚才的分组 | 未答条目被明确标出 | 推近结果并停留供阅读 |
+| 先检查接口和可用空间 | 接头、橱柜的空间关系 | 接头特写后回拉，接着聚焦安装空间 | 景别变化让观众看清两个检查对象 |
+| 滤芯要对准位置 | 同一根滤芯与机身 | 滤芯沿弧线接近，再进入机身 | 跟随移动路径，落位时留短暂停顿 |
+| 按对应产品说明书操作 | 实际说明资料，或明确标注的示意 | 从机身水窗展开资料画面 | 整个证据画面曲面聚焦，保留可读性 |
+| 把步骤连起来看 | 接口、空间、安装、出水四个过程画面 | 胶片进入，红线逐格连接 | 回拉看完整关系，再聚焦结果 |
 
 对应的自制产品 UI 标“示意”；使用真实 UI 时保留可读的操作与结果，不用无关终端或代码段装饰。
 
@@ -103,7 +105,7 @@
 
 ## 5. 模型写本期分镜，通用引擎执行动作
 
-先读[导演手册](../references/director-playbook.md)和[V2 分镜契约](../references/storyboard-contract.md)。本期编译工程读取 `src/episode.json`；字幕、场景、对象和动作使用同一份数据。优先复用现有实现；底座缺少的 V3 镜头与物体带动转场，须在本期工程补实现，不能当成已经具备。
+先读[导演手册](../references/director-playbook.md)、[V2 分镜契约](../references/storyboard-contract.md)和[结构 Schema](../references/storyboard.schema.json)。本期编译工程读取 `src/episode.json`；字幕、场景、对象和动作使用同一份数据。V3 的镜头、精确表面开窗、持续推进的下一场、胶片红线和倾斜竖向人物窗口已迁入通用底座，优先填写参数复用。确实超出配置表达范围的新动作，才在本期工程扩展组件，并验证扩展结果。
 
 **第一份 `episode.json` 只写本期真实开头 10–15 秒。** 起点为 0，声音、字幕、场景与动作沿用本期同一时钟，终点落在完整语义处。不要先传全片再指望脚本自动截断；使用者确认样段后才扩展全片。
 
@@ -112,13 +114,29 @@
 推荐设计顺序：
 
 1. 写本期 `captions`，每句有稳定 ID、实测起止点。
-2. 建立 `objects`，同一实体反复出现时复用 ID；`assetId` 可绑定本期原创插画或真实图片。
+2. 建立 `assets`，登记本期原创插画、真实资料或明确示意的相对路径与来源；同一物件尽量持续使用同一素材身份。
 3. 按语义分段写 `scenes`，从零连续覆盖 `duration`，镜头数量不固定。
-4. 每镜填写 `intent`、`mechanism`、`objectIds` 和 `cueIds`，说明画面要让观众理解什么。
-5. `beats` 使用全片绝对秒数、真实 cue 引用和动作目标。人物出场、语义强调、转场与读取停顿随本期安排。
+4. 每镜填写 `intent`、`mechanism` 和 `cueIds`，说明画面要让观众理解什么。按参考风格直接构图时，用 `editorial.layers` 安排本期物件，再用 `editorial.camera` 安排景别。
+5. 需要基本自动布局时使用 `objects`、`objectIds` 和 `beats`；`beats` 使用全片绝对秒数。使用直接编排的 `editorial` 时，`objects`、`objectIds`、`beats` 可为空，动作由本期图层和镜头关键帧承担；不能只写一个动作名称而不给实现数据。
 6. 填入 `source`、`media`、`timing` 与配色。没有最终声音的输入必须标为 estimated/demo，不能写 measured。
 
-详尽可运行输入见[客户问题](../examples/storyboards/customer-questions.json)、[净水器](../examples/storyboards/water-filter.json)和[文物记录](../examples/storyboards/artifact-recording.json)。这些样例展示不同组合，不是必须遵守的镜头顺序。
+直接编排的完整例子见[职业主题校准](../examples/storyboards/editorial-career-opening.json)与[净水器安装](../examples/storyboards/editorial-water-opening.json)。它们使用不同素材、布局和动作来运行同一套机制。旧的[客户问题](../examples/storyboards/customer-questions.json)、[基础净水器](../examples/storyboards/water-filter.json)和[文物记录](../examples/storyboards/artifact-recording.json)仅帮助理解自动布局的基础结构，不替代本期风格编排。
+
+`editorial` 的坐标为 **540×960逻辑舞台**；所有图层、镜头、标题和胶片关键帧使用**本场局部秒数**，不要误填全片时间。负时间最低为 `-1.5` 秒，用于下一场在窗口里提前开始运动；到场景起点继续推进，不重置时间。字幕、场景起止点及基础 `beats` 仍使用全片时间。
+
+| 设计需要 | 本期字段 | 检查重点 |
+| --- | --- | --- |
+| 放大具体物件，再回拉建立关系 | `editorial.layers`、`editorial.camera` | 图层围绕自身中心旋转缩放，镜头控制整个世界；特写须对准实际被讲述的细节 |
+| 同场景随台词换重点标题 | `editorial.titleKeys` | 按本场时点提供 `title` 和可选 `eyebrow`，不要把标题变化当成唯一动画 |
+| 从某个真实表面进入下一场 | `transitionAnchor` | 用 `space: "layer"`、`layerId` 和层内 `rect` 精确选中表面；起点加时长应落在本场结束 |
+| 让下一场在窗口内就有动作 | 下一场负时间图层／镜头关键帧 | 开窗前、中、后均有连续内容，下一场不是冻结截图 |
+| 资料与界面整体曲面聚焦 | `editorial.evidence` | 用本期资料或明确示意，曲屏不能令核心文字和证据失读 |
+| 胶片入场并逐格连线 | `editorial.filmstrip` | 提供2–12个本期画面，分别安排入场、落稳、连线起止时间 |
+| 人物保持竖向小窗 | `presenterStyle` | 调整 `shape: "portrait"`、坐标、尺寸、圆角与倾斜；避开当前物件和字幕 |
+
+默认人物与字幕处于镜头、曲屏滤镜之外。前景纸片可用图层 `foreground: true` 放到人物上方，但必须避开脸部和关键手势。人物小窗与开窗衔接应查看中间帧，不能只看两个端点。
+
+较轻模型也应优先沿用这套数据和组件：换本期素材、关系和时点，经校验后渲染查看。示例的旧剧情、固定道具和总时长没有优先权。本仓库没有跨模型盲测保证；完成结构校验不等于已经完成合格剪辑。
 
 人物、声音、音乐与图像路径相对于 `--media-dir` 指定的素材目录。示意目录：
 
@@ -153,11 +171,25 @@ python -X utf8 scripts/new_project.py --input ../episode-work/episode.json --med
 cd ../episode-opening
 npm ci
 npm run check
+npm run test:motion
 ```
 
 JSON 校验器给出具体字段位置与错误；模型应按[修复表](../references/repair-recipes.md)修改后再运行。比如 cueId 不存在就修正引用，动作早于台词就检查真实关键词时点，缺少真实材料就补材料或转为明确的草案，而不是关闭规则。
 
 只有视觉草案时，校验改为 `--mode draft`，编译加 `--draft`。草案可以没有声音，但引用了路径的文件仍需存在；渲染带明确的草案标识。
+
+第一次安装可先从仓库根目录运行公开原创净水器示例，验证换目录后仍可使用：
+
+```powershell
+python -X utf8 scripts/new_project.py --input examples/storyboards/editorial-water-opening.json --media-dir examples/media --out ../water-opening --draft
+cd ../water-opening
+npm ci
+npm run check
+npm run test:motion
+npm run render
+```
+
+职业主题校准使用同样命令，把输入换成 `examples/storyboards/editorial-career-opening.json`，输出另用一个空目录。两个示例均不需要私人媒体或作者的绝对路径。`test:motion` 检查关键帧、镜头和表面转场的运算；它不播放声音，也不代替画面复核。
 
 入口调用编译器先预检，再把通用源码、锁文件、引用素材和本期 JSON 复制进新的空工程，并附上 `STYLE_TARGET.md`。生成的 `BUILD_REPORT.json` 记录输入及素材摘要、模式和校验结果。数据中的 `duration` 和 `fps` 决定总帧数，无需每期手改 `Root.tsx`；字幕与动作直接来自同一 `episode.json`。无输入时入口会报错；`--case` 仅用于显式查看校准案例。
 
@@ -184,6 +216,7 @@ JSON 校验器给出具体字段位置与错误；模型应按[修复表](../ref
 
 ```powershell
 npm run check
+npm run test:motion
 npm run dev
 ```
 
@@ -193,7 +226,7 @@ npm run dev
 npm run render
 ```
 
-默认通用工程脚本导出 `out/adaptive-portrait.mp4`。**该命令渲染整个传入的分镜，不会自动截取开头。** 第一轮应只传入上面准备好的 0 秒起 10–15 秒计划，实际对照数字人 V3 的镜头、物体动作和转场；得到使用者对本期样段的反馈后再延展全片。新一期可以在本期工程中改输出名称，但交付说明必须与真实文件一致。
+默认通用工程脚本导出 `out/adaptive-portrait.mp4`。**该命令渲染整个传入的分镜，不会自动截取开头。** 第一轮只传入准备好的0秒起10–15秒计划，直接用已掌握的镜头、物件动作和转场完成本期剪辑；检查播放、字幕和必要衔接后，交给使用者观看。收到样段反馈后再延展全片；需要校准的具体差距再针对性比较。新一期可以在本期工程中改输出名称，但交付说明必须与真实文件一致。
 
 检查媒体信息和完整视频解码的示例：
 
@@ -204,7 +237,7 @@ ffmpeg -v error -i "out/adaptive-portrait.mp4" -f null -
 
 终端无解码错误只说明媒体能解码，不能证明台词正确、音画同步或视觉好看。抽听真实音轨与所有修改切口，若未完整听看，应写明抽查范围。
 
-建议检查记录分开写：
+日常不要求另写审查报告。确实需要记录检查结果时，各结论依据不同：
 
 | 结论 | 支撑它的实际证据 |
 | --- | --- |
@@ -228,5 +261,7 @@ ffmpeg -v error -i "out/adaptive-portrait.mp4" -f null -
 - 实际运行命令和检查范围，注明仍未验证的项目。
 
 分享工程前排除账号配置、密钥、私人人像／声音及不应公开的原始素材。若媒体不能随包分发，保留明确的替换说明与预期文件接口，不要交付失效的私人绝对路径。
+
+本仓库的新版[职业校准预览](editorial-career-preview.mp4)使用占位人物和示意资料，[净水器预览](editorial-water-preview.mp4)使用原创自绘素材。原委托者的真实数字人样段只向其交付，不放入公共仓库；公开预览不能当作真实素材样段的音画验收记录。
 
 下一期从独立的新工程开始，复用视觉系统与组件，重新建立本期主题、最终声音与动作时点。发布、付费生成或账号绑定应依据使用者的明确指令另行处理。

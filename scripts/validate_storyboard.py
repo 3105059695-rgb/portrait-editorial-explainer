@@ -157,6 +157,183 @@ def validate_storyboard(data, mode="production"):
                     indexed[identifier] = entry
         return indexed
 
+    def positive_at(value, path):
+        if number_at(value, path, 0) and value <= 0:
+            issue(path, "must be greater than zero", "Use a positive measured size, scale, or interval.")
+
+    def boolean_at(value, path):
+        if not isinstance(value, bool):
+            issue(path, "must be a boolean", "Use JSON true or false.")
+
+    def asset_reference(value, path):
+        if not isinstance(value, str) or value not in asset_index:
+            issue(path, "unknown asset id", "Declare this asset in $.assets with a portable relative path.")
+
+    def local_time(value, path, scene_duration):
+        return number_at(value, path, -1.5, scene_duration)
+
+    def interval_at(value, path, first, last, scene_duration):
+        first_ok = local_time(value.get(first), path + "." + first, scene_duration)
+        last_ok = local_time(value.get(last), path + "." + last, scene_duration)
+        if first_ok and last_ok and value[last] <= value[first]:
+            issue(path + "." + last, f"must be later than {first}", "Use a nonzero interval in scene-local seconds.")
+
+    def validate_keys(values, path, scene_duration, camera=False):
+        previous_at = None
+        for key_index, raw_key in enumerate(array_at(values, path)):
+            key_path = f"{path}[{key_index}]"
+            key = object_at(raw_key, key_path, ("at", "x", "y", "z") if camera else ("at",), () if camera else ("x", "y", "w", "h", "rotation", "scale", "opacity"))
+            at = key.get("at")
+            if local_time(at, key_path + ".at", scene_duration):
+                if previous_at is not None and at <= previous_at:
+                    issue(key_path + ".at", "key times must be strictly increasing", "Order keys by scene-local time and merge duplicate-time keys.")
+                previous_at = at
+            for field in ("x", "y", "rotation"):
+                if field in key:
+                    number_at(key[field], key_path + "." + field)
+            for field in ("w", "h", "scale", "z"):
+                if field in key:
+                    positive_at(key[field], key_path + "." + field)
+            if "opacity" in key:
+                number_at(key["opacity"], key_path + ".opacity", 0, 1)
+            if not camera and not any(field in key for field in ("x", "y", "w", "h", "rotation", "scale", "opacity")):
+                issue(key_path, "key has no pose fields", "Specify the property being animated, or remove the redundant key.", True)
+
+    def validate_editorial(scene, path, scene_duration):
+        config = object_at(scene.get("editorial"), path, ("background", "layers"), ("title", "eyebrow", "titleKeys", "camera", "connections", "filmstrip", "evidence"))
+        enum_at(config.get("background"), path + ".background", {"paper", "ink", "comic"})
+        for text in ("title", "eyebrow"):
+            if text in config:
+                string_at(config[text], path + "." + text, minimum=0, maximum=40)
+        if "titleKeys" in config:
+            previous_title_at = None
+            for key_index, raw_key in enumerate(array_at(config["titleKeys"], path + ".titleKeys")):
+                key_path = f"{path}.titleKeys[{key_index}]"
+                key = object_at(raw_key, key_path, ("at", "title"), ("eyebrow",))
+                at = key.get("at")
+                if local_time(at, key_path + ".at", scene_duration):
+                    if previous_title_at is not None and at <= previous_title_at:
+                        issue(key_path + ".at", "title key times must be strictly increasing", "Order title changes by scene-local spoken time and merge duplicate-time keys.")
+                    previous_title_at = at
+                string_at(key.get("title"), key_path + ".title", minimum=0, maximum=40)
+                if "eyebrow" in key:
+                    string_at(key["eyebrow"], key_path + ".eyebrow", minimum=0, maximum=40)
+        layers = array_at(config.get("layers"), path + ".layers")
+        layer_index = index_entries(layers, path + ".layers")
+        for layer_number, raw_layer in enumerate(layers):
+            layer_path = f"{path}.layers[{layer_number}]"
+            layer = object_at(raw_layer, layer_path, ("id", "assetId", "x", "y", "w", "h"), ("rotation", "scale", "opacity", "keys", "shadow", "foreground"))
+            asset_reference(layer.get("assetId"), layer_path + ".assetId")
+            for field in ("x", "y"):
+                number_at(layer.get(field), layer_path + "." + field)
+            for field in ("w", "h"):
+                positive_at(layer.get(field), layer_path + "." + field)
+            if "rotation" in layer:
+                number_at(layer["rotation"], layer_path + ".rotation")
+            if "scale" in layer:
+                positive_at(layer["scale"], layer_path + ".scale")
+            if "opacity" in layer:
+                number_at(layer["opacity"], layer_path + ".opacity", 0, 1)
+            for field in ("shadow", "foreground"):
+                if field in layer:
+                    boolean_at(layer[field], layer_path + "." + field)
+            if "keys" in layer:
+                validate_keys(layer["keys"], layer_path + ".keys", scene_duration)
+        if "camera" in config:
+            validate_keys(config["camera"], path + ".camera", scene_duration, camera=True)
+        if "connections" in config:
+            connections = array_at(config["connections"], path + ".connections")
+            index_entries(connections, path + ".connections")
+            for connection_index, raw_connection in enumerate(connections):
+                connection_path = f"{path}.connections[{connection_index}]"
+                connection = object_at(raw_connection, connection_path, ("id", "points", "start", "end"), ("color", "width"))
+                points = array_at(connection.get("points"), connection_path + ".points")
+                if len(points) < 2:
+                    issue(connection_path + ".points", "needs at least two points", "Author the actual spatial route between objects.")
+                for point_index, raw_point in enumerate(points):
+                    point_path = f"{connection_path}.points[{point_index}]"
+                    point = object_at(raw_point, point_path, ("x", "y"))
+                    number_at(point.get("x"), point_path + ".x")
+                    number_at(point.get("y"), point_path + ".y")
+                interval_at(connection, connection_path, "start", "end", scene_duration)
+                if "width" in connection:
+                    positive_at(connection["width"], connection_path + ".width")
+                if "color" in connection and (not isinstance(connection["color"], str) or not re.fullmatch(r"#[0-9a-fA-F]{6}", connection["color"])):
+                    issue(connection_path + ".color", "must be a #RRGGBB color", "Use a six-digit hexadecimal stroke color.")
+        if "filmstrip" in config:
+            film_path = path + ".filmstrip"
+            strip = object_at(config["filmstrip"], film_path, ("assetIds", "x", "y", "w", "h", "enterAt", "settleAt", "threadAt", "threadEnd"), ("rotation",))
+            frame_assets = array_at(strip.get("assetIds"), film_path + ".assetIds")
+            if not 2 <= len(frame_assets) <= 12:
+                issue(film_path + ".assetIds", "needs 2 to 12 frames", "Choose actual frame assets; repeated source ids are permitted.")
+            for frame_index, asset in enumerate(frame_assets):
+                asset_reference(asset, f"{film_path}.assetIds[{frame_index}]")
+            for field in ("x", "y"):
+                number_at(strip.get(field), film_path + "." + field)
+            for field in ("w", "h"):
+                positive_at(strip.get(field), film_path + "." + field)
+            if "rotation" in strip:
+                number_at(strip["rotation"], film_path + ".rotation")
+            interval_at(strip, film_path, "enterAt", "settleAt", scene_duration)
+            interval_at(strip, film_path, "threadAt", "threadEnd", scene_duration)
+        if "evidence" in config:
+            evidence_path = path + ".evidence"
+            evidence = object_at(config["evidence"], evidence_path, ("assetId",), ("title", "subtitle", "note", "noteAt", "lensStrength"))
+            asset_reference(evidence.get("assetId"), evidence_path + ".assetId")
+            for field in ("title", "subtitle", "note"):
+                if field in evidence:
+                    string_at(evidence[field], evidence_path + "." + field, minimum=0)
+            if "noteAt" in evidence:
+                local_time(evidence["noteAt"], evidence_path + ".noteAt", scene_duration)
+            if "lensStrength" in evidence:
+                number_at(evidence["lensStrength"], evidence_path + ".lensStrength", 0)
+        if not layers and "filmstrip" not in config and "evidence" not in config and scene.get("presenter") != "full":
+            issue(path, "editorial scene has no material, evidence, or film frames", "Provide semantic visual assets; only a full-screen presenter scene may omit them.")
+        return layer_index
+
+    def validate_presenter_style(value, path):
+        style = object_at(value, path, ("shape",), ("x", "y", "w", "h", "rotation", "radius"))
+        enum_at(style.get("shape"), path + ".shape", {"portrait", "circle"})
+        for field in ("x", "y", "rotation"):
+            if field in style:
+                number_at(style[field], path + "." + field)
+        for field in ("w", "h"):
+            if field in style:
+                positive_at(style[field], path + "." + field)
+        if "radius" in style:
+            number_at(style["radius"], path + ".radius", 0)
+
+    def validate_anchor(value, path, scene, scene_duration, layers):
+        anchor = object_at(value, path, ("rect", "space", "start", "duration"), ("layerId", "borderRadius"))
+        enum_at(anchor.get("space"), path + ".space", {"layer", "screen"})
+        if not is_choice(scene.get("transition"), {"circle", "window"}):
+            issue(path, "transitionAnchor is only used by circle/window transitions", "Choose an actual object-driven circle/window transition, or remove this anchor.")
+        start_ok = local_time(anchor.get("start"), path + ".start", scene_duration)
+        positive_at(anchor.get("duration"), path + ".duration")
+        if start_ok and finite_number(anchor.get("duration")) and anchor["duration"] > 0 and scene_duration is not None:
+            fps = root.get("fps") if root.get("fps") in (25, 30, 50, 60) else 30
+            if abs(anchor["start"] + anchor["duration"] - scene_duration) > 1 / fps + EPSILON:
+                issue(path + ".duration", "transition must finish at the scene end (within one frame)", "Set duration to scene.end - scene.start - transitionAnchor.start.")
+        if "borderRadius" in anchor:
+            number_at(anchor["borderRadius"], path + ".borderRadius", 0)
+        rect = object_at(anchor.get("rect"), path + ".rect", ("x", "y", "w", "h"))
+        for field in ("x", "y"):
+            number_at(rect.get(field), path + ".rect." + field, 0)
+        for field in ("w", "h"):
+            positive_at(rect.get(field), path + ".rect." + field)
+        bounds = (540, 960) if anchor.get("space") == "screen" else None
+        if anchor.get("space") == "layer":
+            layer_id = anchor.get("layerId")
+            if not isinstance(layer_id, str) or layer_id not in layers:
+                issue(path + ".layerId", "unknown editorial layer id", "Anchor the opening to an existing layer in this scene, using its base dimensions.")
+            else:
+                bounds = (layers[layer_id].get("w"), layers[layer_id].get("h"))
+        elif "layerId" in anchor:
+            issue(path + ".layerId", "screen-space anchors ignore layerId", "Remove layerId or select space='layer'.", True)
+        if bounds and all(finite_number(v) for v in bounds) and all(finite_number(rect.get(v)) for v in ("x", "y", "w", "h")):
+            if rect["x"] + rect["w"] > bounds[0] + EPSILON or rect["y"] + rect["h"] > bounds[1] + EPSILON:
+                issue(path + ".rect", "anchor rectangle extends outside its base surface", "Measure the visible object surface within layer.w/layer.h, or within the 540 x 960 screen.")
+
     root = object_at(data, "$", ("version", "title", "width", "height", "fps", "duration", "timing", "source", "media", "assets", "objects", "captions", "scenes"), ("theme", "renderMode"))
     if root.get("version") != 2 or isinstance(root.get("version"), bool):
         issue("$.version", "must be 2", "Migrate the JSON to storyboard-contract.md v2.")
@@ -262,7 +439,7 @@ def validate_storyboard(data, mode="production"):
     previous_end = 0.0
     for index, item in enumerate(scenes):
         path = f"$.scenes[{index}]"
-        item = object_at(item, path, ("id", "start", "end", "cueIds", "intent", "mechanism", "title", "objectIds", "beats", "transition", "presenter"), ("metric", "evidenceAssetId"))
+        item = object_at(item, path, ("id", "start", "end", "cueIds", "intent", "mechanism", "title", "objectIds", "beats", "transition", "presenter"), ("metric", "evidenceAssetId", "editorial", "presenterStyle", "transitionAnchor"))
         start, end = item.get("start"), item.get("end")
         valid_start = number_at(start, path + ".start", 0, duration if valid_duration else None)
         valid_end = number_at(end, path + ".end", 0, duration if valid_duration else None)
@@ -280,6 +457,13 @@ def validate_storyboard(data, mode="production"):
         enum_at(mechanism, path + ".mechanism", MECHANISMS)
         enum_at(item.get("transition"), path + ".transition", {"circle", "window", "match", "cut"})
         enum_at(item.get("presenter"), path + ".presenter", {"full", "pip", "hidden"})
+        has_editorial = "editorial" in item
+        scene_duration = end - start if valid_start and valid_end and end > start else None
+        editorial_layers = validate_editorial(item, path + ".editorial", scene_duration) if has_editorial else {}
+        if "presenterStyle" in item:
+            validate_presenter_style(item["presenterStyle"], path + ".presenterStyle")
+        if "transitionAnchor" in item:
+            validate_anchor(item["transitionAnchor"], path + ".transitionAnchor", item, scene_duration, editorial_layers)
         scene_objects = references(item.get("objectIds"), path + ".objectIds", object_index)
         if isinstance(item.get("objectIds"), list) and len(item["objectIds"]) > 6:
             issue(path + ".objectIds", "maximum is 6 on-screen objects per scene", "Simplify this composition or split it at a real semantic boundary.")
@@ -319,17 +503,17 @@ def validate_storyboard(data, mode="production"):
             usable_beats.append(beat)
 
         minima = {"object-focus": 1, "compare-pan": 2, "route-transfer": 3, "group-sort": 3, "evidence-zoom": 1, "metric-build": 1, "question-thread": 2, "presenter": 0}
-        if isinstance(mechanism, str) and mechanism in minima and len(scene_objects) < minima[mechanism]:
+        if not has_editorial and isinstance(mechanism, str) and mechanism in minima and len(scene_objects) < minima[mechanism]:
             issue(path + ".objectIds", f"{mechanism} needs at least {minima[mechanism]} distinct objects", "Add the real semantic participants, or choose a mechanism that fits this explanation.")
         required_actions = {"object-focus": {"focus", "reveal", "result"}, "route-transfer": {"transfer"}, "group-sort": {"group"}, "evidence-zoom": {"focus", "select", "result"}, "metric-build": {"count"}, "question-thread": {"connect"}}
-        if isinstance(mechanism, str) and mechanism in required_actions and not any(is_choice(beat.get("action"), required_actions[mechanism]) for beat in usable_beats):
+        if not has_editorial and isinstance(mechanism, str) and mechanism in required_actions and not any(is_choice(beat.get("action"), required_actions[mechanism]) for beat in usable_beats):
             issue(path + ".beats", f"{mechanism} needs an action from {', '.join(sorted(required_actions[mechanism]))}", "Tie the required semantic action to the actual triggering caption and object.")
-        if mechanism == "compare-pan":
+        if not has_editorial and mechanism == "compare-pan":
             targets = {beat.get("targetId") for beat in usable_beats if is_choice(beat.get("action"), {"focus", "select"}) and isinstance(beat.get("targetId"), str) and beat["targetId"] in scene_objects}
             if len(targets) < 2:
                 issue(path + ".beats", "compare-pan needs focus/select events on at least two different objects", "Add caption-aligned comparison events for both compared objects.")
 
-        if mechanism == "metric-build" and "metric" not in item:
+        if not has_editorial and mechanism == "metric-build" and "metric" not in item:
             issue(path + ".metric", "metric-build requires metric data", "Supply the real numeric value from the narration; do not invent statistics.")
         if "metric" in item:
             if mechanism != "metric-build":

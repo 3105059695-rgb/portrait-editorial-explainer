@@ -2,11 +2,11 @@
 
 用已有数字人、真人口播或配音，制作有主题物件、明显景别变化、资料场景和漫画转场的竖屏讲解。**视觉基准是用户已认可的数字人口播 V3；具体内容、物体、顺序和时长按本期口播重新编排。**
 
-本次修正了一个实际方向错误：RC2 把视频剪辑过度简化为应用界面演示。资料工作台和行程例子保留为辅助 UI 能力，不再是默认生成入口或正向风格样板。
+用 Remotion 复用物件运动、镜头、曲屏资料和漫画段的实现，根据本期声音和素材自由组合。提供完整代码、相对路径素材、分镜参数和两个可运行示例。
 
 [下载当前修订](https://github.com/3105059695-rgb/portrait-editorial-explainer/archive/refs/heads/main.zip) · [Skill入口](SKILL.md) · [已确认剪辑方向](references/approved-editing-direction.md) · [V3动作与源码定位](references/approved-presenter-v3.md) · [制作流程](references/presenter-workflow.md)
 
-旧 release 安装包保留历史实现；使用上方当前修订。当前的入口纠正不等于已完成所有新题材的风格验证。
+[下载 v3.1.0-rc.1 完整 Skill 包](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/tag/v3.1.0-rc.1)。本版已把物体表面开窗、连续进入下一场、胶片红线和竖向人物小窗接入同一套参数化引擎，并完成实际视频渲染；新一期先交自己的开头供观看。
 
 ## 要继承的效果
 
@@ -16,11 +16,13 @@
 - 资料界面可以整屏曲面聚焦，解释段可以进入完整漫画场景。
 - 数字人、人声和字幕保持连续主线，素材和镜头围绕内容组织。
 
-[公开V3机制校准片](docs/public-preview.mp4) 使用占位人物、占位访谈且无声音，只用于看原生镜头和转场。原委托者的实际数字人、声音、参考视频不随包公开。
+[新版职业主题校准片](docs/editorial-career-preview.mp4) 使用占位人物和示意访谈；[净水器安装示范](docs/editorial-water-preview.mp4) 使用另一组原创物件、镜头和四格过程胶片。两者均为明确标注的静音草案。原委托者的实际数字人、声音、参考视频不随包公开。
 
-![V3公开校准画面](docs/preview.jpg)
+历史版本仍可查看：[V3机制预览](docs/public-preview.mp4) · [V3校准画面](docs/preview.jpg)。
 
 这里的旧主题不是固定脚本。新视频不必出现公司、公文包、访谈或紫色漫画，也不必使用全部效果；保留设计做法，按新话意重组。
+
+日常调用直接按口播语义设计并用 Remotion 剪辑，完成必要成片检查后交付10–15秒开头。只有首次学习参考、使用者明确指出不像，或要求复刻对照时，才做针对性比较；不默认反复制作对照图、分析报告或另开审查流程。
 
 ## 安装与调用
 
@@ -55,6 +57,7 @@ python -X utf8 scripts/new_project.py --input episode.json --media-dir media-roo
 cd ../this-episode
 npm ci
 npm run check
+npm run test:motion
 npm run render
 ```
 
@@ -62,7 +65,29 @@ npm run render
 
 生成工程附 `STYLE_TARGET.md`，记录相同视觉基准、反例和实现边界。缺少输入时命令返回提示，不创建资料工作台，也不自动复制固定10.74秒旧片。缺素材/非法路径沿用编译器校验，不能跳过。
 
-## 只看风格校准
+## 下载后先跑一个完整例子
+
+在仓库根目录执行，无需作者的素材目录或账号：
+
+```powershell
+python -X utf8 scripts/new_project.py --input examples/storyboards/editorial-water-opening.json --media-dir examples/media --out ../water-opening --draft
+cd ../water-opening
+npm ci
+npm run check
+npm run test:motion
+npm run render
+```
+
+输出为 `out/adaptive-portrait.mp4`。把输入换成 `examples/storyboards/editorial-career-opening.json`，并另设一个空输出目录，即可运行另一份校准案例。
+
+| 可运行分镜 | 展示内容 | 素材边界 |
+| --- | --- | --- |
+| [职业主题开头](examples/storyboards/editorial-career-opening.json) | 特写回拉、物件移动、表面开窗、曲屏资料、漫画胶片、竖向人物窗口 | 公开占位人物、原创道具与示意访谈，不含原委托者声音 |
+| [净水器安装开头](examples/storyboards/editorial-water-opening.json) | 接口与空间换焦点、滤芯进入机身、水窗展开资料、四格过程连线 | 原创自绘插画和安装示意，不是厂商说明书或实际产品操作指导 |
+
+这两份数据用于学习如何编排。默认入口不会自动选择其中一份；自己的主题需要自己的台词、素材、动作和时点。
+
+## 研究历史风格校准
 
 ```powershell
 python -X utf8 scripts/new_project.py --case presenter-v3 --out ../v3-calibration
@@ -75,11 +100,20 @@ npm run dev
 
 ## 能力与验证边界
 
-通用底座已有数据驱动的人物、物件、相机、移动、曲面资料和窗口转场，但并未完整参数化获认可V3的所有做法。精确物体表面窗口、成熟胶片红线、人物小窗造型等需要按相关镜头迁移已有源码；现有底座转场预览冻结问题也必须在使用时修正、检查。具体定位见 [剪辑方向](references/approved-editing-direction.md#工程能力边界)。不能因字段名相似就声称已经复用完整效果。
+`scene.editorial` 让模型填写本期构图和动作数据，复用已写好的动画。结构以 [JSON Schema](references/storyboard.schema.json) 和 [分镜契约](references/storyboard-contract.md) 为准：
 
-本次只纠正技能入口和默认项目路由，没有生成新成片，也没有把新题风格标成已通过。入口的7项回归检查覆盖：无输入不写目录、本期分镜真实编译、目标说明随工程携带、草案/正式校验、显式校准案例和参数冲突。技术历史记录仍保留，不能当作当前审美认证。
+| 已补齐的机制 | 每期可以改变什么 |
+| --- | --- |
+| 精确物体表面开窗 | `transitionAnchor` 指向任意本期图层内的矩形，跟随图层移动、旋转、缩放及镜头，再展开为下一场 |
+| 下一场连续进入 | 图层和镜头支持场景开始前的负时间关键帧；窗口内使用正在推进的同一时间轴，到切场边界不冻结或重播 |
+| 胶片与贯穿红线 | `filmstrip` 支持不同画面数量、尺寸、位置、转角、入场与连线时间；可用本期资料重新排列 |
+| 竖向人物小窗 | `presenterStyle` 配置圆角、倾斜和位置；人物从全屏连续缩小，声音与人物始终沿同一主时钟 |
 
-较轻模型可借助成熟实现减少从零写动画的负担，但不能保证所有模型都独立达到同样审美。先交真实开头，由实际视觉反馈校准；样段不合格时修复画面，不以组件数或测试数替代结果。
+同时提供直接编排的镜头关键帧、独立图层动作、前景纸片、整屏曲面资料和按语句变化的标题。无需为了换题材再复制一份固定剧情组件；现有配置确实表达不了的新动作，才扩展实现。
+
+本轮已实际渲染原委托者提供的数字人开头 **10.74秒**，以及另一题材的净水器示范 **13.4秒**。私人样段仅交付给素材提供者；公开预览使用占位或自绘素材。参数校验、源码检查、可运行动效测试和成功渲染说明实现可执行，不能代替对本期字幕、音画和审美的检查，也不代表用户已认可这次新版效果。
+
+较轻模型的工作应集中在读懂口播、选素材和填写经过校验的分镜，镜头、转场和材质由成熟组件执行。仓库没有跨模型盲测结果，不能保证每个模型独立达到同样审美。先交真实开头，由实际视觉反馈校准；样段不合格时修复画面，不以组件数或测试数替代结果。
 
 ## 来源与许可
 

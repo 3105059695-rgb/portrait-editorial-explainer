@@ -38,7 +38,7 @@ cd portrait-editorial-explainer
 
 ### 方式 B：ZIP
 
-下载[当前 main 分支 ZIP](https://github.com/3105059695-rgb/portrait-editorial-explainer/archive/refs/heads/main.zip)，解压后进入包含 `SKILL.md` 的那一级目录。本次入口纠偏没有另发 Release；旧 Release 不包含当前全部修正。不要只下载 `SKILL.md`：它引用的脚本、规范、字体依赖声明和模板都在其他目录中。
+下载[当前 main 分支 ZIP](https://github.com/3105059695-rgb/portrait-editorial-explainer/archive/refs/heads/main.zip)，或使用 [v3.1.0-rc.1 完整 Skill 包](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/tag/v3.1.0-rc.1)。解压后进入包含 `SKILL.md` 的那一级目录。旧版 Release 不包含本次可复用剪辑动效。不要只下载 `SKILL.md`：它引用的脚本、规范、字体依赖声明和模板都在其他目录中。
 
 不要直接在压缩包浏览窗口里运行脚本。若解压结果多套了一层目录，以能看到 `SKILL.md` 和 `scripts` 的那一层作为仓库根目录。
 

@@ -24,6 +24,7 @@
   "scripts": {
     "dev": "remotion studio src/index.ts",
     "check": "tsc --noEmit",
+    "test:motion": "node --test tests/editorial-motion.cjs",
     "render": "node render.cjs",
     "render:cli": "remotion render src/index.ts AdaptivePortrait out/adaptive-portrait.mp4 --concurrency=3"
   }

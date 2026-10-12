@@ -14,7 +14,7 @@ import sys
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_FILES = (
-    "SKILL.md", "agents/openai.yaml", "references/approved-editing-direction.md", "scripts/install_skill.py", "scripts/doctor.py",
+    "SKILL.md", "agents/openai.yaml", "references/approved-editing-direction.md", "references/editorial-motion-contract.md", "scripts/install_skill.py", "scripts/doctor.py",
     "scripts/new_project.py", "scripts/check_timeline.py", "references/approved-presenter-v3.md",
     "references/presenter-workflow.md", "references/visual-grammar.md", "references/timing-format.md",
     "references/approved-case.md", "assets/timing-example/timeline.json",
@@ -35,6 +35,8 @@ CASES = {
     "adaptive-template": (
         "package.json", "package-lock.json", "tsconfig.json", "render.cjs",
         "src/index.ts", "src/Root.tsx", "src/episode.json",
+        "src/Film.tsx", "src/EditorialScene.tsx", "src/editorialMotion.ts", "src/types.ts",
+        "tests/editorial-motion.cjs", "public/media/lens-map-v3.png",
     ),
     "presenter-v3-template": (
         "package.json", "package-lock.json", "tsconfig.json", "render.cjs", "src/index.ts",

@@ -1,4 +1,5 @@
 import type {Beat, Scene} from './types';
+import {editorialCameraAt} from './editorialMotion';
 
 export const W = 540, H = 960;
 export const clamp = (x: number) => Math.max(0, Math.min(1, x));
@@ -117,6 +118,7 @@ export const objectPoses = (scene: Scene, t: number): Record<string, Pose> => {
 };
 
 export const cameraAt = (scene: Scene, t: number): Camera => {
+  if (scene.editorial) return editorialCameraAt(scene, t);
   let cam: Camera = {x: 270, y: 447, z: 1};
   if (scene.mechanism === 'presenter') return cam;
   const poses = objectPoses(scene, t), duration = scene.end - scene.start;

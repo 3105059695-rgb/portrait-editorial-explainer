@@ -1,0 +1,914 @@
+{
+  "version": 2,
+  "title": "公开机制校准 · 人物及访谈均为占位",
+  "width": 1080,
+  "height": 1920,
+  "fps": 50,
+  "duration": 10.74,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {
+    "presenter": null,
+    "voice": null
+  },
+  "theme": {
+    "paper": "#f7f7f3",
+    "ink": "#252722",
+    "accent": "#b65c3e",
+    "comic": "#d8caff"
+  },
+  "assets": [
+    {
+      "id": "arrival",
+      "path": "editorial/arrival.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "brand-paper",
+      "path": "editorial/brand-paper.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "briefcase",
+      "path": "editorial/briefcase.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "comic-label",
+      "path": "editorial/comic-label.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "company-card",
+      "path": "editorial/company-card.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "company",
+      "path": "editorial/company.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "destination",
+      "path": "editorial/destination.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "finish",
+      "path": "editorial/finish.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "heading-company",
+      "path": "editorial/heading-company.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "heading-money",
+      "path": "editorial/heading-money.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "money-card",
+      "path": "editorial/money-card.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "own-label",
+      "path": "editorial/own-label.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "question",
+      "path": "editorial/question.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "why",
+      "path": "editorial/why.svg",
+      "role": "illustration",
+      "source": "Original vector artwork from the openly distributed V3 calibration code; OFL Noto lettering outlined for portable display."
+    },
+    {
+      "id": "interview-pair",
+      "path": "editorial/interview-pair.svg",
+      "role": "illustration",
+      "source": "Original public silhouette calibration artwork; not interview evidence."
+    },
+    {
+      "id": "interview-left",
+      "path": "editorial/interview-left.svg",
+      "role": "illustration",
+      "source": "Original public silhouette calibration artwork; not interview evidence."
+    },
+    {
+      "id": "interview-right",
+      "path": "editorial/interview-right.svg",
+      "role": "illustration",
+      "source": "Original public silhouette calibration artwork; not interview evidence."
+    },
+    {
+      "id": "interview-disc",
+      "path": "editorial/interview-disc.svg",
+      "role": "illustration",
+      "source": "Original public silhouette calibration artwork; not interview evidence."
+    }
+  ],
+  "objects": [],
+  "captions": [
+    {
+      "id": "cue-01",
+      "start": 0,
+      "end": 0.82,
+      "text": "孙宇晨说"
+    },
+    {
+      "id": "cue-02",
+      "start": 0.82,
+      "end": 2.24,
+      "text": "他想去 OpenAI 上班"
+    },
+    {
+      "id": "cue-03",
+      "start": 2.24,
+      "end": 3.2,
+      "text": "一个不缺钱"
+    },
+    {
+      "id": "cue-04",
+      "start": 3.2,
+      "end": 4.22,
+      "text": "自己开公司的人"
+    },
+    {
+      "id": "cue-05",
+      "start": 4.22,
+      "end": 5.28,
+      "text": "为什么还惦记着"
+    },
+    {
+      "id": "cue-06",
+      "start": 5.28,
+      "end": 6.32,
+      "text": "去别人公司打工"
+    },
+    {
+      "id": "cue-07",
+      "start": 6.32,
+      "end": 7.42,
+      "text": "他跟邵艾伦聊了"
+    },
+    {
+      "id": "cue-08",
+      "start": 7.42,
+      "end": 8.14,
+      "text": "四个多小时"
+    },
+    {
+      "id": "cue-09",
+      "start": 8.14,
+      "end": 9.42,
+      "text": "这个问题恰好"
+    },
+    {
+      "id": "cue-10",
+      "start": 9.42,
+      "end": 10.74,
+      "text": "把整场访谈串起来了"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intro",
+      "start": 0,
+      "end": 2.24,
+      "cueIds": [
+        "cue-01",
+        "cue-02"
+      ],
+      "intent": "保留人物开场，词义出现时用纸片带入下一场",
+      "mechanism": "presenter",
+      "title": "",
+      "objectIds": [],
+      "beats": [],
+      "transition": "window",
+      "presenter": "full",
+      "presenterStyle": {
+        "shape": "portrait",
+        "x": 24,
+        "y": 678,
+        "w": 126,
+        "h": 165,
+        "rotation": -4,
+        "radius": 13
+      },
+      "editorial": {
+        "background": "paper",
+        "layers": [
+          {
+            "id": "brand-paper",
+            "assetId": "brand-paper",
+            "x": 74,
+            "y": 610,
+            "w": 400,
+            "h": 128,
+            "rotation": -5,
+            "foreground": true,
+            "shadow": true,
+            "keys": [
+              {
+                "at": 0,
+                "opacity": 0
+              },
+              {
+                "at": 1.1,
+                "opacity": 0,
+                "y": 680,
+                "scale": 0.7
+              },
+              {
+                "at": 1.28,
+                "opacity": 1,
+                "y": 610,
+                "scale": 1
+              },
+              {
+                "at": 1.92,
+                "opacity": 1,
+                "scale": 1
+              },
+              {
+                "at": 2.12,
+                "y": 335,
+                "scale": 4.2,
+                "opacity": 1
+              },
+              {
+                "at": 2.2,
+                "y": 335,
+                "scale": 7,
+                "opacity": 1
+              },
+              {
+                "at": 2.22,
+                "opacity": 0
+              }
+            ]
+          }
+        ]
+      },
+      "transitionAnchor": {
+        "space": "layer",
+        "layerId": "brand-paper",
+        "rect": {
+          "x": 3,
+          "y": 5,
+          "w": 394,
+          "h": 120
+        },
+        "start": 1.96,
+        "duration": 0.28,
+        "borderRadius": 2
+      }
+    },
+    {
+      "id": "conditions",
+      "start": 2.24,
+      "end": 4.22,
+      "cueIds": [
+        "cue-03",
+        "cue-04"
+      ],
+      "intent": "特写两个已经具备的条件，再回拉看关系",
+      "mechanism": "compare-pan",
+      "title": "",
+      "objectIds": [],
+      "beats": [],
+      "transition": "cut",
+      "presenter": "pip",
+      "presenterStyle": {
+        "shape": "portrait",
+        "x": 24,
+        "y": 678,
+        "w": 126,
+        "h": 165,
+        "rotation": -4,
+        "radius": 13
+      },
+      "editorial": {
+        "background": "paper",
+        "title": "不缺钱",
+        "eyebrow": "一个不缺钱的人",
+        "layers": [
+          {
+            "id": "money-card",
+            "assetId": "money-card",
+            "x": 42,
+            "y": 244,
+            "w": 225,
+            "h": 389,
+            "rotation": -6,
+            "shadow": true
+          },
+          {
+            "id": "company-card",
+            "assetId": "company-card",
+            "x": 290,
+            "y": 203,
+            "w": 225,
+            "h": 389,
+            "rotation": 5,
+            "shadow": true
+          },
+          {
+            "id": "why",
+            "assetId": "why",
+            "x": 245,
+            "y": 710,
+            "w": 135,
+            "h": 65,
+            "opacity": 0,
+            "keys": [
+              {
+                "at": 1.6,
+                "opacity": 0
+              },
+              {
+                "at": 1.88,
+                "opacity": 1
+              }
+            ]
+          }
+        ],
+        "camera": [
+          {
+            "at": -0.28,
+            "x": 157,
+            "y": 437,
+            "z": 2.55
+          },
+          {
+            "at": 0.42,
+            "x": 157,
+            "y": 437,
+            "z": 2.55
+          },
+          {
+            "at": 0.74,
+            "x": 270,
+            "y": 447,
+            "z": 1
+          },
+          {
+            "at": 0.9,
+            "x": 270,
+            "y": 447,
+            "z": 1
+          },
+          {
+            "at": 1.12,
+            "x": 389,
+            "y": 397,
+            "z": 2.4
+          },
+          {
+            "at": 1.44,
+            "x": 389,
+            "y": 397,
+            "z": 2.4
+          },
+          {
+            "at": 1.82,
+            "x": 270,
+            "y": 447,
+            "z": 1
+          }
+        ],
+        "connections": [
+          {
+            "id": "condition-a",
+            "points": [
+              {
+                "x": 143,
+                "y": 631
+              },
+              {
+                "x": 160,
+                "y": 657
+              },
+              {
+                "x": 295,
+                "y": 672
+              },
+              {
+                "x": 298,
+                "y": 711
+              }
+            ],
+            "start": 1.5,
+            "end": 1.89,
+            "width": 1.3
+          },
+          {
+            "id": "condition-b",
+            "points": [
+              {
+                "x": 398,
+                "y": 596
+              },
+              {
+                "x": 422,
+                "y": 650
+              },
+              {
+                "x": 332,
+                "y": 678
+              },
+              {
+                "x": 322,
+                "y": 711
+              }
+            ],
+            "start": 1.5,
+            "end": 1.89,
+            "width": 1.3
+          }
+        ],
+        "titleKeys": [
+          {
+            "at": 0.94,
+            "title": "还自己开公司"
+          }
+        ]
+      }
+    },
+    {
+      "id": "route",
+      "start": 4.22,
+      "end": 6.32,
+      "cueIds": [
+        "cue-05",
+        "cue-06"
+      ],
+      "intent": "同一公文包跨越两家公司，从包面进入真实访谈",
+      "mechanism": "route-transfer",
+      "title": "",
+      "objectIds": [],
+      "beats": [],
+      "transition": "window",
+      "presenter": "pip",
+      "presenterStyle": {
+        "shape": "portrait",
+        "x": 24,
+        "y": 678,
+        "w": 126,
+        "h": 165,
+        "rotation": -4,
+        "radius": 13
+      },
+      "editorial": {
+        "background": "paper",
+        "title": "为什么还想",
+        "layers": [
+          {
+            "id": "company",
+            "assetId": "company",
+            "x": 0.5,
+            "y": 253,
+            "w": 215,
+            "h": 232
+          },
+          {
+            "id": "own-label",
+            "assetId": "own-label",
+            "x": 31,
+            "y": 213,
+            "w": 180,
+            "h": 33
+          },
+          {
+            "id": "destination",
+            "assetId": "destination",
+            "x": 341,
+            "y": 227,
+            "w": 192,
+            "h": 232,
+            "keys": [
+              {
+                "at": -0.12,
+                "x": 580
+              },
+              {
+                "at": 0.25,
+                "x": 580
+              },
+              {
+                "at": 0.6,
+                "x": 341
+              }
+            ]
+          },
+          {
+            "id": "question",
+            "assetId": "question",
+            "x": 437,
+            "y": 95,
+            "w": 46,
+            "h": 62,
+            "keys": [
+              {
+                "at": 0,
+                "scale": 0.001
+              },
+              {
+                "at": 0.4,
+                "scale": 0.001
+              },
+              {
+                "at": 0.65,
+                "scale": 1
+              }
+            ]
+          },
+          {
+            "id": "briefcase",
+            "assetId": "briefcase",
+            "x": 42,
+            "y": 414,
+            "w": 200,
+            "h": 180,
+            "rotation": -6,
+            "keys": [
+              {
+                "at": 0,
+                "x": 42,
+                "y": 414
+              },
+              {
+                "at": 1.06,
+                "x": 42,
+                "y": 414
+              },
+              {
+                "at": 1.21,
+                "x": 82,
+                "y": 356,
+                "rotation": 4
+              },
+              {
+                "at": 1.36,
+                "x": 165,
+                "y": 332,
+                "rotation": 11
+              },
+              {
+                "at": 1.51,
+                "x": 250,
+                "y": 356,
+                "rotation": 5
+              },
+              {
+                "at": 1.66,
+                "x": 291,
+                "y": 414,
+                "rotation": 0
+              }
+            ]
+          },
+          {
+            "id": "arrival",
+            "assetId": "arrival",
+            "x": 40,
+            "y": 564,
+            "w": 270,
+            "h": 72,
+            "rotation": -5,
+            "keys": [
+              {
+                "at": 0,
+                "opacity": 0,
+                "scale": 0.7
+              },
+              {
+                "at": 1.63,
+                "opacity": 0,
+                "scale": 0.7
+              },
+              {
+                "at": 1.83,
+                "opacity": 1,
+                "scale": 1
+              }
+            ]
+          }
+        ],
+        "connections": [
+          {
+            "id": "move-route",
+            "points": [
+              {
+                "x": 155,
+                "y": 379
+              },
+              {
+                "x": 190,
+                "y": 297
+              },
+              {
+                "x": 267,
+                "y": 282
+              },
+              {
+                "x": 330,
+                "y": 312
+              },
+              {
+                "x": 369,
+                "y": 364
+              }
+            ],
+            "start": 0.69,
+            "end": 1.16,
+            "width": 4.6
+          }
+        ]
+      },
+      "transitionAnchor": {
+        "space": "layer",
+        "layerId": "briefcase",
+        "rect": {
+          "x": 21,
+          "y": 72,
+          "w": 153,
+          "h": 86
+        },
+        "start": 1.92,
+        "duration": 0.18,
+        "borderRadius": 6
+      }
+    },
+    {
+      "id": "evidence",
+      "start": 6.32,
+      "end": 8.32,
+      "cueIds": [
+        "cue-07",
+        "cue-08",
+        "cue-09"
+      ],
+      "intent": "完整访谈资料一起曲面聚焦，突出时长",
+      "mechanism": "evidence-zoom",
+      "title": "",
+      "objectIds": [],
+      "beats": [],
+      "transition": "circle",
+      "presenter": "pip",
+      "presenterStyle": {
+        "shape": "portrait",
+        "x": 24,
+        "y": 678,
+        "w": 126,
+        "h": 165,
+        "rotation": -4,
+        "radius": 13
+      },
+      "editorial": {
+        "background": "ink",
+        "layers": [],
+        "evidence": {
+          "assetId": "interview-pair",
+          "title": "访谈构图 · 素材占位",
+          "subtitle": "机制校准示意 · 无真实人物与声音",
+          "note": "4h+",
+          "noteAt": 0.98,
+          "lensStrength": 138
+        },
+        "camera": [
+          {
+            "at": -0.18,
+            "x": 270,
+            "y": 447,
+            "z": 1
+          },
+          {
+            "at": 0.18,
+            "x": 270,
+            "y": 447,
+            "z": 1
+          },
+          {
+            "at": 0.8,
+            "x": 276,
+            "y": 428,
+            "z": 1.22
+          },
+          {
+            "at": 0.94,
+            "x": 276,
+            "y": 428,
+            "z": 1.22
+          },
+          {
+            "at": 1.31,
+            "x": 270,
+            "y": 447,
+            "z": 1.05
+          }
+        ]
+      },
+      "transitionAnchor": {
+        "space": "screen",
+        "rect": {
+          "x": 326,
+          "y": 693,
+          "w": 8,
+          "h": 8
+        },
+        "start": 1.76,
+        "duration": 0.24,
+        "borderRadius": 0
+      }
+    },
+    {
+      "id": "thread",
+      "start": 8.32,
+      "end": 10.74,
+      "cueIds": [
+        "cue-09",
+        "cue-10"
+      ],
+      "intent": "问题、访谈、胶片通过一根红线串起",
+      "mechanism": "question-thread",
+      "title": "",
+      "objectIds": [],
+      "beats": [],
+      "transition": "cut",
+      "presenter": "pip",
+      "presenterStyle": {
+        "shape": "portrait",
+        "x": 24,
+        "y": 678,
+        "w": 126,
+        "h": 165,
+        "rotation": -4,
+        "radius": 13
+      },
+      "editorial": {
+        "background": "comic",
+        "title": "一个问题",
+        "layers": [
+          {
+            "id": "question",
+            "assetId": "question",
+            "x": 153,
+            "y": 120,
+            "w": 240,
+            "h": 320,
+            "rotation": -13,
+            "keys": [
+              {
+                "at": -0.24,
+                "y": -140,
+                "scale": 0.75
+              },
+              {
+                "at": -0.08,
+                "y": 100,
+                "scale": 1.03
+              },
+              {
+                "at": 0.2,
+                "y": 132,
+                "scale": 1
+              },
+              {
+                "at": 0.76,
+                "x": 296,
+                "y": 166,
+                "scale": 0.76,
+                "rotation": 7
+              }
+            ]
+          },
+          {
+            "id": "interview-disc",
+            "assetId": "interview-disc",
+            "x": 30,
+            "y": 203,
+            "w": 220,
+            "h": 220,
+            "rotation": -9,
+            "keys": [
+              {
+                "at": -0.24,
+                "x": -240
+              },
+              {
+                "at": 0.31,
+                "x": -240
+              },
+              {
+                "at": 0.72,
+                "x": 30,
+                "rotation": -2
+              }
+            ]
+          },
+          {
+            "id": "finish",
+            "assetId": "finish",
+            "x": 200,
+            "y": 704,
+            "w": 300,
+            "h": 72,
+            "rotation": -3,
+            "keys": [
+              {
+                "at": 0,
+                "opacity": 0,
+                "y": 770
+              },
+              {
+                "at": 1.72,
+                "opacity": 0,
+                "y": 770
+              },
+              {
+                "at": 2,
+                "opacity": 1,
+                "y": 704
+              }
+            ]
+          }
+        ],
+        "filmstrip": {
+          "assetIds": [
+            "interview-left",
+            "interview-pair",
+            "interview-right"
+          ],
+          "x": 0,
+          "y": 489,
+          "w": 540,
+          "h": 166,
+          "rotation": -5,
+          "enterAt": 0.59,
+          "settleAt": 1.1,
+          "threadAt": 1.03,
+          "threadEnd": 1.81
+        },
+        "connections": [
+          {
+            "id": "tether",
+            "points": [
+              {
+                "x": 383,
+                "y": 417
+              },
+              {
+                "x": 340,
+                "y": 454
+              },
+              {
+                "x": 193,
+                "y": 428
+              },
+              {
+                "x": 72,
+                "y": 440
+              },
+              {
+                "x": 57,
+                "y": 536
+              },
+              {
+                "x": 40,
+                "y": 630
+              }
+            ],
+            "start": 0.29,
+            "end": 0.98,
+            "width": 4,
+            "color": "#ee4767"
+          }
+        ]
+      }
+    }
+  ]
+}
