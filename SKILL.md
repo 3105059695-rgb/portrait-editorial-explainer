@@ -7,15 +7,29 @@ description: 将已有口播、数字人或配音剪成参考片同类的多媒�
 
 最高视觉基准是[最初完整参考](references/approved-editing-direction.md)。数字人、职业、净水器等后来案例只是局部应用，不会升级为固定风格。保留排版、真实素材、UI、信息图、空间镜头和漫画之间丰富且连贯的变化；不能把所有内容变成同一种插画或同一软件界面。
 
+当前沿用已确认的3.2完整机制库。新调用者可直接看包内 `docs/full-effects-preview.mp4`，不用私人原片。3.3增加选效果与接入字幕的工具，保留原有动效；[直接使用指南](references/direct-use.md)给出首次调用和本期素材入口。
+
 ## 直接执行
 
 1. 采用使用者已有最终声音。真人原始口播先用ChatCut粗剪并保留源时间映射；已粗剪直接沿用；数字人跳过。见[口播流程](references/presenter-workflow.md)。没有最终声音时只交明确草案。
-2. 先决定“哪个对象发生什么变化”，再从[完整效果库](references/full-effects-guide.md)选实现；机器索引为 `assets/effects-catalog.json`。顺序、时长、数量、物件与构图由本期内容决定，不沿用目录演示的顺序。
+2. 先决定“哪个对象发生什么变化”，再从[完整效果库](references/full-effects-guide.md)选实现；用 `python scripts/effect_library.py describe EFFECT --json` 读取该效果的最小输入、动作名和参数。顺序、时长、数量、物件与构图由本期内容决定，不沿用目录演示的顺序。
 3. 成熟动作复用，表达不了时设计新动作。组件负责曲面、翻面、遮挡、厚度、弹性及UI状态。自由界面用 `ui-stage`；任意图层、精确物体开窗和连续下一镜头用兼容的[v2图层契约](references/editorial-motion-contract.md)。缺动作不能偷偷换成静态卡片。
-4. 字幕、动作、人物与资料共用最终声音时钟。新机制 `reveal / act / resolve` 是场景内秒数；正式视频以 `markCues` 绑定实测字幕。图片/视频填 `items`；独立镜头填 `scene.camera`。模拟产品界面保留“示意”。
+4. 字幕、动作、人物与资料共用最终声音时钟。已有SRT时优先用 `start_episode.py`：brief用字幕序号指定镜头起点和动作锚点，脚本转换为本地marks及markCues。SRT只有句级时刻，词级重音仍按声音核对。图片/视频填 `items`；独立镜头填 `camera`。模拟产品界面保留“示意”。
 5. 先导出第0秒开始10–15秒，在完整话语处结束。做必要成片检查后直接交付；日常不额外生成对比片、评分、逐帧审查或审批文件。用户要求继续或已明确要求全片时，直接导出全片。
 
 ## 使用入口
+
+用户只需提供本期材料和意图。Agent负责查效果、填写brief和运行命令；不要要求普通使用者手写JSON，或在输入已够用时重复询问已定风格。
+
+有最终配音和对应SRT时，从Skill根目录执行（参数换成当前使用者的文件）：
+
+```shell
+python scripts/start_episode.py --brief brief.json --srt captions.srt --media-dir media --voice final.wav --source-type narration --out ../this-episode
+```
+
+数字人换为 `--presenter presenter.mp4 --source-type digital-human`；有单独配音可同时传 `--voice`。真人粗剪沿用真实状态与映射，不能靠命令标记跳过。随后进入新工程 `npm ci`、`npm run render`。输入结构、无素材试跑与动作锚点见[直接使用指南](references/direct-use.md)。
+
+已具备完整v3分镜或需要v2自由图层时，保留以下入口：
 
 所有素材路径相对于本期素材目录，没有作者电脑盘符。从Skill根目录执行：
 

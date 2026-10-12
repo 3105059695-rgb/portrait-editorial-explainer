@@ -1,4 +1,4 @@
-> 当前入口 `new_project.py --input PLAN` 自动识别v3完整效果库或v2自由图层。新版运行命令见[完整效果库](../references/full-effects-guide.md)，视觉依据仍为最初完整参考。
+> 日常首选3.3的[直接使用入口](../references/direct-use.md)，把本期SRT和声音接入完整机制库。本页保留粗剪、复杂工程交接及v2自由图层的详细说明；已有完整v3/v2 JSON继续用 `new_project.py --input PLAN`。
 
 # 从本期素材到可编辑成片
 

@@ -1,4 +1,4 @@
-> 当前入口 `new_project.py --input PLAN` 自动识别v3完整效果库或v2自由图层。新版运行命令见[完整效果库](../references/full-effects-guide.md)，视觉依据仍为最初完整参考。
+> 3.3首选 `start_episode.py` 接入简化分镜与SRT；完整v3/v2 JSON仍用 `new_project.py --input PLAN`。视觉实现沿用已确认的3.2完整机制库。直接调用见[本期素材入口](../references/direct-use.md)。
 
 # 安装与首次运行
 
@@ -19,7 +19,7 @@
 | ChatCut 连接与授权 | 真人原始口播的默认粗剪 | 要在 Agent 端单独检查；安装 Skill 不会安装或登录 ChatCut |
 | 足够的本地空间 | npm 依赖、素材、输出 | 容量取决于视频长度、素材和缓存，仓库下载大小不代表制作所需空间 |
 
-当前通用引擎的实际验证见 [VALIDATION-V2.md](VALIDATION-V2.md)，历史 V1 发布记录见 [VALIDATION.md](VALIDATION.md)。工具在某台机器通过检查，不等于所有操作系统和所有版本已实际测试；本页提供 Windows 与 macOS／Linux 命令，不将命令说明当作跨平台测试结果。
+当前完整效果库验证见 [FULL-EFFECTS-3.2.md](FULL-EFFECTS-3.2.md)，本次入口验证见 [DIRECT-USE-3.3.md](DIRECT-USE-3.3.md)。V2/V1记录保留为历史实现证据。工具在某台机器通过检查，不等于所有操作系统和所有版本已实际测试；本页提供 Windows 与 macOS／Linux 命令，不将命令说明当作跨平台测试结果。
 
 不要把账号密码、API Key 或私人授权配置写进 Skill 文件。这里的安装与样例运行不要求提交任何此类信息。
 
@@ -38,7 +38,7 @@ cd portrait-editorial-explainer
 
 ### 方式 B：ZIP
 
-下载[当前 main 分支 ZIP](https://github.com/3105059695-rgb/portrait-editorial-explainer/archive/refs/heads/main.zip)。解压后进入包含 `SKILL.md` 的那一级目录。历史 v3.1.0-rc.1 包尚未包含“最初完整参考优先”的方向纠正，仅供查看当时的局部实现。不要只下载 `SKILL.md`：它引用的脚本、规范、字体依赖声明和模板都在其他目录中。
+下载[3.3.0完整ZIP](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/download/v3.3.0/portrait-editorial-explainer-v3.3.0.zip)。解压后进入包含 `SKILL.md` 的那一级目录。不要只下载 `SKILL.md`：它引用的脚本、规范、字体依赖声明和模板都在其他目录中。
 
 不要直接在压缩包浏览窗口里运行脚本。若解压结果多套了一层目录，以能看到 `SKILL.md` 和 `scripts` 的那一层作为仓库根目录。
 
@@ -112,17 +112,18 @@ python3 scripts/install_skill.py --skills-dir "$HOME/my-agent/skills"
 
 安装器只负责复制文件，不会替其他 Agent 修改配置，也不保证其发现规则、插件接口或系统权限兼容。若该宿主不能自动发现 Skill，可以让它显式读取已安装的 `SKILL.md`，再检查是否有本地文件、命令执行与所需插件能力。
 
-## 验证 Agent 已经读到 Skill
+## 在 Agent 中直接调用
 
 安装后重新打开会话，必要时重启宿主应用。发送：
 
 ```text
 请使用 $portrait-editorial-explainer。
-先读取 SKILL.md、references/approved-editing-direction.md 和 references/director-playbook.md，并告诉我：真人原始素材、数字人素材、已经粗剪素材分别走什么流程，以及如何把本期口播的开头 10–15 秒编成 episode.json。
-这一步先不创建视频或调用外部生成服务。
+这是本期视频/配音：<路径>，这是已有字幕：<有则提供>。
+按完整机制库的风格，根据本期内容重新选素材、镜头和转场，先交10–15秒开头。
+请负责生成简化brief和工程，不需要我手写JSON。
 ```
 
-正确的流程应包含：真人先 ChatCut 粗剪；数字人默认跳过；已经粗剪的素材先检查并沿用；模型根据本期内容选择物体、机制和动作，生成 `episode.json`，再校验、编译、渲染。动效以最终口播时间轴为准，不能默认复制旧求职案例。
+正常制作应采用真人先ChatCut粗剪、数字人跳过、已有粗剪沿用的分流。Agent查所需效果参数，按本期内容选择物体、机制和动作，通过SRT入口或完整分镜生成工程。动效以最终口播时间轴为准，不能默认复制旧案例。无需先让Agent答一份流程问卷。
 
 如果自动发现失败，改用明确路径：
 
@@ -157,24 +158,23 @@ ChatCut 是否可用应由当前 Agent 通过其连接状态与实际工具能�
 
 ## 第一次运行：编译一个跨主题草案
 
-仍在仓库根目录运行。先用随包的客户问题整理分镜验证工具链；它是明确标注的静音示意，不需要账号、配音或私人媒体：
+仍在仓库根目录运行。随包“整理旅行照片”分镜是明确标注的静音示意，不需要账号、配音或私人媒体：
 
 ```powershell
-python -X utf8 scripts/validate_storyboard.py examples/storyboards/customer-questions.json --mode draft --json
-python -X utf8 scripts/new_project.py --input examples/storyboards/customer-questions.json --out "../my-first-portrait" --draft
+python -X utf8 scripts/start_episode.py --brief examples/quickstart/brief.json --srt examples/quickstart/captions.srt --out "../my-first-portrait" --draft
 cd "../my-first-portrait"
 npm ci
 npm run check
-npm run dev
+npm run render
 ```
 
-macOS／Linux 将前两条的 `python -X utf8` 换成 `python3`，其他命令相同。校验无结构错误时仍会提示草案、缺少定稿声音等警告，这是示例的真实边界；不要修改状态来消除这些警告。
+macOS／Linux 将 `python -X utf8` 换成 `python3`，其他命令相同。示例保留草案状态且没有定稿声音；不要修改状态来掩盖这些事实。
 
 新工程目录必须不存在或为空，不能位于 Skill 目录内，也不能是 Skill 或输入资料的祖先目录；推荐使用仓库的同级新目录。入口调用编译器复制通用引擎、分镜和明确引用的本地媒体，生成 `src/episode.json`、方向约束 `STYLE_TARGET.md` 与记录来源哈希的 `BUILD_REPORT.json`，不会安装依赖、调用模型或开始渲染。这样更新 Skill 不会覆盖正在编辑的视频工程。
 
 `npm ci` 会根据工程内锁文件安装依赖；它不会生成新的台词、人物或声音。首次联网安装需要耐心等待，查看终端的真实结果。`npm run check` 是 TypeScript 检查，不是画面或声音验收。
 
-预览服务的实际地址由终端输出给出。选择 `AdaptivePortrait` Composition。画面由这份分镜的对象、动作与镜头顺序生成；字幕与草案标记来自数据。示例没有定稿声音，静音是预期行为。浏览器预览应由使用者实际打开检查，本教程不预先宣称该环境已成功。
+`npm run render`输出 `out/opening.mp4`，示例没有定稿声音，静音是预期行为。需要交互预览时另开终端执行 `npm run dev`，实际地址由终端给出。浏览器预览应由使用者实际打开检查，本教程不预先宣称该环境已成功。
 
 若只想查看通用引擎校准案例，显式使用 `python scripts/new_project.py --case adaptive --out "../my-adaptive-study"`；内置 `src/episode.json` 是示意，不是空白工程或本期成片。正式工作使用 `new_project.py --input PLAN`；不传 `--input` 或显式 `--case` 会报错，不会替你选择案例。`--case` 不能与 `--input`、`--media-dir`、`--draft` 混用。
 

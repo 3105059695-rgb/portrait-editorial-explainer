@@ -2,6 +2,8 @@
 
 对应最初140.5秒参考的可辨识外层剪辑段落。按新内容重组，不按目录顺序强制套片。源码在 `assets/source-style-template/src/effects/`，机器索引在 `assets/effects-catalog.json`。
 
+3.3增加 `python scripts/effect_library.py describe EFFECT --json`：只读取当前选中效果的字段、动作名、数量边界和最小shot。已有声音与SRT时，优先使用[一条命令生成工程](direct-use.md)；下方完整JSON入口仍兼容。
+
 ## 下载后直接运行
 
 从完整Skill目录执行。输出目录必须为新的或空目录：
@@ -32,9 +34,11 @@ npm run render:full
       {"id":"a","label":"原始笔记","image":"notes.jpg"},
       {"id":"b","label":"现场记录","video":"recording.mp4","trimStart":2},
       {"id":"c","label":"结果图表","image":"chart.png"},
-      {"id":"d","label":"产品实拍","image":"product.jpg"}
+      {"id":"d","label":"产品实拍","image":"product.jpg"},
+      {"id":"e","label":"操作截图","image":"screen.png"},
+      {"id":"f","label":"补充资料","image":"detail.jpg"}
     ],
-    "selectedId":"b","result":"保留现场证据","pack":{"columns":2}
+    "selectedId":"b","result":"保留现场证据"
   }
 }
 ```

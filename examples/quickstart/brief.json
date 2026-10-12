@@ -1,0 +1,79 @@
+{
+  "title": "整理旅行照片 · 12 秒演示",
+  "width": 540,
+  "height": 960,
+  "fps": 30,
+  "duration": 12,
+  "sampleDuration": 12,
+  "source": {"type": "narration", "roughcut": "not-needed"},
+  "media": {},
+  "shots": [
+    {
+      "effect": "media-stage",
+      "title": "把旅途重新打开",
+      "cueStart": 1,
+      "actions": {
+        "reveal": {"cue": 1, "edge": "end"},
+        "act": {"cue": 2, "edge": "end"},
+        "resolve": {"cue": 3, "edge": "end"}
+      },
+      "content": {
+        "kicker": "演示 · 请换入自己的旅行素材",
+        "body": "散落的照片，先进入同一条整理路线。",
+        "items": [
+          {"id": "sea", "label": "海边照片", "shape": "square", "color": "#adcbd0"},
+          {"id": "street", "label": "老街片段", "shape": "square", "color": "#e8c997"},
+          {"id": "dinner", "label": "晚餐合影", "shape": "square", "color": "#d1bedf"}
+        ],
+        "selectedId": "sea"
+      }
+    },
+    {
+      "effect": "reference-search",
+      "title": "留下值得讲的瞬间",
+      "cueStart": 4,
+      "enter": {"type": "window", "duration": 0.2, "x": 62, "y": 40},
+      "actions": {
+        "reveal": {"cue": 4, "edge": "end"},
+        "act": {"cue": 5, "edge": "end"},
+        "resolve": {"cue": 6, "edge": "end"}
+      },
+      "content": {
+        "kicker": "示意图库 · 候选可换成图片或视频",
+        "prompt": "按地点整理，留下有故事的瞬间",
+        "pack": {"columns": 3},
+        "items": [
+          {"id": "sunrise", "label": "日出", "color": "#e8c997", "shape": "circle"},
+          {"id": "road", "label": "山路", "color": "#b8c8b4", "shape": "square"},
+          {"id": "meeting", "label": "偶遇", "color": "#d1bedf", "shape": "person"},
+          {"id": "rain", "label": "阵雨", "color": "#adcbd0", "shape": "diamond"},
+          {"id": "food", "label": "晚餐", "color": "#e2ae94", "shape": "cup"},
+          {"id": "station", "label": "车站", "color": "#c0cfa1", "shape": "square"}
+        ],
+        "selectedId": "meeting"
+      }
+    },
+    {
+      "effect": "creator-filmstrip",
+      "title": "把回忆串成故事",
+      "cueStart": 7,
+      "actions": {
+        "reveal": {"cue": 7, "edge": "end"},
+        "act": {"cue": 8, "edge": "end"},
+        "resolve": {"cue": 9, "edge": "start"}
+      },
+      "content": {
+        "kicker": "演示 · 本期旅行记录",
+        "body": "给照片排序、配上一句心情，再分享给同行的人。",
+        "result": "旅途有了自己的故事",
+        "items": [
+          {"id": "traveler", "label": "旅行记录者", "shape": "person", "color": "#b8c8b4"},
+          {"id": "start", "label": "出发", "shape": "square", "color": "#adcbd0"},
+          {"id": "moment", "label": "相遇", "shape": "square", "color": "#e8c997"},
+          {"id": "home", "label": "归途", "shape": "square", "color": "#d1bedf"}
+        ],
+        "selectedId": "traveler"
+      }
+    }
+  ]
+}

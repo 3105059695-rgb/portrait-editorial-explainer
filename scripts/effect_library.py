@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reusable reference effects: list, generate a runnable catalog, or compile a short brief.
+"""Reusable reference effects: list/find/describe, generate catalog, or compose a brief.
 
 No API keys, private paths, narration generation, or model calls are needed.
 The agent chooses what the sentence means; this script resolves timing and geometry inputs.
@@ -144,9 +144,27 @@ def example():
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command',choices=['list','catalog','example','compose'])
-    parser.add_argument('brief',nargs='?',type=Path);parser.add_argument('--out',type=Path);parser.add_argument('--media-dir',type=Path)
+    parser.add_argument('command',choices=['list','catalog','example','compose','describe','find'])
+    parser.add_argument('brief',nargs='?',help='brief.json, effect name, or quoted search keywords')
+    parser.add_argument('--out',type=Path);parser.add_argument('--media-dir',type=Path)
+    parser.add_argument('--json',action='store_true',help='Machine-readable describe/find output')
     args=parser.parse_args()
+    if args.command in ('describe','find'):
+        from effect_recipes import describe, find, format_description
+        need(args.brief,f'{args.command} needs an effect name or keyword')
+        need(args.out is None and args.media_dir is None,'describe/find write to stdout; omit --out and --media-dir')
+        if args.command=='describe':
+            recipe=describe(args.brief)
+            print(json.dumps(recipe,ensure_ascii=False,indent=2) if args.json else format_description(recipe))
+        else:
+            results=find(args.brief)
+            if args.json:print(json.dumps(results,ensure_ascii=False,indent=2))
+            else:
+                print('按字面关键词匹配，不调用模型；按表达用途选取，不必逐个使用。')
+                for row in results:print(f'{row["effect"]:22} {row["title"]} | {row["group"]} | {row["purpose"]}')
+                if not results:print('未找到匹配入口；试用更短的关键词，或运行 list。')
+        return
+    need(not args.json,'--json is supported by describe/find only')
     if args.command=='list':
         for name,title,group,source,duration,meaning in ROWS: print(f'{name:22} {title} | {group} | {meaning}')
         print('Additional legacy chains/free UI:',', '.join(n for n in EFFECTS if n not in {r[0] for r in ROWS}));return
@@ -154,7 +172,7 @@ def main():
     if args.command=='catalog':p=catalog()
     elif args.command=='example':p=example()
     else:
-        need(args.brief,'compose needs brief.json');p=compose(json.loads(args.brief.read_text(encoding='utf-8-sig')))
+        need(args.brief,'compose needs brief.json');p=compose(json.loads(Path(args.brief).read_text(encoding='utf-8-sig')))
     media_root=args.media_dir or (Path(__file__).resolve().parents[1]/'examples/full-effects/media' if args.command=='catalog' else None)
     validate(p,media_dir=media_root)
     args.out.parent.mkdir(parents=True,exist_ok=True)

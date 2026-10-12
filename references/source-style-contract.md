@@ -2,6 +2,8 @@
 
 权威定义：模板 `src/types.ts` 与 `scripts/source_episode.py`。v3 和 v2 不混用。自由UI优先看 [ui-research-opening.json](../examples/source-style/ui-research-opening.json) 和 [UI专用契约](ui-composition-contract.md)。旧场景可看 [travel-opening.json](../examples/source-style/travel-opening.json)。示例的时长、主题、顺序不是默认导演指令。
 
+3.3的[简化字幕入口](direct-use.md)将cueStart/actions转换为这里的start/end/marks/markCues；这些wrapper字段不直接写入v3 episode。既有完整episode继续使用new_project.py，不需要迁移数据。
+
 ## 顶层
 
 - `version:3`, `title`；`width/height` 为偶数，支持源比例544×720及1080×1920等1.25–1.8高宽比。`fps` 支持24/25/30/50/60，`duration` 10–1800秒。
