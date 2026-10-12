@@ -1,0 +1,17 @@
+[
+  {
+    "file": "public/assets/catalog-page.png",
+    "bytes": 97563,
+    "sha256": "3da60cedd53725c3825a5bb050ae683d61f22d4badf61105de68e65491abeb36"
+  },
+  {
+    "file": "public/assets/kinetic-opening/lens-map.png",
+    "bytes": 102713,
+    "sha256": "0c110d5af56fff0783ebf70581daeea68696dd4e9d939f244883915209a914d1"
+  },
+  {
+    "file": "public/assets/math-license.txt",
+    "bytes": 11357,
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  }
+]

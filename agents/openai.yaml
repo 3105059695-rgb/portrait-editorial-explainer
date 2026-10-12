@@ -1,0 +1,4 @@
+interface:
+  display_name: "竖屏口播动效剪辑"
+  short_description: "真人素材先用 ChatCut 粗剪，数字人默认跳过，再按 V3 风格制作竖屏口播"
+  default_prompt: "请使用 $portrait-editorial-explainer 剪辑这期竖屏口播。真人原始素材先用 ChatCut 粗剪，数字人默认跳过粗剪；保留原人声，以最终口播时间轴按已认可的 V3 风格设计镜头与物体动作，并同步字幕。"

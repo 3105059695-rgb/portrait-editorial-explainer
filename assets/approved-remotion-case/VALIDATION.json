@@ -1,0 +1,23 @@
+{
+  "composition": "ApprovedReference",
+  "width": 816,
+  "height": 1080,
+  "fps": 30,
+  "duration_frames": 1800,
+  "silent": true,
+  "relative_imports_checked": 12,
+  "static_assets_checked": [
+    "assets/catalog-page.png",
+    "assets/kinetic-opening/lens-map.png"
+  ],
+  "lock_root_matches_package": true,
+  "tsc_no_emit": "passed",
+  "rendered_still_frames": [
+    249,
+    590,
+    1506
+  ],
+  "rendered_still_visual_review": "All three inspected; editor selection, paper relay and comic magnifier present with captions.",
+  "full_60_second_render": "not rerendered during portability extraction",
+  "errors": []
+}

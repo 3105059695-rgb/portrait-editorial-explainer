@@ -1,0 +1,30 @@
+{
+  "name": "portrait-presenter-v3-mechanism-example",
+  "version": "1.0.0",
+  "description": "Silent, portable portrait editorial motion mechanism example with configurable local media",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@fontsource/noto-sans-sc": "5.3.0",
+    "@fontsource/noto-serif-sc": "5.3.0",
+    "@fontsource/tinos": "5.3.0",
+    "@remotion/cli": "4.0.534",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.534"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.534",
+    "@types/react": "19.2.7",
+    "@types/web": "0.0.166",
+    "eslint": "9.39.5",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "check": "tsc --noEmit",
+    "render": "node render.cjs",
+    "render:cli": "remotion render src/index.ts PresenterEditorialV3 out/presenter-v3-example.mp4 --concurrency=3"
+  }
+}

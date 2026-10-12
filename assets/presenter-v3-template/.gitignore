@@ -1,0 +1,8 @@
+node_modules/
+out/
+.remotion/
+.env
+.env.*
+*.log
+public/media/presenter.*
+public/media/voice.*

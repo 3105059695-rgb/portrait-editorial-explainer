@@ -1,0 +1,20 @@
+{
+  "timingSource": "DEMO: manually authored example, not ASR or forced alignment",
+  "fps": 30,
+  "duration": 16,
+  "captions": [
+    {"id": "cue-write", "start": 0.8, "end": 3.1, "text": "先把想法写在这一页。"},
+    {"id": "cue-select", "start": 4.0, "end": 6.5, "text": "选中其中最重要的一句。"},
+    {"id": "cue-check", "start": 7.5, "end": 10.3, "text": "靠近一点，检查它的细节。"},
+    {"id": "cue-revise", "start": 11.3, "end": 14.8, "text": "发现问题，就在原处修正。"}
+  ],
+  "events": [
+    {"id": "page-prepare", "cueId": "cue-write", "action": "纸页从画外滑入，为即将开始的写入动作留出位置", "objectId": "working-page", "phase": "prepare", "offset": -0.5, "duration": 0.5, "anticipationReason": "提前让纸页落稳；不提前展示后文答案", "camera": "保持中景"},
+    {"id": "page-write", "cueId": "cue-write", "action": "在同一张纸页上连续写入两行正文", "objectId": "working-page", "phase": "land", "offset": 0.0, "duration": 1.6, "sfx": "克制的纸笔声"},
+    {"id": "selection-prepare", "cueId": "cue-select", "action": "光标移到原纸页的第二行起点", "objectId": "working-page", "phase": "prepare", "offset": -0.25, "duration": 0.25, "anticipationReason": "预备光标位置；选中状态仍在口播落点出现"},
+    {"id": "page-select", "cueId": "cue-select", "action": "选区沿第二行从左向右扫过，文字保持原位", "objectId": "working-page", "phase": "land", "offset": 0.0, "duration": 0.55, "sfx": "短促选中声"},
+    {"id": "page-check", "cueId": "cue-check", "action": "镜头推近被选文字，放大镜检查同一行中的标点", "objectId": "working-page", "phase": "land", "offset": 0.0, "duration": 1.3, "camera": "围绕选中行推近；字幕留在安全区", "sfx": "轻微镜头移动声"},
+    {"id": "page-revise", "cueId": "cue-revise", "action": "在原句划掉一个错误标点并写入修正；保留修改痕迹", "objectId": "working-page", "phase": "land", "offset": 0.0, "duration": 1.2, "sfx": "落笔时单次轻击"},
+    {"id": "page-settle", "cueId": "cue-revise", "action": "镜头拉回，让观众读清修正后的同一页", "objectId": "working-page", "phase": "exit", "offset": 2.1, "duration": 1.2, "camera": "平缓回到中景，保留至少一秒阅读停留"}
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-12",
+  "platform": "Windows",
+  "python": "3.11.15",
+  "node": "24.18.0",
+  "npm": "11.16.0",
+  "remotion": "4.0.534",
+  "install_dry_run": "passed",
+  "unicode_path_install": "passed",
+  "installed_skill_doctor": "passed",
+  "production_doctor": "passed",
+  "installer_tests": {
+    "passed": 13,
+    "skipped": 2,
+    "skip_reason": "Windows symbolic-link creation permission"
+  },
+  "npm_ci": "passed",
+  "typescript": "passed",
+  "full_render": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 50,
+    "frames": 537,
+    "duration_seconds": 10.74,
+    "audio": "none, placeholder by design",
+    "sha256": "29234ad7c95f95f8fcf46a960139fc3d54fdf31b55e591926dcddc88b5032aab"
+  },
+  "full_decode": "passed",
+  "visual_frame_samples": [
+    30,
+    142,
+    280,
+    362,
+    501
+  ],
+  "full_subjective_playback": false,
+  "actual_chatcut_edit": "not performed; no new real footage requested",
+  "mac_linux_execution": "not tested",
+  "local_markdown_links_checked": 74,
+  "publication_scan": "passed",
+  "preview_sha256": "f5321b36ed27da86b223c908d8cd720e343cbc5723b05de9f22b214dee66eea6"
+}

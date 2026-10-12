@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2992" height="1060" viewBox="0 0 2992 1060">
+  <title>Neutral two-person interview layout placeholder</title>
+  <desc>Original vector stand-in, not a photograph or claim about an actual interview.</desc>
+  <rect width="1496" height="1060" fill="#d1dcd3"/>
+  <rect x="1496" width="1496" height="1060" fill="#d5cee0"/>
+  <path d="M0 850L500 630L1496 1060H0Z" fill="#bac9bf"/>
+  <path d="M1496 1060L2450 630L2992 850V1060Z" fill="#b8afc7"/>
+  <g fill="#7c9684"><circle cx="748" cy="352" r="185"/><path d="M340 1000V819C340 558 525 503 748 503S1156 558 1156 819V1000Z"/></g>
+  <g fill="#9385a4"><circle cx="2244" cy="352" r="185"/><path d="M1836 1000V819C1836 558 2021 503 2244 503S2652 558 2652 819V1000Z"/></g>
+  <path d="M1496 0V1060" stroke="#f7f7ed" stroke-width="24"/>
+  <g fill="#faf9ef" font-family="sans-serif" text-anchor="middle">
+    <rect x="356" y="746" width="784" height="153" rx="16" opacity=".93"/>
+    <rect x="1852" y="746" width="784" height="153" rx="16" opacity=".93"/>
+    <text x="748" y="844" fill="#354b3c" font-size="70" font-weight="700">VISUAL PLACEHOLDER</text>
+    <text x="2244" y="844" fill="#514364" font-size="70" font-weight="700">VISUAL PLACEHOLDER</text>
+  </g>
+</svg>

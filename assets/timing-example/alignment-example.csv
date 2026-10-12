@@ -1,0 +1,8 @@
+﻿event_id,cue_id,caption,cue_start,cue_end,phase,offset,start_seconds,start_frame,duration,end_seconds,object_id,action,camera,sfx,anticipation_reason
+page-prepare,cue-write,先把想法写在这一页。,0.800000,3.100000,prepare,-0.500000,0.300000,9,0.500000,0.800000,working-page,纸页从画外滑入，为即将开始的写入动作留出位置,保持中景,,提前让纸页落稳；不提前展示后文答案
+page-write,cue-write,先把想法写在这一页。,0.800000,3.100000,land,0.000000,0.800000,24,1.600000,2.400000,working-page,在同一张纸页上连续写入两行正文,,克制的纸笔声,
+selection-prepare,cue-select,选中其中最重要的一句。,4.000000,6.500000,prepare,-0.250000,3.750000,113,0.250000,4.000000,working-page,光标移到原纸页的第二行起点,,,预备光标位置；选中状态仍在口播落点出现
+page-select,cue-select,选中其中最重要的一句。,4.000000,6.500000,land,0.000000,4.000000,120,0.550000,4.550000,working-page,选区沿第二行从左向右扫过，文字保持原位,,短促选中声,
+page-check,cue-check,靠近一点，检查它的细节。,7.500000,10.300000,land,0.000000,7.500000,225,1.300000,8.800000,working-page,镜头推近被选文字，放大镜检查同一行中的标点,围绕选中行推近；字幕留在安全区,轻微镜头移动声,
+page-revise,cue-revise,发现问题，就在原处修正。,11.300000,14.800000,land,0.000000,11.300000,339,1.200000,12.500000,working-page,在原句划掉一个错误标点并写入修正；保留修改痕迹,,落笔时单次轻击,
+page-settle,cue-revise,发现问题，就在原处修正。,11.300000,14.800000,exit,2.100000,13.400000,402,1.200000,14.600000,working-page,镜头拉回，让观众读清修正后的同一页,平缓回到中景，保留至少一秒阅读停留,,

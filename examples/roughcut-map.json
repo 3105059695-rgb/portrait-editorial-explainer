@@ -1,0 +1,29 @@
+{
+  "purpose": "DEMO ONLY - not an actual edit; times are seconds",
+  "sourceType": "real-presenter-raw",
+  "roughcutTool": "ChatCut",
+  "timingStatus": "example",
+  "segments": [
+    {
+      "sourceAsset": "your-source-video.mp4",
+      "sourceStart": 1.2,
+      "sourceEnd": 5.2,
+      "outputStart": 0,
+      "outputEnd": 4,
+      "playbackRate": 1,
+      "cueIds": ["intro-01"],
+      "note": "示例：移除开头录制准备，保留一句完整口播"
+    },
+    {
+      "sourceAsset": "your-source-video.mp4",
+      "sourceStart": 7.5,
+      "sourceEnd": 12.5,
+      "outputStart": 4,
+      "outputEnd": 9,
+      "playbackRate": 1,
+      "cueIds": ["explain-01"],
+      "note": "示例：跳过重复试录，同步使用此范围的画面与声音"
+    }
+  ],
+  "outputDuration": 9
+}
