@@ -1,4 +1,4 @@
-> 当前默认接口已更新为参考风格 v3；请先阅读 [当前README](../README.md) 和 [v3流程](../references/source-style-workflow.md)。下文涉及 adaptive / validate_storyboard / compile_storyboard 的命令为保留的 V2 路线。
+> 当前入口是 `new_project.py --input PLAN`，经 V2 分镜编译器创建本期 adaptive 工程；数字人 V3 是视觉基准，source-style 仅为辅助 UI 组件。先读[当前方向](../references/approved-editing-direction.md)，不要把任何校准案例当成默认成片。
 
 # 安装与首次运行
 
@@ -38,7 +38,7 @@ cd portrait-editorial-explainer
 
 ### 方式 B：ZIP
 
-从[最新 Release](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/latest)获取公开安装包，或从[GitHub 仓库页面](https://github.com/3105059695-rgb/portrait-editorial-explainer)下载完整 ZIP，解压后进入包含 `SKILL.md` 的那一级目录。不要只下载 `SKILL.md`：它引用的脚本、规范、字体依赖声明和模板都在其他目录中。
+下载[当前 main 分支 ZIP](https://github.com/3105059695-rgb/portrait-editorial-explainer/archive/refs/heads/main.zip)，解压后进入包含 `SKILL.md` 的那一级目录。本次入口纠偏没有另发 Release；旧 Release 不包含当前全部修正。不要只下载 `SKILL.md`：它引用的脚本、规范、字体依赖声明和模板都在其他目录中。
 
 不要直接在压缩包浏览窗口里运行脚本。若解压结果多套了一层目录，以能看到 `SKILL.md` 和 `scripts` 的那一层作为仓库根目录。
 
@@ -118,7 +118,7 @@ python3 scripts/install_skill.py --skills-dir "$HOME/my-agent/skills"
 
 ```text
 请使用 $portrait-editorial-explainer。
-先读取 SKILL.md 和 references/director-playbook.md，并告诉我：真人原始素材、数字人素材、已经粗剪素材分别走什么流程，以及如何把本期口播编成 episode.json。
+先读取 SKILL.md、references/approved-editing-direction.md 和 references/director-playbook.md，并告诉我：真人原始素材、数字人素材、已经粗剪素材分别走什么流程，以及如何把本期口播的开头 10–15 秒编成 episode.json。
 这一步先不创建视频或调用外部生成服务。
 ```
 
@@ -161,7 +161,7 @@ ChatCut 是否可用应由当前 Agent 通过其连接状态与实际工具能�
 
 ```powershell
 python -X utf8 scripts/validate_storyboard.py examples/storyboards/customer-questions.json --mode draft --json
-python -X utf8 scripts/compile_storyboard.py --input examples/storyboards/customer-questions.json --out "../my-first-portrait" --draft
+python -X utf8 scripts/new_project.py --input examples/storyboards/customer-questions.json --out "../my-first-portrait" --draft
 cd "../my-first-portrait"
 npm ci
 npm run check
@@ -170,17 +170,17 @@ npm run dev
 
 macOS／Linux 将前两条的 `python -X utf8` 换成 `python3`，其他命令相同。校验无结构错误时仍会提示草案、缺少定稿声音等警告，这是示例的真实边界；不要修改状态来消除这些警告。
 
-新工程目录必须不存在或为空，不能位于 Skill 目录内，也不能是 Skill 或输入资料的祖先目录；推荐使用仓库的同级新目录。编译器复制通用引擎、分镜和明确引用的本地媒体，生成 `src/episode.json` 与记录来源哈希的 `BUILD_REPORT.json`，不会安装依赖、调用模型或开始渲染。这样更新 Skill 不会覆盖正在编辑的视频工程。
+新工程目录必须不存在或为空，不能位于 Skill 目录内，也不能是 Skill 或输入资料的祖先目录；推荐使用仓库的同级新目录。入口调用编译器复制通用引擎、分镜和明确引用的本地媒体，生成 `src/episode.json`、方向约束 `STYLE_TARGET.md` 与记录来源哈希的 `BUILD_REPORT.json`，不会安装依赖、调用模型或开始渲染。这样更新 Skill 不会覆盖正在编辑的视频工程。
 
 `npm ci` 会根据工程内锁文件安装依赖；它不会生成新的台词、人物或声音。首次联网安装需要耐心等待，查看终端的真实结果。`npm run check` 是 TypeScript 检查，不是画面或声音验收。
 
 预览服务的实际地址由终端输出给出。选择 `AdaptivePortrait` Composition。画面由这份分镜的对象、动作与镜头顺序生成；字幕与草案标记来自数据。示例没有定稿声音，静音是预期行为。浏览器预览应由使用者实际打开检查，本教程不预先宣称该环境已成功。
 
-若只想复制空白工作起点，使用 `python scripts/new_project.py --out "../my-adaptive-project"`；默认 `--case adaptive`，内置 `src/episode.json` 仍只是可替换的示意。正式工作优先走上面的编译器，避免漏复制新素材。
+若只想查看通用引擎校准案例，显式使用 `python scripts/new_project.py --case adaptive --out "../my-adaptive-study"`；内置 `src/episode.json` 是示意，不是空白工程或本期成片。正式工作使用 `new_project.py --input PLAN`；不传 `--input` 或显式 `--case` 会报错，不会替你选择案例。`--case` 不能与 `--input`、`--media-dir`、`--draft` 混用。
 
 ## 用自己的内容创建工程
 
-让 Agent 读取 [导演手册](../references/director-playbook.md) 与 [v2 分镜契约](../references/storyboard-contract.md)，根据本期最终口播生成 `episode.json`。主题、对象、场景数量与顺序、配色、时长和动作时点由这份 JSON 决定；不要求保持示例结构，也不需要轻量模型先改 TSX。
+让 Agent 先读取[当前方向](../references/approved-editing-direction.md)，再读[导演手册](../references/director-playbook.md)与 [v2 分镜契约](../references/storyboard-contract.md)，根据本期最终口播生成 `episode.json`。第一份分镜只写真实开头：从 0 秒起，连续覆盖 10–15 秒，并在完整语义处结束；字幕和素材保持同一起点。主题、对象、场景数量与顺序、配色、时长和动作时点由这份 JSON 决定。先复用已有代码；当前底座表达不了 V3 的关键镜头或转场时，须在本期工程补实现，不能降低视觉目标迁就模板。
 
 把本期输入放在独立工作目录，例如：
 
@@ -200,8 +200,8 @@ JSON 路径相对于媒体根目录，不加 `public/`，例如 `media.voice` �
 
 ```powershell
 python -X utf8 scripts/validate_storyboard.py "../episode-work/episode.json" --mode production --json
-python -X utf8 scripts/compile_storyboard.py --input "../episode-work/episode.json" --media-dir "../episode-work/media-root" --out "../my-final-portrait"
-cd "../my-final-portrait"
+python -X utf8 scripts/new_project.py --input "../episode-work/episode.json" --media-dir "../episode-work/media-root" --out "../my-opening-portrait"
+cd "../my-opening-portrait"
 npm ci
 npm run check
 npm run render
@@ -219,7 +219,7 @@ macOS／Linux 使用 `python3`。校验器默认生产模式，编译器未传 `
 npm run render
 ```
 
-默认输出 `out/adaptive-portrait.mp4`。渲染脚本使用 `AdaptivePortrait` Composition，由 `src/episode.json` 的 `duration`、`fps`、尺寸与场景数据决定成片，不再固定为 537 帧或 10.74 秒。
+默认输出 `out/adaptive-portrait.mp4`。渲染脚本使用 `AdaptivePortrait` Composition，由 `src/episode.json` 的 `duration`、`fps`、尺寸与场景数据决定成片，不再固定为 537 帧或 10.74 秒。**`npm run render` 会渲染整个传入计划，不会自动截成 10–15 秒。** 因此先传入本期开头分镜，等使用者实际确认风格后，再扩展完整时间轴。
 
 选择数个秒数导出静帧：
 

@@ -1,6 +1,6 @@
 # 常见问题与故障排查
 
-先区分问题发生在安装、Agent 发现、分镜校验、编译、ChatCut、npm／浏览器、媒体接入还是实际剪辑。保存完整错误末尾和正在运行的命令，通常比重复安装全部工具更有帮助。本文默认对应 v2 的 `AdaptivePortrait` 通用引擎；历史 V3 工程仅在明确说明时适用。
+先区分问题发生在安装、Agent 发现、分镜校验、编译、ChatCut、npm／浏览器、媒体接入还是实际剪辑。保存完整错误末尾和正在运行的命令，通常比重复安装全部工具更有帮助。本文对应 `new_project.py --input PLAN` 创建的 `AdaptivePortrait` 工程；数字人 V3 是视觉基准，source-style 仅为辅助 UI，不是默认成片路线。
 
 返回 [README](../README.md) · [安装教程](INSTALL.md) · [完整工作流](WORKFLOW.md)
 
@@ -151,9 +151,11 @@ npm run render
 
 ## 新口播为什么仍是 10.74 秒或旧求职场景？
 
-这通常说明使用的是 V1／历史 `--case presenter-v3` 工程，或 Agent 没有读取新版 Skill。v2 默认 `--case adaptive`；推荐由本期 `episode.json` 经 `compile_storyboard.py` 创建新工程，Composition 是 `AdaptivePortrait`，输出 `out/adaptive-portrait.mp4`。历史案例保留固定时长便于研究，不应继续作为新主题默认入口。
+这通常说明使用的是历史 `--case presenter-v3` 校准工程，或 Agent 没有读取新版 Skill。当前入口必须显式提供本期分镜：`new_project.py --input PLAN --media-dir MEDIA_ROOT --out NEW`，Composition 是 `AdaptivePortrait`，输出 `out/adaptive-portrait.mp4`。数字人 V3 保留为视觉基准，固定时长案例只供研究，不应套为新主题默认成片。
 
-在 v2 中，总时长来自 `duration`，字幕来自 `captions`，场景和动作来自 `scenes[].beats`。仅改字幕文本而不修改动作数据，动作当然不会换；让模型按本期“主体、动词、关系、证据”重编分镜，不能只改旧标签。延长声音也不会自动推算这些字段，须测量并更新关联时间。
+不传 `--input` 或显式 `--case` 会返回 2，且不创建目录。只研究通用底座时可用 `--case adaptive`；只研究 V3 时用 `--case presenter-v3`。这些校准选项不能与 `--input`、`--media-dir`、`--draft` 混用。
+
+在 v2 中，总时长来自 `duration`，字幕来自 `captions`，场景和动作来自 `scenes[].beats`。`npm run render` 渲染整个传入计划，不会自动截成样段；第一份计划必须写成本期真实 0 秒起的 10–15 秒开头，确认风格后再延展。仅改字幕文本而不修改动作数据，动作当然不会换；让模型按本期“主体、动词、关系、证据”重编分镜，不能只改旧标签。延长声音也不会自动推算这些字段，须测量并更新关联时间。
 
 旧 `timeline.json`／`check_timeline.py` 是额外的对齐记录工具，不能直接当作 v2 `episode.json` 编译。数据格式与迁移说明见 [时间轴规范](../references/timing-format.md)。
 
@@ -254,7 +256,7 @@ macOS／Linux 使用 `RENDER_CONCURRENCY=1 npm run render`。参数必须为正�
 
 ## 可以只下载模板、不安装 Skill 吗？
 
-可以完整下载仓库后，用 `compile_storyboard.py` 将分镜编译到独立目录，或用默认 `new_project.py` 复制通用引擎，再执行 `npm ci` 和预览／导出。Skill 安装主要方便 Agent 发现和调用工作流程；模板运行仍需自己的制作环境。
+可以完整下载仓库后，用 `new_project.py --input PLAN --media-dir MEDIA_ROOT --out NEW` 将本期分镜编译到独立目录；仅查看校准底座则显式用 `new_project.py --case adaptive --out NEW`，再执行 `npm ci` 和预览／导出。入口不再无输入复制任何默认案例。Skill 安装主要方便 Agent 发现和调用工作流程；模板运行仍需自己的制作环境。
 
 如果完全不使用 Agent，也可以按照契约自己编写 JSON、准备素材，再校验和编译；只有基础机制不能表达时才需要改 React／Remotion 组件。只下载一个预览 MP4 无法获得可编辑工程。
 

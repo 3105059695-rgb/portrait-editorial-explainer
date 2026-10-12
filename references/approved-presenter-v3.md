@@ -1,6 +1,6 @@
-# 历史风格基准：已认可的竖屏口播 V3
+# 默认视觉基准：已认可的竖屏口播 V3
 
-本页解释风格来源与历史组件，不是 v2 的默认制作模板。新一期先用 [导演手册](director-playbook.md) 根据内容生成 [v2 分镜](storyboard-contract.md)，再编译到通用引擎。主题、对象、镜头顺序与时长由新稿决定。
+本页是默认视觉校准依据，配合 [已确认剪辑方向](approved-editing-direction.md) 使用。代码案例本身不是新一期的固定模板。新一期先按口播设计物件、动作、景别和跨场衔接，再用本期分镜建立工程；通用底座缺少的成熟做法需要迁移，不能静默降级为应用界面演示。
 
 ## 认可范围
 
@@ -40,7 +40,7 @@
 
 ## 可编辑代码
 
-只有显式 `new_project.py --case presenter-v3 --out <新目录>` 才创建该历史样例，其 Composition 为 `PresenterEditorialV3`。省略 `--case` 时现在默认创建 `adaptive` 通用引擎，Composition 为 `AdaptivePortrait`；不要将两套工程的配置文件和渲染命令混用。两套工程均附有依赖声明、锁文件与代码，运行时不依赖作者的本地目录。
+只有显式 `new_project.py --case presenter-v3 --out <新目录>` 才创建该历史样例，其 Composition 为 `PresenterEditorialV3`。省略 `--case` 时必须提供本期 `--input` 分镜，编译到 `AdaptivePortrait`；不再自动复制任何示例。不要将两套工程的配置文件和渲染命令混用。两套工程均附有依赖声明、锁文件与代码，运行时不依赖作者的本地目录。
 
 | 文件 | 可复用机制 |
 | --- | --- |
@@ -50,7 +50,7 @@
 | `src/PropsV2.tsx` | 代码原生钱币、纸层、办公楼、轮廓、高光与接触影；V2命名只代表组件来源 |
 | `src/mediaConfig.ts` | `presenterVideo`、`voiceTrack` 可为null；`referenceImage` 为占位SVG。配置路径相对于 `public/` |
 
-这个历史样例保留原来的示例字幕、固定10.74秒与绝对时点，便于研究当时的相机和转场。它不承担自动适配新主题的职责；新的制作入口是 `episode.json → validate_storyboard.py → compile_storyboard.py → AdaptivePortrait`。需要从旧案例借用特殊机制时，只迁移合适的构图／动画实现，不沿用旧台词、物体或时长。仅替换历史媒体路径或台词不是完成剪辑。
+这个历史样例保留原来的示例字幕、固定10.74秒与绝对时点，便于研究当时的相机和转场。它不承担自动适配新主题的职责；新的制作入口是 `本期 episode.json → new_project.py --input → AdaptivePortrait`；生成工程附带 STYLE_TARGET.md。需要从旧案例借用特殊机制时，只迁移合适的构图／动画实现，不沿用旧台词、物体或时长。仅替换历史媒体路径或台词不是完成剪辑。
 
 ## 验证与可移植性
 

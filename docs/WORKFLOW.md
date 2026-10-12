@@ -1,4 +1,4 @@
-> 当前默认接口已更新为参考风格 v3；请先阅读 [当前README](../README.md) 和 [v3流程](../references/source-style-workflow.md)。下文涉及 adaptive / validate_storyboard / compile_storyboard 的命令为保留的 V2 路线。
+> 当前入口是 `new_project.py --input PLAN`，经 V2 分镜编译器创建本期 adaptive 工程。数字人 V3 是视觉基准，source-style 仅为辅助 UI；开始前先读[已确认的剪辑方向](../references/approved-editing-direction.md)。
 
 # 从本期素材到可编辑成片
 
@@ -103,7 +103,9 @@
 
 ## 5. 模型写本期分镜，通用引擎执行动作
 
-先读[导演手册](../references/director-playbook.md)和[V2 分镜契约](../references/storyboard-contract.md)。V2 的默认工程直接读取 `src/episode.json`；字幕、场景、对象和动作使用同一份数据。改变主题不要求模型重新实现整套 TSX。
+先读[导演手册](../references/director-playbook.md)和[V2 分镜契约](../references/storyboard-contract.md)。本期编译工程读取 `src/episode.json`；字幕、场景、对象和动作使用同一份数据。优先复用现有实现；底座缺少的 V3 镜头与物体带动转场，须在本期工程补实现，不能当成已经具备。
+
+**第一份 `episode.json` 只写本期真实开头 10–15 秒。** 起点为 0，声音、字幕、场景与动作沿用本期同一时钟，终点落在完整语义处。不要先传全片再指望脚本自动截断；使用者确认样段后才扩展全片。
 
 把一句话拆成主语、动词、对象关系和需要展示的证据，再选择机制。例如“把散落的问题按主题整理”对应同一组 message 对象进入 folder；“把整理结果交给负责人”对应 document 沿 route-transfer 路径移动。不能仅因句子换了就切一张新标题卡。
 
@@ -147,8 +149,8 @@ ffmpeg -n -i "media-root/media/presenter-final.mp4" -vn -c:a pcm_s16le "media-ro
 
 ```powershell
 python -X utf8 scripts/validate_storyboard.py ../episode-work/episode.json --mode production --json
-python -X utf8 scripts/compile_storyboard.py --input ../episode-work/episode.json --media-dir ../episode-work/media-root --out ../episode-final
-cd ../episode-final
+python -X utf8 scripts/new_project.py --input ../episode-work/episode.json --media-dir ../episode-work/media-root --out ../episode-opening
+cd ../episode-opening
 npm ci
 npm run check
 ```
@@ -157,7 +159,7 @@ JSON 校验器给出具体字段位置与错误；模型应按[修复表](../ref
 
 只有视觉草案时，校验改为 `--mode draft`，编译加 `--draft`。草案可以没有声音，但引用了路径的文件仍需存在；渲染带明确的草案标识。
 
-编译器先预检，再把通用源码、锁文件、引用素材和本期 JSON 复制进新的空工程。生成的 `BUILD_REPORT.json` 记录输入及素材摘要、模式和校验结果。数据中的 `duration` 和 `fps` 决定总帧数，无需每期手改 `Root.tsx`；字幕与动作直接来自同一 `episode.json`。
+入口调用编译器先预检，再把通用源码、锁文件、引用素材和本期 JSON 复制进新的空工程，并附上 `STYLE_TARGET.md`。生成的 `BUILD_REPORT.json` 记录输入及素材摘要、模式和校验结果。数据中的 `duration` 和 `fps` 决定总帧数，无需每期手改 `Root.tsx`；字幕与动作直接来自同一 `episode.json`。无输入时入口会报错；`--case` 仅用于显式查看校准案例。
 
 直接编辑新工程的 `src/episode.json` 也能预览变化。正式交付仍应对最终这份 JSON 再跑校验；大幅修改应重新编译到另一个空目录，以便保留版本和来源记录。编译器不会覆盖非空输出目录。
 
@@ -191,7 +193,7 @@ npm run dev
 npm run render
 ```
 
-默认通用工程脚本导出 `out/adaptive-portrait.mp4`。新一期可以在本期工程中改输出名称，但交付说明必须与真实文件一致。
+默认通用工程脚本导出 `out/adaptive-portrait.mp4`。**该命令渲染整个传入的分镜，不会自动截取开头。** 第一轮应只传入上面准备好的 0 秒起 10–15 秒计划，实际对照数字人 V3 的镜头、物体动作和转场；得到使用者对本期样段的反馈后再延展全片。新一期可以在本期工程中改输出名称，但交付说明必须与真实文件一致。
 
 检查媒体信息和完整视频解码的示例：
 

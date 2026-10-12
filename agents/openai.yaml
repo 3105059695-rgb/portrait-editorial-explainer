@@ -1,4 +1,4 @@
 interface:
-  display_name: "UI 风格竖屏讲解"
-  short_description: "按新题材自由设计界面与交互，复用同类视觉语言，先交本期开头样段"
-  default_prompt: "请使用 $portrait-editorial-explainer 将已有口播或配音剪成这类 UI 风格，按本期内容重新设计布局、状态与镜头；真人原片先用 ChatCut 粗剪、数字人跳过，先交实际开头 10–15 秒，风格认可后再做全片。"
+  display_name: "数字人口播动效剪辑"
+  short_description: "沿用已认可V3的镜头、物件与转场，按新口播重新编排，先看真实开头"
+  default_prompt: "请使用 $portrait-editorial-explainer，沿用已认可数字人V3的剪辑方向，根据这期口播重排物件、素材、镜头和转场；先制作本期开头10–15秒。"

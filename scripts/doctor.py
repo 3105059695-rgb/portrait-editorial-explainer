@@ -14,7 +14,7 @@ import sys
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_FILES = (
-    "SKILL.md", "agents/openai.yaml", "scripts/install_skill.py", "scripts/doctor.py",
+    "SKILL.md", "agents/openai.yaml", "references/approved-editing-direction.md", "scripts/install_skill.py", "scripts/doctor.py",
     "scripts/new_project.py", "scripts/check_timeline.py", "references/approved-presenter-v3.md",
     "references/presenter-workflow.md", "references/visual-grammar.md", "references/timing-format.md",
     "references/approved-case.md", "assets/timing-example/timeline.json",

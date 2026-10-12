@@ -40,5 +40,11 @@
     }
   ],
   "lowCapabilityModelTrial": "not run for new ui-stage",
-  "styleApproval": "pending"
+  "styleApproval": "pending",
+  "subsequentUserFeedback": {
+    "date": "2026-10-12",
+    "role": "auxiliary UI examples only",
+    "styleBaseline": "rejected; use approved presenter V3",
+    "note": "Technical rendering results remain valid; they do not establish target editing style."
+  }
 }
