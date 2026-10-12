@@ -1,0 +1,1447 @@
+{
+  "version": 3,
+  "title": "给周末留出空档 · 行程 UI 组合示例",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 15,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {},
+  "sample": {
+    "duration": 15,
+    "reason": "用交通选择、同一行程重新安排和保存反馈演示自由 UI 组合；无声示例，不作为本期配音"
+  },
+  "captions": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.2,
+      "text": "周末只有一天，不用把行程排满。"
+    },
+    {
+      "id": "c2",
+      "start": 3.2,
+      "end": 6.35,
+      "text": "把出发时间提前，"
+    },
+    {
+      "id": "c3",
+      "start": 6.35,
+      "end": 10.4,
+      "text": "留出来的空档，先留给自己。"
+    },
+    {
+      "id": "c4",
+      "start": 10.4,
+      "end": 15,
+      "text": "交通、顺序和留白，一起安排好。"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "weekend-itinerary",
+      "start": 0,
+      "end": 15,
+      "mechanism": "ui-stage",
+      "intent": "选择更早到达的交通班次后，保持同一日程对象，调整时段并加入咖啡空档，最后保存新行程",
+      "title": "给周末，留一点余地。",
+      "accent": "#b87a54",
+      "background": "#f5f3ec",
+      "presenter": "hidden",
+      "marks": {
+        "select": 3.43,
+        "arrival": 5.18,
+        "schedule": 6.85,
+        "resolve": 11.7
+      },
+      "markCues": {
+        "select": "c2",
+        "arrival": "c2",
+        "schedule": "c3",
+        "resolve": "c4"
+      },
+      "content": {
+        "items": [],
+        "ui": {
+          "canvasHeight": 967.111,
+          "showTitle": false,
+          "label": "行程安排示意",
+          "nodes": [
+            {
+              "id": "app",
+              "type": "panel",
+              "x": 28,
+              "y": 67,
+              "w": 488,
+              "h": 789,
+              "fill": "#fffefa",
+              "radius": 20,
+              "stroke": "#e2e1d8"
+            },
+            {
+              "id": "appname",
+              "type": "text",
+              "x": 49,
+              "y": 91,
+              "w": 251,
+              "h": 20,
+              "text": "周末出走  /  行程",
+              "fontSize": 12,
+              "weight": 600,
+              "color": "#4e534a"
+            },
+            {
+              "id": "status",
+              "type": "badge",
+              "x": 406,
+              "y": 84,
+              "w": 88,
+              "h": 26,
+              "text": "未保存",
+              "fontSize": 11,
+              "fill": "#f1efe7",
+              "color": "#929186"
+            },
+            {
+              "id": "toprule",
+              "type": "line",
+              "x": 29,
+              "y": 124,
+              "w": 486,
+              "h": 0,
+              "stroke": "#e8e7de"
+            },
+            {
+              "id": "city",
+              "type": "text",
+              "x": 49,
+              "y": 148,
+              "w": 314,
+              "h": 40,
+              "text": "临江慢游",
+              "fontSize": 28,
+              "weight": 700
+            },
+            {
+              "id": "date",
+              "type": "text",
+              "x": 50,
+              "y": 194,
+              "w": 288,
+              "h": 24,
+              "text": "周六出发  ·  1 天  ·  2 人",
+              "fontSize": 12,
+              "color": "#85877b"
+            },
+            {
+              "id": "destination",
+              "type": "image",
+              "x": 391,
+              "y": 146,
+              "w": 103,
+              "h": 91,
+              "image": "illustrations/journey-3.svg",
+              "radius": 11
+            },
+            {
+              "id": "tabday",
+              "type": "button",
+              "x": 49,
+              "y": 227,
+              "w": 86,
+              "h": 30,
+              "text": "第 1 天",
+              "fontSize": 12,
+              "fill": "#f0e3d7",
+              "color": "#955f40",
+              "stroke": "#f0e3d7",
+              "emphasis": "ghost"
+            },
+            {
+              "id": "dayhint",
+              "type": "text",
+              "x": 146,
+              "y": 234,
+              "w": 240,
+              "h": 24,
+              "text": "留一点空档，再出发。",
+              "fontSize": 12,
+              "color": "#85877b"
+            },
+            {
+              "id": "transport-heading",
+              "type": "text",
+              "x": 49,
+              "y": 281,
+              "w": 210,
+              "h": 27,
+              "text": "先安排，怎么去",
+              "fontSize": 17,
+              "weight": 700
+            },
+            {
+              "id": "transport-state",
+              "type": "text",
+              "x": 375,
+              "y": 285,
+              "w": 119,
+              "h": 22,
+              "text": "已选大巴",
+              "fontSize": 11,
+              "color": "#919184",
+              "emphasis": "center"
+            },
+            {
+              "id": "train",
+              "type": "panel",
+              "x": 48,
+              "y": 321,
+              "w": 215,
+              "h": 82,
+              "fill": "#fbfcf7",
+              "stroke": "#e8e9df",
+              "radius": 10,
+              "emphasis": "flat"
+            },
+            {
+              "id": "train-name",
+              "type": "text",
+              "x": 63,
+              "y": 334,
+              "w": 118,
+              "h": 25,
+              "text": "高铁",
+              "fontSize": 16,
+              "weight": 600
+            },
+            {
+              "id": "train-tag",
+              "type": "badge",
+              "x": 191,
+              "y": 330,
+              "w": 57,
+              "h": 24,
+              "text": "58 分钟",
+              "fontSize": 11,
+              "fill": "#eeefe7",
+              "color": "#787e6d"
+            },
+            {
+              "id": "train-time",
+              "type": "text",
+              "x": 63,
+              "y": 368,
+              "w": 187,
+              "h": 23,
+              "text": "09:20 → 10:18",
+              "fontSize": 16,
+              "weight": 600,
+              "color": "#4c5348"
+            },
+            {
+              "id": "bus",
+              "type": "panel",
+              "x": 279,
+              "y": 321,
+              "w": 215,
+              "h": 82,
+              "fill": "#f6e9dd",
+              "stroke": "#b87a54",
+              "radius": 10,
+              "emphasis": "selected flat"
+            },
+            {
+              "id": "bus-name",
+              "type": "text",
+              "x": 294,
+              "y": 334,
+              "w": 118,
+              "h": 25,
+              "text": "大巴",
+              "fontSize": 16,
+              "weight": 600
+            },
+            {
+              "id": "bus-tag",
+              "type": "badge",
+              "x": 422,
+              "y": 330,
+              "w": 57,
+              "h": 24,
+              "text": "已选",
+              "fontSize": 11,
+              "fill": "#ead1bb",
+              "color": "#95623f"
+            },
+            {
+              "id": "bus-time",
+              "type": "text",
+              "x": 294,
+              "y": 368,
+              "w": 187,
+              "h": 23,
+              "text": "10:40 → 11:55",
+              "fontSize": 16,
+              "weight": 600,
+              "color": "#6b503f"
+            },
+            {
+              "id": "sectionrule",
+              "type": "line",
+              "x": 48,
+              "y": 425,
+              "w": 447,
+              "h": 0,
+              "stroke": "#e8e8de"
+            },
+            {
+              "id": "schedule-heading",
+              "type": "text",
+              "x": 49,
+              "y": 445,
+              "w": 320,
+              "h": 30,
+              "text": "周六 · 行程安排",
+              "fontSize": 18,
+              "weight": 700
+            },
+            {
+              "id": "schedule-count",
+              "type": "text",
+              "x": 408,
+              "y": 449,
+              "w": 86,
+              "h": 24,
+              "text": "4 个安排",
+              "fontSize": 12,
+              "color": "#939285",
+              "emphasis": "center"
+            },
+            {
+              "id": "timeline",
+              "type": "line",
+              "x": 103,
+              "y": 496,
+              "w": 0,
+              "h": 224,
+              "stroke": "#e3e6da"
+            },
+            {
+              "id": "arrive-time",
+              "type": "text",
+              "x": 49,
+              "y": 493,
+              "w": 47,
+              "h": 24,
+              "text": "11:55",
+              "fontSize": 12,
+              "weight": 600,
+              "color": "#7a8172"
+            },
+            {
+              "id": "arrive-dot",
+              "type": "badge",
+              "x": 99,
+              "y": 500,
+              "w": 8,
+              "h": 8,
+              "fill": "#afbaa0",
+              "radius": 4
+            },
+            {
+              "id": "arrive-row",
+              "type": "panel",
+              "x": 118,
+              "y": 488,
+              "w": 376,
+              "h": 50,
+              "fill": "#f1f3e9",
+              "stroke": "#f1f3e9",
+              "radius": 8,
+              "emphasis": "flat"
+            },
+            {
+              "id": "arrive-title",
+              "type": "text",
+              "x": 132,
+              "y": 494,
+              "w": 323,
+              "h": 22,
+              "text": "到达临江站",
+              "fontSize": 15,
+              "weight": 600
+            },
+            {
+              "id": "arrive-body",
+              "type": "text",
+              "x": 132,
+              "y": 516,
+              "w": 342,
+              "h": 18,
+              "text": "先存行李，轻装开始",
+              "fontSize": 11,
+              "color": "#8a8e7d"
+            },
+            {
+              "id": "lunch-time",
+              "type": "text",
+              "x": 49,
+              "y": 555,
+              "w": 47,
+              "h": 24,
+              "text": "12:30",
+              "fontSize": 12,
+              "weight": 600,
+              "color": "#7a8172"
+            },
+            {
+              "id": "lunch-dot",
+              "type": "badge",
+              "x": 99,
+              "y": 562,
+              "w": 8,
+              "h": 8,
+              "fill": "#afbaa0",
+              "radius": 4
+            },
+            {
+              "id": "lunch-row",
+              "type": "panel",
+              "x": 118,
+              "y": 550,
+              "w": 376,
+              "h": 50,
+              "fill": "#f3f1e7",
+              "stroke": "#f3f1e7",
+              "radius": 8,
+              "emphasis": "flat"
+            },
+            {
+              "id": "lunch-title",
+              "type": "text",
+              "x": 132,
+              "y": 556,
+              "w": 323,
+              "h": 22,
+              "text": "街角小馆",
+              "fontSize": 15,
+              "weight": 600
+            },
+            {
+              "id": "lunch-body",
+              "type": "text",
+              "x": 132,
+              "y": 578,
+              "w": 342,
+              "h": 18,
+              "text": "给午餐留出 60 分钟",
+              "fontSize": 11,
+              "color": "#8a8e7d"
+            },
+            {
+              "id": "oldtown-time",
+              "type": "text",
+              "x": 49,
+              "y": 617,
+              "w": 47,
+              "h": 24,
+              "text": "14:00",
+              "fontSize": 12,
+              "weight": 600,
+              "color": "#7a8172"
+            },
+            {
+              "id": "oldtown-dot",
+              "type": "badge",
+              "x": 99,
+              "y": 624,
+              "w": 8,
+              "h": 8,
+              "fill": "#afbaa0",
+              "radius": 4
+            },
+            {
+              "id": "oldtown-row",
+              "type": "panel",
+              "x": 118,
+              "y": 612,
+              "w": 376,
+              "h": 50,
+              "fill": "#f1f3e9",
+              "stroke": "#f1f3e9",
+              "radius": 8,
+              "emphasis": "flat"
+            },
+            {
+              "id": "oldtown-title",
+              "type": "text",
+              "x": 132,
+              "y": 618,
+              "w": 323,
+              "h": 22,
+              "text": "慢逛老街",
+              "fontSize": 15,
+              "weight": 600
+            },
+            {
+              "id": "oldtown-body",
+              "type": "text",
+              "x": 132,
+              "y": 640,
+              "w": 342,
+              "h": 18,
+              "text": "不赶景点，沿街随意走",
+              "fontSize": 11,
+              "color": "#8a8e7d"
+            },
+            {
+              "id": "lake-time",
+              "type": "text",
+              "x": 49,
+              "y": 679,
+              "w": 47,
+              "h": 24,
+              "text": "16:00",
+              "fontSize": 12,
+              "weight": 600,
+              "color": "#7a8172"
+            },
+            {
+              "id": "lake-dot",
+              "type": "badge",
+              "x": 99,
+              "y": 686,
+              "w": 8,
+              "h": 8,
+              "fill": "#afbaa0",
+              "radius": 4
+            },
+            {
+              "id": "lake-row",
+              "type": "panel",
+              "x": 118,
+              "y": 674,
+              "w": 376,
+              "h": 50,
+              "fill": "#edf0e6",
+              "stroke": "#edf0e6",
+              "radius": 8,
+              "emphasis": "flat"
+            },
+            {
+              "id": "lake-title",
+              "type": "text",
+              "x": 132,
+              "y": 680,
+              "w": 323,
+              "h": 22,
+              "text": "湖边散步",
+              "fontSize": 15,
+              "weight": 600
+            },
+            {
+              "id": "lake-body",
+              "type": "text",
+              "x": 132,
+              "y": 702,
+              "w": 342,
+              "h": 18,
+              "text": "留到光线柔和的时候",
+              "fontSize": 11,
+              "color": "#8a8e7d"
+            },
+            {
+              "id": "coffee-time",
+              "type": "text",
+              "x": 49,
+              "y": 547,
+              "w": 47,
+              "h": 24,
+              "text": "10:45",
+              "fontSize": 12,
+              "weight": 600,
+              "color": "#ad704b",
+              "opacity": 0
+            },
+            {
+              "id": "coffee-dot",
+              "type": "badge",
+              "x": 99,
+              "y": 554,
+              "w": 8,
+              "h": 8,
+              "fill": "#b87a54",
+              "radius": 4,
+              "opacity": 0
+            },
+            {
+              "id": "coffee-row",
+              "type": "panel",
+              "x": 142,
+              "y": 542,
+              "w": 352,
+              "h": 48,
+              "fill": "#f7e8d8",
+              "stroke": "#c78b63",
+              "radius": 8,
+              "emphasis": "selected flat",
+              "opacity": 0
+            },
+            {
+              "id": "coffee-title",
+              "type": "text",
+              "x": 156,
+              "y": 548,
+              "w": 264,
+              "h": 22,
+              "text": "河边喝杯咖啡",
+              "fontSize": 15,
+              "weight": 600,
+              "color": "#815839",
+              "opacity": 0
+            },
+            {
+              "id": "coffee-body",
+              "type": "text",
+              "x": 156,
+              "y": 570,
+              "w": 296,
+              "h": 18,
+              "text": "新增一段不赶时间的空白",
+              "fontSize": 11,
+              "color": "#a28265",
+              "opacity": 0
+            },
+            {
+              "id": "coffee-tag",
+              "type": "badge",
+              "x": 430,
+              "y": 548,
+              "w": 49,
+              "h": 23,
+              "text": "新增",
+              "fontSize": 11,
+              "fill": "#edcfb0",
+              "color": "#93623e",
+              "opacity": 0
+            },
+            {
+              "id": "bottomrule",
+              "type": "line",
+              "x": 48,
+              "y": 753,
+              "w": 447,
+              "h": 0,
+              "stroke": "#e8e8de"
+            },
+            {
+              "id": "free-label",
+              "type": "text",
+              "x": 49,
+              "y": 773,
+              "w": 282,
+              "h": 22,
+              "text": "选一班更早到达的车",
+              "fontSize": 12,
+              "color": "#8f9184"
+            },
+            {
+              "id": "free-value",
+              "type": "text",
+              "x": 49,
+              "y": 800,
+              "w": 299,
+              "h": 33,
+              "text": "给周末，留一点余地。",
+              "fontSize": 21,
+              "weight": 700,
+              "color": "#424c3c"
+            },
+            {
+              "id": "save",
+              "type": "button",
+              "x": 370,
+              "y": 791,
+              "w": 124,
+              "h": 41,
+              "text": "保存行程",
+              "fontSize": 14,
+              "emphasis": "primary",
+              "radius": 10
+            },
+            {
+              "id": "outside-note",
+              "type": "text",
+              "x": 44,
+              "y": 866,
+              "w": 458,
+              "h": 25,
+              "text": "行程示意 · 地点与班次为演示数据",
+              "fontSize": 11,
+              "color": "#a1a195",
+              "emphasis": "center"
+            },
+            {
+              "id": "cursor",
+              "type": "cursor",
+              "x": 491,
+              "y": 840,
+              "w": 19,
+              "h": 25,
+              "opacity": 0
+            }
+          ],
+          "tracks": [
+            {
+              "nodeId": "train",
+              "frames": [
+                {
+                  "at": 3.43,
+                  "set": {
+                    "fill": "#f6e9dd",
+                    "stroke": "#b87a54",
+                    "emphasis": "selected flat"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "train-tag",
+              "frames": [
+                {
+                  "at": 3.43,
+                  "set": {
+                    "text": "已选",
+                    "fill": "#ead1bb",
+                    "color": "#95623f"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "bus",
+              "frames": [
+                {
+                  "at": 3.43,
+                  "set": {
+                    "fill": "#fbfcf7",
+                    "stroke": "#e8e9df",
+                    "emphasis": "flat"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "bus-tag",
+              "frames": [
+                {
+                  "at": 3.43,
+                  "set": {
+                    "text": "75 分钟",
+                    "fill": "#eeefe7",
+                    "color": "#787e6d"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "bus-time",
+              "frames": [
+                {
+                  "at": 3.43,
+                  "set": {
+                    "color": "#7a8172"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "transport-state",
+              "frames": [
+                {
+                  "at": 3.43,
+                  "set": {
+                    "text": "已选高铁",
+                    "color": "#a97550"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "status",
+              "frames": [
+                {
+                  "at": 3.43,
+                  "set": {
+                    "text": "正在调整",
+                    "fill": "#f3e4d4",
+                    "color": "#a77b50"
+                  }
+                },
+                {
+                  "at": 6.85,
+                  "set": {
+                    "text": "待保存",
+                    "fill": "#f3e4d4",
+                    "color": "#a77b50"
+                  }
+                },
+                {
+                  "at": 11.7,
+                  "set": {
+                    "text": "✓ 已保存",
+                    "fill": "#e4ecda",
+                    "color": "#688350"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "arrive-time",
+              "frames": [
+                {
+                  "at": 5.18,
+                  "set": {
+                    "text": "10:18",
+                    "color": "#ab704b"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "arrive-row",
+              "frames": [
+                {
+                  "at": 5.18,
+                  "set": {
+                    "fill": "#f5e9d9",
+                    "stroke": "#e6d4be"
+                  }
+                },
+                {
+                  "at": 7.9,
+                  "set": {
+                    "fill": "#f1f3e9",
+                    "stroke": "#f1f3e9"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lunch-time",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 555
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 601,
+                    "text": "12:00"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lunch-dot",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 562
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 608
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lunch-row",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 550
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 596
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lunch-title",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 556
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 602
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lunch-body",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 578
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 624
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "oldtown-time",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 617
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 655,
+                    "text": "13:00"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "oldtown-dot",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 624
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 662
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "oldtown-row",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 612,
+                    "h": 50
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 650,
+                    "h": 45
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "oldtown-title",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 618
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 656
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "oldtown-body",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 640
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 678
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lake-time",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 679
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 709,
+                    "text": "15:00"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lake-dot",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 686
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 716
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lake-row",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 674,
+                    "h": 50
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 704,
+                    "h": 45
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lake-title",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 680
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 710
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "lake-body",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "y": 702
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "y": 732
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "coffee-time",
+              "frames": [
+                {
+                  "at": 6.35,
+                  "set": {
+                    "opacity": 0
+                  }
+                },
+                {
+                  "at": 6.85,
+                  "set": {
+                    "opacity": 1
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "coffee-dot",
+              "frames": [
+                {
+                  "at": 6.35,
+                  "set": {
+                    "opacity": 0
+                  }
+                },
+                {
+                  "at": 6.85,
+                  "set": {
+                    "opacity": 1
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "coffee-row",
+              "frames": [
+                {
+                  "at": 6.35,
+                  "set": {
+                    "opacity": 0,
+                    "x": 142,
+                    "w": 352
+                  }
+                },
+                {
+                  "at": 6.85,
+                  "set": {
+                    "opacity": 1,
+                    "x": 118,
+                    "w": 376
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "coffee-title",
+              "frames": [
+                {
+                  "at": 6.35,
+                  "set": {
+                    "opacity": 0,
+                    "x": 156
+                  }
+                },
+                {
+                  "at": 6.85,
+                  "set": {
+                    "opacity": 1,
+                    "x": 132
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "coffee-body",
+              "frames": [
+                {
+                  "at": 6.35,
+                  "set": {
+                    "opacity": 0,
+                    "x": 156
+                  }
+                },
+                {
+                  "at": 6.85,
+                  "set": {
+                    "opacity": 1,
+                    "x": 132
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "coffee-tag",
+              "frames": [
+                {
+                  "at": 6.35,
+                  "set": {
+                    "opacity": 0
+                  }
+                },
+                {
+                  "at": 6.85,
+                  "set": {
+                    "opacity": 1
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "timeline",
+              "frames": [
+                {
+                  "at": 5.3,
+                  "set": {
+                    "h": 224
+                  }
+                },
+                {
+                  "at": 6.35,
+                  "set": {
+                    "h": 242
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "schedule-count",
+              "frames": [
+                {
+                  "at": 6.85,
+                  "set": {
+                    "text": "5 个安排",
+                    "color": "#9c7351"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "free-label",
+              "frames": [
+                {
+                  "at": 6.85,
+                  "set": {
+                    "text": "提前到达 1 小时 37 分钟",
+                    "color": "#aa744f"
+                  }
+                },
+                {
+                  "at": 11.7,
+                  "set": {
+                    "text": "交通与行程，已一起保存",
+                    "color": "#758263"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "free-value",
+              "frames": [
+                {
+                  "at": 6.85,
+                  "set": {
+                    "text": "先喝杯咖啡，再出发。",
+                    "color": "#865d3b"
+                  }
+                },
+                {
+                  "at": 11.7,
+                  "set": {
+                    "text": "这一趟，慢一点也好。",
+                    "color": "#55644b"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "save",
+              "frames": [
+                {
+                  "at": 10.75,
+                  "set": {
+                    "text": "保存中…",
+                    "emphasis": "primary pressed"
+                  }
+                },
+                {
+                  "at": 11.7,
+                  "set": {
+                    "text": "✓ 已保存",
+                    "emphasis": "success primary"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "cursor",
+              "frames": [
+                {
+                  "at": 1.65,
+                  "set": {
+                    "opacity": 0,
+                    "x": 491,
+                    "y": 840
+                  }
+                },
+                {
+                  "at": 1.9,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 3.18,
+                  "set": {
+                    "x": 179,
+                    "y": 363
+                  }
+                },
+                {
+                  "at": 3.4,
+                  "set": {
+                    "value": 0
+                  }
+                },
+                {
+                  "at": 3.75,
+                  "set": {
+                    "value": 1
+                  }
+                },
+                {
+                  "at": 4.45,
+                  "set": {
+                    "x": 179,
+                    "y": 363,
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 4.8,
+                  "set": {
+                    "opacity": 0
+                  }
+                },
+                {
+                  "at": 9.7,
+                  "set": {
+                    "x": 425,
+                    "y": 811,
+                    "opacity": 0
+                  }
+                },
+                {
+                  "at": 10.2,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 10.65,
+                  "set": {
+                    "value": 1
+                  }
+                },
+                {
+                  "at": 10.7,
+                  "set": {
+                    "value": 0
+                  }
+                },
+                {
+                  "at": 11.02,
+                  "set": {
+                    "value": 1
+                  }
+                },
+                {
+                  "at": 12.0,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 12.35,
+                  "set": {
+                    "opacity": 0
+                  }
+                }
+              ]
+            }
+          ],
+          "camera": [
+            {
+              "at": 0,
+              "x": 272,
+              "y": 483.5555,
+              "scale": 1
+            },
+            {
+              "at": 1.3,
+              "x": 272,
+              "y": 483.5555,
+              "scale": 1
+            },
+            {
+              "at": 2.85,
+              "x": 272,
+              "y": 390,
+              "scale": 1.1
+            },
+            {
+              "at": 4.3,
+              "x": 272,
+              "y": 390,
+              "scale": 1.1
+            },
+            {
+              "at": 5.4,
+              "x": 272,
+              "y": 576,
+              "scale": 1.15
+            },
+            {
+              "at": 8.85,
+              "x": 272,
+              "y": 576,
+              "scale": 1.15
+            },
+            {
+              "at": 10.0,
+              "x": 272,
+              "y": 483.5555,
+              "scale": 1
+            },
+            {
+              "at": 15,
+              "x": 272,
+              "y": 483.5555,
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "enter": {
+        "type": "cut",
+        "duration": 0
+      }
+    }
+  ]
+}

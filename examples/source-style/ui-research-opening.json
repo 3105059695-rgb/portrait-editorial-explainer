@@ -1,0 +1,993 @@
+{
+  "version": 3,
+  "title": "资料如何成为自己的理解 · 自由UI组合示例",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 15,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {},
+  "sample": {
+    "duration": 15,
+    "reason": "展示搜索、选择、摘录迁移及保存反馈；仅无声机制示例"
+  },
+  "captions": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.8,
+      "text": "资料收藏了很多，却不一定变成理解。"
+    },
+    {
+      "id": "c2",
+      "start": 3.8,
+      "end": 6.5,
+      "text": "找到有用的那一句，"
+    },
+    {
+      "id": "c3",
+      "start": 6.5,
+      "end": 9.4,
+      "text": "再补上一个属于自己的问题。"
+    },
+    {
+      "id": "c4",
+      "start": 9.4,
+      "end": 15,
+      "text": "下一次需要时，留下的就不只是收藏。"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "reading-ui",
+      "start": 0,
+      "end": 15,
+      "mechanism": "ui-stage",
+      "intent": "从资料筛选到带问题的笔记，界面状态因操作而改变",
+      "title": "把收藏变成理解",
+      "accent": "#b87752",
+      "background": "#f2f3eb",
+      "presenter": "hidden",
+      "marks": {
+        "search": 2.65,
+        "select": 4.2,
+        "extract": 7.45,
+        "resolve": 9.24
+      },
+      "content": {
+        "items": [],
+        "ui": {
+          "canvasHeight": 967.111,
+          "showTitle": false,
+          "nodes": [
+            {
+              "id": "eyebrow",
+              "type": "text",
+              "x": 35,
+              "y": 75,
+              "w": 420,
+              "h": 24,
+              "text": "把信息，变成自己的理解",
+              "fontSize": 13,
+              "color": "#85857a"
+            },
+            {
+              "id": "headline",
+              "type": "text",
+              "x": 34,
+              "y": 107,
+              "w": 480,
+              "h": 50,
+              "text": "收藏之后，还差一步。",
+              "fontSize": 30,
+              "weight": 700
+            },
+            {
+              "id": "orange",
+              "type": "badge",
+              "x": 36,
+              "y": 157,
+              "w": 93,
+              "h": 25,
+              "text": "阅读工作台",
+              "fontSize": 11,
+              "fill": "#eee0d4",
+              "color": "#9c6547"
+            },
+            {
+              "id": "window",
+              "type": "panel",
+              "x": 25,
+              "y": 216,
+              "w": 494,
+              "h": 562,
+              "radius": 16,
+              "fill": "#fffffb"
+            },
+            {
+              "id": "dot0",
+              "type": "badge",
+              "x": 41,
+              "y": 231,
+              "w": 6,
+              "h": 6,
+              "fill": "#cc8775",
+              "text": "",
+              "radius": 3
+            },
+            {
+              "id": "dot1",
+              "type": "badge",
+              "x": 53,
+              "y": 231,
+              "w": 6,
+              "h": 6,
+              "fill": "#d9bd7e",
+              "text": "",
+              "radius": 3
+            },
+            {
+              "id": "dot2",
+              "type": "badge",
+              "x": 65,
+              "y": 231,
+              "w": 6,
+              "h": 6,
+              "fill": "#94ab8c",
+              "text": "",
+              "radius": 3
+            },
+            {
+              "id": "appname",
+              "type": "text",
+              "x": 91,
+              "y": 228,
+              "w": 240,
+              "h": 24,
+              "text": "PAPER / 资料与笔记",
+              "fontSize": 12,
+              "weight": 600
+            },
+            {
+              "id": "sync",
+              "type": "badge",
+              "x": 428,
+              "y": 226,
+              "w": 75,
+              "h": 23,
+              "text": "已同步",
+              "fontSize": 10,
+              "fill": "#eef2e7"
+            },
+            {
+              "id": "rule",
+              "type": "line",
+              "x": 25,
+              "y": 259,
+              "w": 494,
+              "h": 0
+            },
+            {
+              "id": "alltab",
+              "type": "button",
+              "x": 40,
+              "y": 277,
+              "w": 68,
+              "h": 31,
+              "text": "全部 24",
+              "fontSize": 11,
+              "emphasis": "ghost"
+            },
+            {
+              "id": "filter",
+              "type": "button",
+              "x": 116,
+              "y": 277,
+              "w": 77,
+              "h": 31,
+              "text": "阅读方法",
+              "fontSize": 11,
+              "emphasis": "primary"
+            },
+            {
+              "id": "search",
+              "type": "input",
+              "x": 211,
+              "y": 277,
+              "w": 289,
+              "h": 34,
+              "text": "搜索你的资料…",
+              "fontSize": 12,
+              "emphasis": "placeholder"
+            },
+            {
+              "id": "divider",
+              "type": "line",
+              "x": 269,
+              "y": 330,
+              "w": 0,
+              "h": 421,
+              "stroke": "#e7e7df"
+            },
+            {
+              "id": "listcaption",
+              "type": "text",
+              "x": 42,
+              "y": 335,
+              "w": 200,
+              "h": 24,
+              "text": "资料列表 · 3 篇相关",
+              "fontSize": 12,
+              "color": "#848679"
+            },
+            {
+              "id": "rowa",
+              "type": "panel",
+              "x": 39,
+              "y": 375,
+              "w": 215,
+              "h": 81,
+              "radius": 8,
+              "emphasis": "flat",
+              "fill": "#fafbf5",
+              "stroke": "#f2f2e9"
+            },
+            {
+              "id": "thumba",
+              "type": "image",
+              "x": 48,
+              "y": 384,
+              "w": 44,
+              "h": 62,
+              "image": "illustrations/page-1.svg",
+              "radius": 3,
+              "emphasis": "contain"
+            },
+            {
+              "id": "rowtitlea",
+              "type": "text",
+              "x": 101,
+              "y": 385,
+              "w": 144,
+              "h": 38,
+              "text": "阅读不是信息搬运",
+              "fontSize": 13,
+              "weight": 600
+            },
+            {
+              "id": "rowdesca",
+              "type": "text",
+              "x": 101,
+              "y": 427,
+              "w": 143,
+              "h": 19,
+              "text": "怎样从摘录走向思考？",
+              "fontSize": 9,
+              "color": "#85877c"
+            },
+            {
+              "id": "rowtaga",
+              "type": "text",
+              "x": 49,
+              "y": 452,
+              "w": 190,
+              "h": 24,
+              "text": "笔记资料  /  仅作示意",
+              "fontSize": 8,
+              "color": "#9b9b91",
+              "opacity": 0
+            },
+            {
+              "id": "rowb",
+              "type": "panel",
+              "x": 39,
+              "y": 466,
+              "w": 215,
+              "h": 81,
+              "radius": 8,
+              "emphasis": "flat",
+              "fill": "#fafbf5",
+              "stroke": "#f2f2e9"
+            },
+            {
+              "id": "thumbb",
+              "type": "image",
+              "x": 48,
+              "y": 475,
+              "w": 44,
+              "h": 62,
+              "image": "illustrations/page-2.svg",
+              "radius": 3,
+              "emphasis": "contain"
+            },
+            {
+              "id": "rowtitleb",
+              "type": "text",
+              "x": 101,
+              "y": 476,
+              "w": 144,
+              "h": 38,
+              "text": "搭建知识之间的连接",
+              "fontSize": 13,
+              "weight": 600
+            },
+            {
+              "id": "rowdescb",
+              "type": "text",
+              "x": 101,
+              "y": 518,
+              "w": 143,
+              "h": 19,
+              "text": "给每个想法一个上下文",
+              "fontSize": 9,
+              "color": "#85877c"
+            },
+            {
+              "id": "rowtagb",
+              "type": "text",
+              "x": 49,
+              "y": 543,
+              "w": 190,
+              "h": 24,
+              "text": "笔记资料  /  仅作示意",
+              "fontSize": 8,
+              "color": "#9b9b91",
+              "opacity": 0
+            },
+            {
+              "id": "rowc",
+              "type": "panel",
+              "x": 39,
+              "y": 557,
+              "w": 215,
+              "h": 81,
+              "radius": 8,
+              "emphasis": "flat",
+              "fill": "#fafbf5",
+              "stroke": "#f2f2e9"
+            },
+            {
+              "id": "thumbc",
+              "type": "image",
+              "x": 48,
+              "y": 566,
+              "w": 44,
+              "h": 62,
+              "image": "illustrations/page-3.svg",
+              "radius": 3,
+              "emphasis": "contain"
+            },
+            {
+              "id": "rowtitlec",
+              "type": "text",
+              "x": 101,
+              "y": 567,
+              "w": 144,
+              "h": 38,
+              "text": "把观点写成自己的话",
+              "fontSize": 13,
+              "weight": 600
+            },
+            {
+              "id": "rowdescc",
+              "type": "text",
+              "x": 101,
+              "y": 609,
+              "w": 143,
+              "h": 19,
+              "text": "从一个具体的问题开始",
+              "fontSize": 9,
+              "color": "#85877c"
+            },
+            {
+              "id": "rowtagc",
+              "type": "text",
+              "x": 49,
+              "y": 634,
+              "w": 190,
+              "h": 24,
+              "text": "笔记资料  /  仅作示意",
+              "fontSize": 8,
+              "color": "#9b9b91",
+              "opacity": 0
+            },
+            {
+              "id": "saved",
+              "type": "text",
+              "x": 44,
+              "y": 719,
+              "w": 185,
+              "h": 24,
+              "text": "我的笔记    06",
+              "fontSize": 12,
+              "color": "#818479"
+            },
+            {
+              "id": "counter",
+              "type": "badge",
+              "x": 221,
+              "y": 716,
+              "w": 24,
+              "h": 22,
+              "text": "6",
+              "fontSize": 10
+            },
+            {
+              "id": "detail_label",
+              "type": "text",
+              "x": 289,
+              "y": 334,
+              "w": 200,
+              "h": 24,
+              "text": "内容预览",
+              "fontSize": 11,
+              "color": "#85877c"
+            },
+            {
+              "id": "detail_title",
+              "type": "text",
+              "x": 289,
+              "y": 369,
+              "w": 194,
+              "h": 72,
+              "text": "阅读不是\n信息搬运",
+              "fontSize": 23,
+              "weight": 700
+            },
+            {
+              "id": "tag1",
+              "type": "badge",
+              "x": 289,
+              "y": 450,
+              "w": 60,
+              "h": 22,
+              "text": "方法",
+              "fontSize": 10
+            },
+            {
+              "id": "tag2",
+              "type": "badge",
+              "x": 356,
+              "y": 450,
+              "w": 98,
+              "h": 22,
+              "text": "3 分钟阅读",
+              "fontSize": 10,
+              "fill": "#f2efe5",
+              "color": "#887e65"
+            },
+            {
+              "id": "detailrule",
+              "type": "line",
+              "x": 289,
+              "y": 488,
+              "w": 191,
+              "h": 0
+            },
+            {
+              "id": "body1",
+              "type": "text",
+              "x": 289,
+              "y": 508,
+              "w": 193,
+              "h": 51,
+              "text": "收藏保存的是材料。\n理解建立的是关系。",
+              "fontSize": 13,
+              "color": "#55594e"
+            },
+            {
+              "id": "notebox",
+              "type": "input",
+              "x": 286,
+              "y": 648,
+              "w": 214,
+              "h": 62,
+              "text": "我的理解：",
+              "fontSize": 12,
+              "fill": "#fbfcf6"
+            },
+            {
+              "id": "excerptbg",
+              "type": "panel",
+              "x": 281,
+              "y": 570,
+              "w": 217,
+              "h": 54,
+              "radius": 5,
+              "fill": "#f5e6d8",
+              "stroke": "#f5e6d8",
+              "opacity": 0
+            },
+            {
+              "id": "excerpt",
+              "type": "text",
+              "x": 289,
+              "y": 581,
+              "w": 194,
+              "h": 45,
+              "text": "给摘录补上自己的问题。",
+              "fontSize": 13,
+              "color": "#30372b"
+            },
+            {
+              "id": "save",
+              "type": "button",
+              "x": 389,
+              "y": 727,
+              "w": 111,
+              "h": 31,
+              "text": "保存为笔记",
+              "fontSize": 11,
+              "emphasis": "primary"
+            },
+            {
+              "id": "footline",
+              "type": "text",
+              "x": 37,
+              "y": 804,
+              "w": 466,
+              "h": 30,
+              "text": "找到关联 → 写下判断 → 留下可用的笔记",
+              "fontSize": 13,
+              "color": "#818579"
+            },
+            {
+              "id": "cursor",
+              "type": "cursor",
+              "x": 485,
+              "y": 835,
+              "w": 18,
+              "h": 25,
+              "opacity": 0
+            }
+          ],
+          "tracks": [
+            {
+              "nodeId": "cursor",
+              "frames": [
+                {
+                  "at": 0.45,
+                  "set": {
+                    "opacity": 0,
+                    "x": 472,
+                    "y": 825
+                  }
+                },
+                {
+                  "at": 0.75,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 1.6,
+                  "set": {
+                    "x": 365,
+                    "y": 296
+                  }
+                },
+                {
+                  "at": 1.74,
+                  "set": {
+                    "value": 0.1
+                  }
+                },
+                {
+                  "at": 2.02,
+                  "set": {
+                    "value": 1
+                  }
+                },
+                {
+                  "at": 3.2,
+                  "set": {
+                    "x": 355,
+                    "y": 296
+                  }
+                },
+                {
+                  "at": 4.12,
+                  "set": {
+                    "x": 211,
+                    "y": 416
+                  }
+                },
+                {
+                  "at": 4.18,
+                  "set": {
+                    "value": 0
+                  }
+                },
+                {
+                  "at": 4.48,
+                  "set": {
+                    "value": 1
+                  }
+                },
+                {
+                  "at": 5.0,
+                  "set": {
+                    "x": 208,
+                    "y": 416
+                  }
+                },
+                {
+                  "at": 5.72,
+                  "set": {
+                    "x": 398,
+                    "y": 590
+                  }
+                },
+                {
+                  "at": 5.8,
+                  "set": {
+                    "value": 0
+                  }
+                },
+                {
+                  "at": 6.08,
+                  "set": {
+                    "value": 1
+                  }
+                },
+                {
+                  "at": 7.4,
+                  "set": {
+                    "x": 398,
+                    "y": 590
+                  }
+                },
+                {
+                  "at": 8.25,
+                  "set": {
+                    "x": 447,
+                    "y": 743
+                  }
+                },
+                {
+                  "at": 8.32,
+                  "set": {
+                    "value": 0
+                  }
+                },
+                {
+                  "at": 8.64,
+                  "set": {
+                    "value": 1
+                  }
+                },
+                {
+                  "at": 10.0,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 10.3,
+                  "set": {
+                    "opacity": 0
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "search",
+              "frames": [
+                {
+                  "at": 1.72,
+                  "set": {
+                    "text": "阅读",
+                    "emphasis": "selected"
+                  }
+                },
+                {
+                  "at": 2.22,
+                  "set": {
+                    "text": "阅读  理解"
+                  }
+                },
+                {
+                  "at": 2.65,
+                  "set": {
+                    "text": "阅读  理解  笔记"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "rowb",
+              "frames": [
+                {
+                  "at": 2.7,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 3.04,
+                  "set": {
+                    "opacity": 0.35
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "thumbb",
+              "frames": [
+                {
+                  "at": 2.7,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 3.04,
+                  "set": {
+                    "opacity": 0.35
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "rowtitleb",
+              "frames": [
+                {
+                  "at": 2.7,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 3.04,
+                  "set": {
+                    "opacity": 0.35
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "rowdescb",
+              "frames": [
+                {
+                  "at": 2.7,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 3.04,
+                  "set": {
+                    "opacity": 0.35
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "rowa",
+              "frames": [
+                {
+                  "at": 4.15,
+                  "set": {
+                    "fill": "#f5e6d8",
+                    "stroke": "#bd7b58",
+                    "emphasis": "selected flat"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "detail_label",
+              "frames": [
+                {
+                  "at": 4.2,
+                  "set": {
+                    "text": "已选中 / 阅读方法"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "excerptbg",
+              "frames": [
+                {
+                  "at": 5.72,
+                  "set": {
+                    "opacity": 0
+                  }
+                },
+                {
+                  "at": 5.92,
+                  "set": {
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 6.5,
+                  "set": {
+                    "x": 281,
+                    "y": 570,
+                    "w": 217,
+                    "h": 54,
+                    "opacity": 1
+                  }
+                },
+                {
+                  "at": 7.45,
+                  "set": {
+                    "x": 290,
+                    "y": 676,
+                    "w": 203,
+                    "h": 28,
+                    "opacity": 0.32
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "excerpt",
+              "frames": [
+                {
+                  "at": 6.5,
+                  "set": {
+                    "x": 289,
+                    "y": 581
+                  }
+                },
+                {
+                  "at": 7.45,
+                  "set": {
+                    "x": 298,
+                    "y": 680,
+                    "fontSize": 12
+                  }
+                },
+                {
+                  "at": 7.85,
+                  "set": {
+                    "text": "它能解释我的哪个经历？"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "notebox",
+              "frames": [
+                {
+                  "at": 7.42,
+                  "set": {
+                    "emphasis": "selected",
+                    "text": "我的问题："
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "save",
+              "frames": [
+                {
+                  "at": 8.32,
+                  "set": {
+                    "text": "保存中…",
+                    "emphasis": "pressed"
+                  }
+                },
+                {
+                  "at": 9.24,
+                  "set": {
+                    "text": "✓ 已保存",
+                    "emphasis": "success primary"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "counter",
+              "frames": [
+                {
+                  "at": 9.24,
+                  "set": {
+                    "text": "7",
+                    "fill": "#dde7d4",
+                    "color": "#47714b"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "saved",
+              "frames": [
+                {
+                  "at": 9.24,
+                  "set": {
+                    "text": "我的笔记    07"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "sync",
+              "frames": [
+                {
+                  "at": 9.24,
+                  "set": {
+                    "text": "已同步",
+                    "fill": "#dde7d4"
+                  }
+                }
+              ]
+            },
+            {
+              "nodeId": "footline",
+              "frames": [
+                {
+                  "at": 9.4,
+                  "set": {
+                    "text": "摘录有了自己的问题，才开始变成知识。"
+                  }
+                }
+              ]
+            }
+          ],
+          "camera": [
+            {
+              "at": 0,
+              "x": 272,
+              "y": 483.555,
+              "scale": 1
+            },
+            {
+              "at": 1.2,
+              "x": 272,
+              "y": 483.555,
+              "scale": 1
+            },
+            {
+              "at": 3.5,
+              "x": 270,
+              "y": 426,
+              "scale": 1.13
+            },
+            {
+              "at": 5,
+              "x": 270,
+              "y": 426,
+              "scale": 1.13
+            },
+            {
+              "at": 6.3,
+              "x": 342,
+              "y": 540,
+              "scale": 1.48
+            },
+            {
+              "at": 8.9,
+              "x": 342,
+              "y": 592,
+              "scale": 1.48
+            },
+            {
+              "at": 10.8,
+              "x": 272,
+              "y": 483.555,
+              "scale": 1
+            },
+            {
+              "at": 15,
+              "x": 272,
+              "y": 483.555,
+              "scale": 1
+            }
+          ]
+        }
+      },
+      "enter": {
+        "type": "cut",
+        "duration": 0
+      }
+    }
+  ]
+}

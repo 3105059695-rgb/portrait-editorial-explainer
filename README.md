@@ -1,26 +1,23 @@
 # portrait-editorial-explainer
 
-把已有口播剪成连续的 UI 操作、物体变化和漫画说明。模型负责理解这期讲什么、用什么动作表达；可编辑的 Remotion 组件负责精细动画。
+把已有口播剪成具有同一类 **UI 设计与交互气质** 的竖屏讲解。信息层次、界面材质、操作反馈和镜头焦点有共同规则；每期的内容结构、布局、状态变化和剪法根据材料重新设计。
 
-**v3 候选版：以具体参考动作重新整理。** 六组效果可换素材、标题、数量和时点，按本期意义组合；先输出本期开头 10–15 秒，用户确认风格后才继续全片。技术检查不等于人眼觉得像，当前六组仍等待用户风格评价。
+**v3.0.0-rc.2：UI 设计规则 + 可自由编排的界面舞台。** 新增10类 UI 元素、逐对象状态时间线和独立相机，不再只能在六套完整场景里替换文字和图片。原六组动作保留为可选示例。仍先交本期开头10–15秒，由用户判断观感后再做全片。
 
-[下载v3候选安装包](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/download/v3.0.0-rc.1/portrait-editorial-explainer-v3.0.0-rc.1.zip) · [Skill 入口](SKILL.md) · [动作索引与边界](references/source-style-effects.md) · [数据契约](references/source-style-contract.md) · [制作流程](references/source-style-workflow.md) · [验证记录](docs/SOURCE-STYLE-V3.md)
+[下载候选安装包](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/download/v3.0.0-rc.2/portrait-editorial-explainer-v3.0.0-rc.2.zip) · [Skill入口](SKILL.md) · [UI设计规则](references/ui-style-system.md) · [自由编排契约](references/ui-composition-contract.md) · [制作流程](references/source-style-workflow.md) · [本次验证](docs/UI-COMPOSITION-RC2.md)
 
-## 先看实际输出
+## 看两种不同的信息结构
 
-下面是原创中性内容的**无声机制预览**。没有冒充用户本期的声音、人物，也不附带参考作者的原片。正常制作会保留输入的人声并匹配字幕。
+以下是原创内容的无声界面演示，使用同一套 UI 部件，分别编排布局和操作。字幕用于说明机制，没有冒充真实配音。它们演示可组合能力，**当前尚未获得用户对新风格的认可**。
 
-| 预览 | 目的 |
+| 样例 | 界面和变化 |
 |---|---|
-| [15秒竖屏开头](docs/source-style/travel-opening.mp4) | 三份材料汇聚→选中参考→生成→换成本期内容 |
-| [12秒漫画机制](docs/source-style/comic-calibration.mp4) | 徽章、持续胶片、圆窗接管、素材飞入云与同步进度 |
-| [12秒白底操作](docs/source-style/selection-calibration.mp4) | 同一对象从搜索到生成，再逐个替换 |
-| [12秒网页接力](docs/source-style/web-calibration.mp4) | 示意网页→详情→复制链接→输入→结果 |
-| [15秒轻量模型试用](docs/source-style/model-trial-reading.mp4) | “读书摘录”新题的三段编排；[真实试用记录](examples/source-style/MODEL-TRIAL.md) |
+| [资料工作台 · 15秒](docs/source-style/ui-research-opening.mp4) | 双栏资料界面：搜索、选中、摘录移入笔记、保存同步 |
+| [周末行程 · 15秒](docs/source-style/ui-itinerary-opening.mp4) | 行程界面：按条件选择与调整时段，展示更新结果 |
 
-![实际渲染帧](docs/source-style/overview.jpg)
+![两种布局的实际渲染帧](docs/source-style/ui-composition-overview.jpg)
 
-源片是544×720。模板支持该比例与1080×1920重排；人物、截图、图形不拉伸。字体、景深、原片内部动态素材、声音和全部三维场景未完整恢复；详细覆盖范围见动作索引。
+它提供可执行的设计规则和稳定绘制能力，帮助模型少从零写动画。仍需要模型理解内容、挑选材料并看回放；没有证据保证任意低能力模型都自动达到参考观感。原片内部摄影、三维材质、音乐和剪辑判断也不会由几个组件自动恢复。
 
 ## 安装后直接调用
 
@@ -42,7 +39,8 @@ python -X utf8 scripts/doctor.py --profile production
 请使用 $portrait-editorial-explainer。
 本期素材：<已有口播视频或最终配音的位置>。
 素材类型：<真人原片 / 已粗剪 / 数字人 / 最终配音>。
-按这套参考风格，根据本期话意复用动作，表达不了时设计新镜头。
+使用这类 UI 视觉和交互语言，根据本期内容重新设计信息结构、布局和剪法。
+优先组合已有 UI 部件与动作，表达不了时扩展，不要求照抄原片。
 先制作实际开头10–15秒，我看过风格后再继续全片。
 保留原人声，真人原片先用ChatCut粗剪，数字人跳过。
 ```
@@ -75,7 +73,7 @@ python -X utf8 scripts/source_episode.py build examples/source-style/comic-calib
 ## 正式做本期
 
 1. 确定素材类型并完成真实前序操作。原始真人先ChatCut粗剪并保存剪切映射；已粗剪沿用；数字人跳过粗剪；配音直接采用最终声音。
-2. 提取字幕、实测关键词时点，把口播转换为“对象→动作→结果”。查动作索引选择组件，而不是把六种场景依次拼上。
+2. 提取字幕、实测关键词时点，把口播转换为“对象→动作→结果”。先确定界面结构、内容层级和状态变化，再组合 UI 元素、编排镜头；完整场景只在契合时选用。
 3. 输出episode.json和所需素材，以相对路径组织media-root。真实截图/照片自行提供并记录来源；自绘界面标示意。
 4. 正式校验与编译：
 
@@ -91,16 +89,17 @@ python -X utf8 scripts/source_episode.py build episode.json --production --media
 
 ## 复用范围
 
-组件内置的是动作和材质，主题、台词、图像、数字、镜头顺序、时长、语义落点由本期输入决定。不能表达的动作允许新增：[扩展约定](references/source-style-extension.md)。新增后做局部校准，成熟效果再放回公共库。
+新 `ui-stage` 可在 JSON 中重新布置面板、导航、文本、图片、输入、按钮、图表、光标等，分别设置状态变化与镜头。它不规定布局、控件数量或操作顺序。六组旧场景保留原有边界。不能表达的动作允许新增：[扩展约定](references/source-style-extension.md)。新增后做局部校准，成熟效果再放回公共库。
 
-轻量模型无需从零写React，但仍可能把语义和组件用法对应错。此次试用真实使用gpt-6-luna low：JSON初次校验通过，人工指出“六条记录却显示84张比例票据”的问题后，增加精确事件数接口，模型自行改正；不能据此保证所有低能力模型都无需纠正。原始试用与后续渲染记录分别保存。
+新自由 UI 机制尚未单独做低能力模型盲测。历史六场景版本的试用真实使用gpt-6-luna low：JSON初次校验通过，人工指出“六条记录却显示84张比例票据”的问题后，增加精确事件数接口，模型自行改正；不能据此保证所有低能力模型都无需纠正。原始试用与后续渲染记录分别保存。
 
 ## 文件结构
 
 ```text
 SKILL.md                         Agent入口
 agents/openai.yaml               调用信息
-references/source-style-*.md     视觉规则、动作索引、参数和扩展方法
+references/ui-*.md               UI设计系统与自由编排契约
+references/source-style-*.md     流程、通用契约、可选场景和扩展方法
 scripts/source_episode.py        标准库校验器/编译器
 scripts/install_skill.py         不覆盖旧目录的安装器
 scripts/doctor.py                环境和资源检查

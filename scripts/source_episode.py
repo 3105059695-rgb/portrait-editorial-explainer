@@ -13,6 +13,7 @@ import subprocess
 import sys
 
 EFFECTS = {
+    'ui-stage': ['resolve'],
     'poster-route': ['focus', 'connect', 'resolve'],
     'selection-build': ['document', 'search', 'select', 'code', 'replace', 'resolve'],
     'ui-handoff': ['browse', 'select', 'open', 'copy', 'paste', 'send', 'resolve'],
@@ -60,9 +61,65 @@ def asset_paths(plan):
     for scene in plan['scenes']:
         c=scene['content']
         if c.get('avatar'): paths.append(c['avatar'])
+        ui=c.get('ui',{})
+        paths.extend(n['image'] for n in ui.get('nodes',[]) if n.get('image'))
+        paths.extend(f['set']['image'] for tr in ui.get('tracks',[]) for f in tr['frames'] if f['set'].get('image'))
         for item in c['items']:
             paths.extend(item[k] for k in ('image','replacementImage') if item.get(k))
     return sorted(set(relative(p) for p in paths))
+
+UI_TYPES={'panel','text','button','input','badge','image','progress','line','chart','cursor'}
+UI_FIELDS={'id','type','x','y','w','h','text','image','fill','color','stroke','radius','fontSize','weight','opacity','rotation','value','points','emphasis'}
+
+def ui_properties(n, partial=False):
+    keys(n,[] if partial else ['id','type','x','y','w','h'],UI_FIELDS-({'id','type'} if partial else set()),'UI node/keyframe')
+    if not partial:
+        need(text(n['id'],64) and n['type'] in UI_TYPES,'UI node needs id and supported type')
+    for key in ('x','y','w','h','radius','fontSize','weight','opacity','rotation','value'):
+        if key not in n: continue
+        value=n[key];need(number(value),f'UI {key} must be finite numeric')
+        low,high={'x':(-4000,4000),'y':(-4000,4000),'w':(0,4000),'h':(0,4000),'radius':(0,2000),'fontSize':(6,160),'weight':(100,900),'opacity':(0,1),'rotation':(-720,720),'value':(0,1)}[key]
+        need(low<=value<=high,f'UI {key} outside {low}..{high}')
+    for key in ('fill','color','stroke'):
+        if key in n:
+            value=n[key]
+            need(isinstance(value,str) and (value=='none' or (len(value) in (7,9) and value[0]=='#' and all(c in '0123456789abcdefABCDEF' for c in value[1:]))),'UI colors use #RRGGBB / #RRGGBBAA / none')
+    for key,limit in [('text',1000),('emphasis',80)]:
+        if key in n: need(isinstance(n[key],str) and len(n[key])<=limit,f'UI {key} too long')
+    if 'image' in n: relative(n['image'])
+    if 'points' in n: need(isinstance(n['points'],list) and 1<=len(n['points'])<=300 and all(number(v) and abs(v)<=1e12 for v in n['points']),'UI chart requires finite data points')
+
+def validate_ui(ui,duration):
+    keys(ui,['nodes','tracks'],['nodes','tracks','camera','canvasHeight','showTitle','label'],'content.ui')
+    need(isinstance(ui['nodes'],list) and 1<=len(ui['nodes'])<=200,'UI needs1..200 authored nodes')
+    need(isinstance(ui['tracks'],list) and len(ui['tracks'])<=200,'UI tracks must be an array <=200')
+    if 'canvasHeight' in ui: need(number(ui['canvasHeight']) and 400<=ui['canvasHeight']<=2000,'UI canvasHeight400..2000')
+    if 'showTitle' in ui: need(isinstance(ui['showTitle'],bool),'UI showTitle must be boolean')
+    if 'label' in ui: need(text(ui['label'],40),'UI label needs provenance, such as 示意界面')
+    ids=set()
+    for n in ui['nodes']:
+        ui_properties(n)
+        need(n['id'] not in ids,'Duplicate UI node id');ids.add(n['id'])
+        if n['type']=='chart': need('points' in n,'UI chart needs data points')
+        if n['type']=='image': need('image' in n,'UI image requires media path')
+    tracked=set()
+    for tr in ui['tracks']:
+        keys(tr,['nodeId','frames'],['nodeId','frames'],'UI track')
+        need(tr['nodeId'] in ids and tr['nodeId'] not in tracked,'UI track needs one unique known nodeId');tracked.add(tr['nodeId'])
+        need(isinstance(tr['frames'],list) and 1<=len(tr['frames'])<=200,'UI track needs1..200 frames')
+        last=-1
+        for f in tr['frames']:
+            keys(f,['at','set'],['at','set','ease'],'UI keyframe')
+            need(number(f['at']) and last<f['at']<=duration,'UI keyframe time must increase within scene');last=f['at']
+            need(f['at']>=0,'UI keyframe time must be nonnegative')
+            need(f.get('ease','smooth') in ('smooth','out','linear'),'Unknown UI easing')
+            need(isinstance(f['set'],dict) and f['set'],'UI keyframe cannot be empty');ui_properties(f['set'],True)
+    camera=ui.get('camera',[]);need(isinstance(camera,list) and len(camera)<=200,'UI camera must be array <=200')
+    last=-1
+    for f in camera:
+        keys(f,['at','x','y','scale'],['at','x','y','scale'],'UI camera frame')
+        need(all(number(f[k]) for k in ('at','x','y','scale')),'UI camera values must be finite')
+        need(last<f['at']<=duration and f['at']>=0 and abs(f['x'])<=4000 and abs(f['y'])<=4000 and .25<=f['scale']<=4,'Invalid UI camera range/time');last=f['at']
 
 def probe_duration(path):
     need(shutil.which('ffprobe'), 'Production validation requires ffprobe on PATH')
@@ -125,9 +182,16 @@ def validate(p, production=False, media_dir=None):
             need(s['start']>=previous['start']+previous['enter']['duration'] and s['end']>previous['end'],'No triple overlaps or backwards scene ends')
         previous=s
         marks=s['marks']; names=EFFECTS[s['mechanism']]
+        if s['mechanism']=='ui-stage':
+            need(isinstance(marks,dict) and 'resolve' in marks and 1<=len(marks)<=30,'UI marks need resolve and up to30 authored semantic milestones')
+            need(all(text(n,64) for n in marks),'UI mark names must be nonempty')
+            names=list(marks)
         keys(marks,names,names,'marks')
         need(all(number(marks[n]) and 0<=marks[n]<=s['end']-s['start'] for n in names),'Marks must fall inside local scene time')
-        need(all(marks[b]>marks[a] for a,b in zip(names,names[1:])),'Action marks must be strictly increasing')
+        if s['mechanism']!='ui-stage':
+            need(all(marks[b]>marks[a] for a,b in zip(names,names[1:])),'Action marks must be strictly increasing')
+        else:
+            need(max(marks.values())==marks['resolve'],'UI resolve must be the last semantic milestone')
         need(marks['resolve']<=s['end']-s['start']-0.15,'Leave at least .15 sec to read the result')
         markcues=s.get('markCues',{})
         need(isinstance(markcues,dict) and set(markcues)<=set(names),'markCues references unknown mark')
@@ -135,9 +199,13 @@ def validate(p, production=False, media_dir=None):
             need(cid in cues,f'Missing caption cue {cid}')
             at=s['start']+marks[name]; cue=cues[cid]
             need(cue['start']-0.12<=at<=cue['end']+0.12,f'{s["id"]}.{name} result does not land in linked spoken cue')
-        c=s['content']; keys(c,['items'],['items','selectedId','body','code','prompt','url','result','avatar','metric','emphasis'],'content')
+        c=s['content']; keys(c,['items'],['items','selectedId','body','code','prompt','url','result','avatar','metric','emphasis','ui'],'content')
         if 'emphasis' in c: need(text(c['emphasis'],24) and c['emphasis'] in s['title'],'emphasis must be a nonempty substring of title')
-        need(isinstance(c['items'],list) and 1<=len(c['items'])<=12,'Need1..12 content items')
+        need(isinstance(c['items'],list) and (0 if s['mechanism']=='ui-stage' else 1)<=len(c['items'])<=12,'Need content items (UI stage may use an empty array)')
+        if s['mechanism']=='ui-stage':
+            need('ui' in c,'ui-stage requires content.ui')
+            validate_ui(c['ui'],s['end']-s['start'])
+        else: need('ui' not in c,'content.ui is only supported by ui-stage')
         if s['mechanism']=='poster-route': need(3<=len(c['items'])<=5,'poster-route needs3..5 items; more inputs need grouping or another shot')
         if s['mechanism']=='selection-build': need(4<=len(c['items'])<=9,'selection-build needs4..9 candidates; first4 become replacement tray')
         itemids=set()

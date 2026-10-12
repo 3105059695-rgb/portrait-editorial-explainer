@@ -1,6 +1,6 @@
 # v3 分镜契约
 
-权威定义：模板 `src/types.ts` 与 `scripts/source_episode.py`。v3 和 v2 不混用。可用 [travel-opening.json](../examples/source-style/travel-opening.json) 看完整结构。示例的时长、主题、顺序不是默认导演指令。
+权威定义：模板 `src/types.ts` 与 `scripts/source_episode.py`。v3 和 v2 不混用。自由UI优先看 [ui-research-opening.json](../examples/source-style/ui-research-opening.json) 和 [UI专用契约](ui-composition-contract.md)。旧场景可看 [travel-opening.json](../examples/source-style/travel-opening.json)。示例的时长、主题、顺序不是默认导演指令。
 
 ## 顶层
 
@@ -17,11 +17,11 @@
 
 `intent` 用完整动作句写清为什么选这个机制。`title` 最多24字；长句留给字幕。`presenter` 选 hidden/pip/full。示意场景没有人像时不要补一个假的口播人物。
 
-`marks` 是**本地秒**，不是全片绝对秒；按机制规定的动作顺序严格递增。动作在该时刻达到其结果，部分动作提前预备。最后 resolve 至少留0.15秒读数。
+`marks` 是**本地秒**，不是全片绝对秒；六个完整场景按预定动作顺序严格递增；ui-stage自行命名语义事件，resolve必须是最晚事件，不固定剪辑步骤。动作在该时刻达到其结果，部分动作提前预备。最后 resolve 至少留0.15秒读数。
 
 正式制作 `markCues` 必须覆盖所有mark，值是字幕id。`scene.start + marks[key]` 必须位于对应字幕时段±0.12秒；机器只能检查区间，关键词本身仍需听音核对。案例：场景start=4.18，select=3.3，则选择落点在全片7.48秒。
 
-`content.items` 是1–12个稳定id的物体，字段 id、label，可加 image、color、replacementImage、replacementLabel。机制可能有更小的排版上限，详见效果文档。`selectedId` 指向真实item。其余可选字段 body、code、prompt、url、result、avatar、metric（value/unit/label，可加events）。有素材时用自己的图，无素材的原生图示只能作示意。
+`ui-stage` 使用 `content.ui` 存储节点、轨迹和相机，`content.items` 可为空数组。其余机制的 `content.items` 是1–12个稳定id的物体，字段 id、label，可加 image、color、replacementImage、replacementLabel。机制可能有更小的排版上限，详见效果文档。`selectedId` 指向真实item。其余可选字段 body、code、prompt、url、result、avatar、metric（value/unit/label，可加events）。有素材时用自己的图，无素材的原生图示只能作示意。
 
 ### 转场重叠
 

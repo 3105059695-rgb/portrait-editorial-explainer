@@ -1,4 +1,5 @@
-export type Mechanism = 'poster-route' | 'selection-build' | 'ui-handoff' | 'token-intake' | 'creator-strip' | 'upload-progress';
+import type {UIPlan} from './ui-types';
+export type Mechanism = 'poster-route' | 'selection-build' | 'ui-handoff' | 'token-intake' | 'creator-strip' | 'upload-progress' | 'ui-stage';
 export interface Item {
   id: string; label: string; color?: string; image?: string;
   replacementImage?: string; replacementLabel?: string;
@@ -11,7 +12,7 @@ export interface Scene {
   marks: Record<string, number>;
   markCues?: Record<string, string>;
   content: {
-    items: Item[]; selectedId?: string; body?: string; code?: string; emphasis?: string;
+    ui?: UIPlan; items: Item[]; selectedId?: string; body?: string; code?: string; emphasis?: string;
     prompt?: string; url?: string; result?: string; avatar?: string;
     metric?: {value: number; unit: string; label: string; events?: number};
   };

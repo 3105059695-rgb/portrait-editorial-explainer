@@ -1,3 +1,4 @@
+import {UiStage} from './effects/UiStage';
 import React from 'react';
 import {AbsoluteFill, Audio, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {PosterRoute, SelectionBuild, UiHandoff} from './effects/WhiteEffects';
@@ -7,7 +8,7 @@ import type {Episode, Scene, EffectProps} from './types';
 import './fonts';
 
 const registry: Record<Scene['mechanism'], React.FC<EffectProps>> = {
-  'poster-route': PosterRoute, 'selection-build': SelectionBuild, 'ui-handoff': UiHandoff,
+  'ui-stage': UiStage, 'poster-route': PosterRoute, 'selection-build': SelectionBuild, 'ui-handoff': UiHandoff,
   'token-intake': TokenIntake, 'creator-strip': CreatorStrip, 'upload-progress': UploadProgress,
 };
 

@@ -1,0 +1,44 @@
+{
+  "version": "3.0.0-rc.2",
+  "date": "2026-10-12",
+  "tests": {
+    "run": 67,
+    "passed": 63,
+    "skipped": 4,
+    "reason": "Windows symlink privilege unavailable"
+  },
+  "examples": [
+    {
+      "example": "ui-research-opening.mp4",
+      "codec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "frames": 450,
+      "duration": 15,
+      "audio": "none",
+      "decode": "passed",
+      "sha256": "24a11b97941bbc357a5df3bd22abe8e8e2a3b4a29713c528bc835e47d5f9d549",
+      "episodeSha256": "f9d819836eddf766ee3f35bde26288c056d22b6bc7d08c0473ccfa7be6f9dcd9",
+      "visualReview": "sampled phase frames; not full subjective playback",
+      "styleApproval": "pending"
+    },
+    {
+      "example": "ui-itinerary-opening.mp4",
+      "codec": "h264",
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "frames": 450,
+      "duration": 15,
+      "audio": "none",
+      "decode": "passed",
+      "sha256": "f07be789ac2540ef087ea0fd52883f254f790492706d370f149ac1d472d8d02d",
+      "episodeSha256": "b842db34dacaf02faca466487b521733b5f2c0afbe0037b5c38feaf1252a46a3",
+      "visualReview": "sampled phase frames; not full subjective playback",
+      "styleApproval": "pending"
+    }
+  ],
+  "lowCapabilityModelTrial": "not run for new ui-stage",
+  "styleApproval": "pending"
+}
