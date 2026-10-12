@@ -1,0 +1,127 @@
+{
+  "version": 3,
+  "title": "票据入箱与真实到达计数",
+  "width": 544,
+  "height": 720,
+  "fps": 30,
+  "duration": 12,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {},
+  "sample": {
+    "duration": 12,
+    "reason": "原创中性内容的无声机制校准；不是用户本期口播"
+  },
+  "captions": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3,
+      "text": "一份份资料进入处理"
+    },
+    {
+      "id": "c2",
+      "start": 3,
+      "end": 7,
+      "text": "到达一份，才累积一次"
+    },
+    {
+      "id": "c3",
+      "start": 7,
+      "end": 10.5,
+      "text": "动作和数值使用同一个时钟"
+    },
+    {
+      "id": "c4",
+      "start": 10.5,
+      "end": 12,
+      "text": "保留结果，留出读数时间"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "intake",
+      "mechanism": "token-intake",
+      "start": 0,
+      "end": 12,
+      "intent": "让同一份材料经可见操作成为下一步的内容",
+      "title": "让每条输入都有去处",
+      "presenter": "hidden",
+      "marks": {
+        "collect": 1.4,
+        "resolve": 10.2
+      },
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "label": "海边",
+            "color": "#a6c8c7",
+            "replacementLabel": "海岸日志"
+          },
+          {
+            "id": "2",
+            "label": "山路",
+            "color": "#afba87",
+            "replacementLabel": "山间小记"
+          },
+          {
+            "id": "3",
+            "label": "夜市",
+            "color": "#c78c69",
+            "replacementLabel": "城市夜游"
+          },
+          {
+            "id": "4",
+            "label": "小巷",
+            "color": "#c9b4da",
+            "replacementLabel": "步行地图"
+          },
+          {
+            "id": "5",
+            "label": "车窗",
+            "color": "#9aacbd",
+            "replacementLabel": "沿途光影"
+          },
+          {
+            "id": "6",
+            "label": "日落",
+            "color": "#d4a36d",
+            "replacementLabel": "黄昏时刻"
+          },
+          {
+            "id": "7",
+            "label": "晨雾",
+            "color": "#aec5b8",
+            "replacementLabel": "晨间散步"
+          },
+          {
+            "id": "8",
+            "label": "雨滴",
+            "color": "#a5b3cf",
+            "replacementLabel": "雨天备忘"
+          },
+          {
+            "id": "9",
+            "label": "街角",
+            "color": "#c4ad92",
+            "replacementLabel": "街角见闻"
+          }
+        ],
+        "metric": {
+          "value": 128,
+          "unit": "条",
+          "label": "已整理记录"
+        },
+        "result": "整理完成"
+      },
+      "enter": {
+        "type": "cut",
+        "duration": 0
+      }
+    }
+  ]
+}

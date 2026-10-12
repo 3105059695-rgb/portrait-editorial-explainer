@@ -22,8 +22,15 @@ REQUIRED_FILES = (
     "scripts/validate_storyboard.py", "scripts/compile_storyboard.py",
     "references/storyboard-contract.md", "references/storyboard.schema.json",
     "references/director-playbook.md", "references/repair-recipes.md",
+    "scripts/source_episode.py", "references/source-style-effects.md",
+    "references/source-style-contract.md", "references/source-style-workflow.md",
 )
 CASES = {
+    "source-style-template": (
+        "package.json", "package-lock.json", "tsconfig.json", "render.cjs",
+        "src/index.ts", "src/Root.tsx", "src/Film.tsx", "src/episode.json",
+        "src/types.ts", "src/motion.ts", "src/effects/WhiteEffects.tsx", "src/effects/ComicEffects.tsx",
+    ),
     "adaptive-template": (
         "package.json", "package-lock.json", "tsconfig.json", "render.cjs",
         "src/index.ts", "src/Root.tsx", "src/episode.json",

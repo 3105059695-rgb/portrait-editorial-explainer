@@ -1,0 +1,194 @@
+{
+  "version": 3,
+  "title": "读书摘录整理 · 无声机制试读",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 15,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {},
+  "sample": {
+    "duration": 15,
+    "reason": "按给定口播文案估时的无声机制试读；没有音频，时点均为 demo"
+  },
+  "captions": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 4.5,
+      "text": "摘录越积越多，先把零散的记录收拢。"
+    },
+    {
+      "id": "c2",
+      "start": 4.5,
+      "end": 10,
+      "text": "每处理一条，就留下一条清楚的索引。"
+    },
+    {
+      "id": "c3",
+      "start": 10,
+      "end": 15,
+      "text": "整理好之后，再同步到自己的资料库。"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "gather-notes",
+      "mechanism": "poster-route",
+      "start": 0,
+      "end": 5.3,
+      "intent": "把分散的摘录卡片沿可见连线汇到一张索引页，表现先收拢再归类。",
+      "title": "把零散摘录收拢",
+      "presenter": "hidden",
+      "marks": {
+        "focus": 0.9,
+        "connect": 2.7,
+        "resolve": 4.65
+      },
+      "content": {
+        "items": [
+          {
+            "id": "margin-note",
+            "label": "页边批注",
+            "color": "#d6b36d",
+            "replacementLabel": "主题索引"
+          },
+          {
+            "id": "quote-card",
+            "label": "划线摘录",
+            "color": "#9fb9aa",
+            "replacementLabel": "作者线索"
+          },
+          {
+            "id": "thought-slip",
+            "label": "随手想法",
+            "color": "#b8a8c7",
+            "replacementLabel": "章节定位"
+          },
+          {
+            "id": "bookmark",
+            "label": "书签记录",
+            "color": "#d29b7b",
+            "replacementLabel": "关联主题"
+          }
+        ],
+        "result": "摘录索引"
+      },
+      "enter": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "index-each-note",
+      "mechanism": "token-intake",
+      "start": 5,
+      "end": 10.35,
+      "intent": "让每张短摘录票据逐一进入整理器，票据实际到达时才累加索引条数。",
+      "title": "每条摘录留下索引",
+      "presenter": "hidden",
+      "marks": {
+        "collect": 0.8,
+        "resolve": 4.95
+      },
+      "content": {
+        "items": [
+          {
+            "id": "reading-1",
+            "label": "勇气"
+          },
+          {
+            "id": "reading-2",
+            "label": "选择"
+          },
+          {
+            "id": "reading-3",
+            "label": "习惯"
+          },
+          {
+            "id": "reading-4",
+            "label": "时间"
+          },
+          {
+            "id": "reading-5",
+            "label": "观察"
+          },
+          {
+            "id": "reading-6",
+            "label": "关系"
+          }
+        ],
+        "metric": {
+          "value": 6,
+          "events": 6,
+          "unit": "条",
+          "label": "示意索引"
+        },
+        "result": "索引整理器",
+        "body": "一条摘录对应一条索引"
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.3
+      }
+    },
+    {
+      "id": "sync-library",
+      "mechanism": "upload-progress",
+      "start": 10,
+      "end": 15,
+      "intent": "把已经整理的摘录卡逐张送入个人资料库，进度只随卡片到达增加。",
+      "title": "同步到自己的资料库",
+      "presenter": "hidden",
+      "marks": {
+        "launch": 0.65,
+        "resolve": 4.45
+      },
+      "content": {
+        "items": [
+          {
+            "id": "sync-1",
+            "label": "页边批注",
+            "color": "#d6b36d"
+          },
+          {
+            "id": "sync-2",
+            "label": "划线摘录",
+            "color": "#9fb9aa"
+          },
+          {
+            "id": "sync-3",
+            "label": "随手想法",
+            "color": "#b8a8c7"
+          },
+          {
+            "id": "sync-4",
+            "label": "书签记录",
+            "color": "#d29b7b"
+          },
+          {
+            "id": "sync-5",
+            "label": "章节索引",
+            "color": "#9eafc8"
+          },
+          {
+            "id": "sync-6",
+            "label": "主题标签",
+            "color": "#c5aa82"
+          }
+        ],
+        "result": "个人资料库"
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.35,
+        "x": 51,
+        "y": 47
+      }
+    }
+  ]
+}

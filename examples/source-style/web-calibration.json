@@ -1,0 +1,118 @@
+{
+  "version": 3,
+  "title": "网页操作与链接接力",
+  "width": 544,
+  "height": 720,
+  "fps": 30,
+  "duration": 12,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {},
+  "sample": {
+    "duration": 12,
+    "reason": "原创中性内容的无声机制校准；不是用户本期口播"
+  },
+  "captions": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 2.8,
+      "text": "先找到需要的资料"
+    },
+    {
+      "id": "c2",
+      "start": 2.8,
+      "end": 5.8,
+      "text": "打开并复制它的链接"
+    },
+    {
+      "id": "c3",
+      "start": 5.8,
+      "end": 8.5,
+      "text": "带进输入框，提出需求"
+    },
+    {
+      "id": "c4",
+      "start": 8.5,
+      "end": 12,
+      "text": "得到可继续编辑的结果"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "website",
+      "mechanism": "ui-handoff",
+      "start": 0,
+      "end": 12,
+      "intent": "让同一份材料经可见操作成为下一步的内容",
+      "title": "把资料带进下一步",
+      "presenter": "hidden",
+      "marks": {
+        "browse": 0.5,
+        "select": 1.6,
+        "open": 3.0,
+        "copy": 4.6,
+        "paste": 6.2,
+        "send": 7.8,
+        "resolve": 10.8
+      },
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "label": "海边",
+            "color": "#a6c8c7",
+            "replacementLabel": "海岸日志",
+            "image": "illustrations/journey-1.svg"
+          },
+          {
+            "id": "2",
+            "label": "山路",
+            "color": "#afba87",
+            "replacementLabel": "山间小记",
+            "image": "illustrations/journey-2.svg"
+          },
+          {
+            "id": "3",
+            "label": "夜市",
+            "color": "#c78c69",
+            "replacementLabel": "城市夜游",
+            "image": "illustrations/journey-3.svg"
+          },
+          {
+            "id": "4",
+            "label": "小巷",
+            "color": "#c9b4da",
+            "replacementLabel": "步行地图",
+            "image": "illustrations/journey-4.svg"
+          },
+          {
+            "id": "5",
+            "label": "车窗",
+            "color": "#9aacbd",
+            "replacementLabel": "沿途光影",
+            "image": "illustrations/journey-5.svg"
+          },
+          {
+            "id": "6",
+            "label": "日落",
+            "color": "#d4a36d",
+            "replacementLabel": "黄昏时刻",
+            "image": "illustrations/journey-6.svg"
+          }
+        ],
+        "selectedId": "2",
+        "url": "example.org/travel-journal",
+        "prompt": "用这组照片生成旅行手记",
+        "result": "旅行手记已整理"
+      },
+      "enter": {
+        "type": "cut",
+        "duration": 0
+      }
+    }
+  ]
+}

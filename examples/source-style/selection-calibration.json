@@ -1,0 +1,146 @@
+{
+  "version": 3,
+  "title": "选中对象 → 生成 → 替换",
+  "width": 544,
+  "height": 720,
+  "fps": 30,
+  "duration": 12,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {},
+  "sample": {
+    "duration": 12,
+    "reason": "原创中性内容的无声机制校准；不是用户本期口播"
+  },
+  "captions": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 2,
+      "text": "从这段文字开始"
+    },
+    {
+      "id": "c2",
+      "start": 2,
+      "end": 4,
+      "text": "找到参考，选中一张"
+    },
+    {
+      "id": "c3",
+      "start": 4,
+      "end": 7,
+      "text": "带着这个对象继续生成"
+    },
+    {
+      "id": "c4",
+      "start": 7,
+      "end": 10,
+      "text": "换成自己的内容"
+    },
+    {
+      "id": "c5",
+      "start": 10,
+      "end": 12,
+      "text": "修改完成，动作仍然连贯"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "selection",
+      "mechanism": "selection-build",
+      "start": 0,
+      "end": 12,
+      "intent": "让同一份材料经可见操作成为下一步的内容",
+      "title": "让参考成为自己的内容",
+      "presenter": "hidden",
+      "marks": {
+        "document": 0.5,
+        "search": 2.5,
+        "select": 3.8,
+        "code": 6.5,
+        "replace": 9.6,
+        "resolve": 11.2
+      },
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "label": "轨迹",
+            "color": "#a6c8c7",
+            "replacementLabel": "海岸日志",
+            "replacementImage": "illustrations/journey-1.svg"
+          },
+          {
+            "id": "2",
+            "label": "旋转",
+            "color": "#afba87",
+            "replacementLabel": "山间小记",
+            "replacementImage": "illustrations/journey-2.svg"
+          },
+          {
+            "id": "3",
+            "label": "柱形",
+            "color": "#c78c69",
+            "replacementLabel": "城市夜游",
+            "replacementImage": "illustrations/journey-3.svg"
+          },
+          {
+            "id": "4",
+            "label": "圆点",
+            "color": "#c9b4da",
+            "replacementLabel": "步行地图",
+            "replacementImage": "illustrations/journey-4.svg"
+          },
+          {
+            "id": "5",
+            "label": "布局",
+            "color": "#9aacbd",
+            "replacementLabel": "沿途光影",
+            "replacementImage": "illustrations/journey-5.svg"
+          },
+          {
+            "id": "6",
+            "label": "网格",
+            "color": "#d4a36d",
+            "replacementLabel": "黄昏时刻",
+            "replacementImage": "illustrations/journey-6.svg"
+          },
+          {
+            "id": "7",
+            "label": "节奏",
+            "color": "#aec5b8",
+            "replacementLabel": "晨间散步",
+            "replacementImage": "illustrations/journey-7.svg"
+          },
+          {
+            "id": "8",
+            "label": "层次",
+            "color": "#a5b3cf",
+            "replacementLabel": "雨天备忘",
+            "replacementImage": "illustrations/journey-8.svg"
+          },
+          {
+            "id": "9",
+            "label": "缩放",
+            "color": "#c4ad92",
+            "replacementLabel": "街角见闻",
+            "replacementImage": "illustrations/journey-9.svg"
+          }
+        ],
+        "selectedId": "5",
+        "body": "把旅行中的照片整理成一个小网站。\n先选视觉参考，再调整内容。",
+        "code": "const page = {\n  title: \"旅行中的片刻\",\n  layout: \"photo-journal\",\n  photos: selectedPhotos\n};",
+        "prompt": "把示例卡片换成我的旅行照片",
+        "result": "自己的旅行手记",
+        "emphasis": "内容"
+      },
+      "enter": {
+        "type": "cut",
+        "duration": 0
+      }
+    }
+  ]
+}

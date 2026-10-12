@@ -15,9 +15,20 @@ IGNORED = shutil.ignore_patterns("node_modules", "out", ".git", ".env", ".env.*"
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--case", default="adaptive", choices=("adaptive", "presenter-v3", "approved-reference"))
+    parser.add_argument("--case", default="source-style", choices=("source-style", "adaptive", "presenter-v3", "approved-reference"))
     parser.add_argument("--out", required=True, type=Path, help="Destination must not exist or must be empty.")
     args = parser.parse_args()
+    if args.case == "source-style":
+        from source_episode import build, Invalid
+        try:
+            build(SKILL_ROOT / "assets/source-style-template/src/episode.json", args.out, SKILL_ROOT / "assets/source-style-template/public")
+        except (Invalid, OSError, ValueError) as exc:
+            print(f"ERROR: {exc}", file=sys.stderr)
+            return 2
+        print(f"Created source-style v3 project: {args.out}")
+        print("Silent mechanism demo only. Replace episode.json using actual final narration.")
+        print("Next: npm ci; npm run check; npm run render (opening only).")
+        return 0
     case_folder = {"adaptive": "adaptive-template", "presenter-v3": "presenter-v3-template", "approved-reference": "approved-remotion-case"}[args.case]
     source = SKILL_ROOT / "assets" / case_folder
     destination = args.out.expanduser().resolve()

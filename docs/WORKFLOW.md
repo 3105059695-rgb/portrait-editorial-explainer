@@ -1,3 +1,5 @@
+> 当前默认接口已更新为参考风格 v3；请先阅读 [当前README](../README.md) 和 [v3流程](../references/source-style-workflow.md)。下文涉及 adaptive / validate_storyboard / compile_storyboard 的命令为保留的 V2 路线。
+
 # 从本期素材到可编辑成片
 
 这一页说明正式制作时每一步的输入、动作与交接结果。它不要求你把工作拆成固定等长的镜头，也不把历史样例视为新一期已经完成的剪辑。

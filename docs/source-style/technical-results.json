@@ -1,0 +1,87 @@
+{
+  "renders": [
+    {
+      "name": "travel-opening",
+      "duration": 15.0,
+      "width": 1080,
+      "height": 1920,
+      "frames": 450,
+      "audio": false,
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "sha256": "bb44068fa40d898ba10d5ee3958a35a10b1458f47b98fb1727ee4c5a74a875da"
+    },
+    {
+      "name": "selection-calibration",
+      "duration": 12.0,
+      "width": 544,
+      "height": 720,
+      "frames": 360,
+      "audio": false,
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "sha256": "7bdd90267e78307a40f0dffc3dd953e2951b159ebcc9b69a0fb4fe93b320c3fd"
+    },
+    {
+      "name": "web-calibration",
+      "duration": 12.0,
+      "width": 544,
+      "height": 720,
+      "frames": 360,
+      "audio": false,
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "sha256": "6f822d8dc880a723a9d819763302d95949772185ff2b6437c073283bb2debc1e"
+    },
+    {
+      "name": "token-calibration",
+      "duration": 12.0,
+      "width": 544,
+      "height": 720,
+      "frames": 360,
+      "audio": false,
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "sha256": "1422eb69c15b807aab0e24151b6fb5e43f01575897a5e79b111ad34ea48c3bcd"
+    },
+    {
+      "name": "comic-calibration",
+      "duration": 12.0,
+      "width": 544,
+      "height": 720,
+      "frames": 360,
+      "audio": false,
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "sha256": "26cd74b4b1eeb4d79970fb598cd917acde00208e6727b93639e2b1c374ec91c0"
+    },
+    {
+      "name": "model-trial-reading",
+      "duration": 15.0,
+      "width": 1080,
+      "height": 1920,
+      "frames": 450,
+      "audio": false,
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "sha256": "fce03e9a2277966a161b2f889677824cf44f64b44a77acd07b9c831f34a95196"
+    },
+    {
+      "name": "audio-fixture",
+      "duration": 12.011,
+      "width": 544,
+      "height": 720,
+      "frames": 360,
+      "audio": true,
+      "decodeExit": 0,
+      "decodeErrors": "",
+      "sha256": "05997c849b225930c691dfbfc0ae92afaff2d2db5485fcf83b24c8c8c57ea098",
+      "halfSecondRmsMin": 0.087911,
+      "halfSecondWindows": 24,
+      "audioContinuous": true
+    }
+  ],
+  "styleApproval": "pending",
+  "audioTest": "synthetic tone with hidden presenter; not real narration alignment",
+  "visualReview": "sampled frames and transition phases, not full real A/V playback"
+}

@@ -1,3 +1,5 @@
+> 当前默认接口已更新为参考风格 v3；请先阅读 [当前README](../README.md) 和 [v3流程](../references/source-style-workflow.md)。下文涉及 adaptive / validate_storyboard / compile_storyboard 的命令为保留的 V2 路线。
+
 # 安装与首次运行
 
 本教程分为两件事：**把 Skill 放进 Agent 能发现的位置**，以及**准备 Remotion 工程的运行环境**。只安装 Skill 可以先阅读、调用流程；要导出样例或正式视频，还需要后面的制作工具。

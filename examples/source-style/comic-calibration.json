@@ -1,0 +1,179 @@
+{
+  "version": 3,
+  "title": "徽章胶片与上传接力",
+  "width": 544,
+  "height": 720,
+  "fps": 30,
+  "duration": 12,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {},
+  "sample": {
+    "duration": 12,
+    "reason": "原创中性内容的无声机制校准；不是用户本期口播"
+  },
+  "captions": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3,
+      "text": "留住这些不同的片刻"
+    },
+    {
+      "id": "c2",
+      "start": 3,
+      "end": 6.18,
+      "text": "组成自己的影像集"
+    },
+    {
+      "id": "c3",
+      "start": 6.18,
+      "end": 9,
+      "text": "一张张上传到云端"
+    },
+    {
+      "id": "c4",
+      "start": 9,
+      "end": 12,
+      "text": "看得见进度，也看得见分享"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "creator",
+      "mechanism": "creator-strip",
+      "start": 0,
+      "end": 6.5,
+      "intent": "让同一份材料经可见操作成为下一步的内容",
+      "title": "把沿途的片刻收集起来",
+      "presenter": "hidden",
+      "marks": {
+        "badge": 0.65,
+        "strip": 2.0,
+        "resolve": 5.8
+      },
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "label": "海边",
+            "color": "#a6c8c7",
+            "replacementLabel": "海岸日志",
+            "image": "illustrations/journey-1.svg"
+          },
+          {
+            "id": "2",
+            "label": "山路",
+            "color": "#afba87",
+            "replacementLabel": "山间小记",
+            "image": "illustrations/journey-2.svg"
+          },
+          {
+            "id": "3",
+            "label": "夜市",
+            "color": "#c78c69",
+            "replacementLabel": "城市夜游",
+            "image": "illustrations/journey-3.svg"
+          },
+          {
+            "id": "4",
+            "label": "小巷",
+            "color": "#c9b4da",
+            "replacementLabel": "步行地图",
+            "image": "illustrations/journey-4.svg"
+          },
+          {
+            "id": "5",
+            "label": "车窗",
+            "color": "#9aacbd",
+            "replacementLabel": "沿途光影",
+            "image": "illustrations/journey-5.svg"
+          },
+          {
+            "id": "6",
+            "label": "日落",
+            "color": "#d4a36d",
+            "replacementLabel": "黄昏时刻",
+            "image": "illustrations/journey-6.svg"
+          }
+        ],
+        "result": "旅行影像集"
+      },
+      "enter": {
+        "type": "cut",
+        "duration": 0
+      },
+      "background": "#d6bdfb"
+    },
+    {
+      "id": "upload",
+      "mechanism": "upload-progress",
+      "start": 6.18,
+      "end": 12,
+      "intent": "让同一份材料经可见操作成为下一步的内容",
+      "title": "分享给一起出发的人",
+      "presenter": "hidden",
+      "marks": {
+        "launch": 0.8,
+        "resolve": 4.9
+      },
+      "content": {
+        "items": [
+          {
+            "id": "1",
+            "label": "海边",
+            "color": "#a6c8c7",
+            "replacementLabel": "海岸日志",
+            "image": "illustrations/journey-1.svg"
+          },
+          {
+            "id": "2",
+            "label": "山路",
+            "color": "#afba87",
+            "replacementLabel": "山间小记",
+            "image": "illustrations/journey-2.svg"
+          },
+          {
+            "id": "3",
+            "label": "夜市",
+            "color": "#c78c69",
+            "replacementLabel": "城市夜游",
+            "image": "illustrations/journey-3.svg"
+          },
+          {
+            "id": "4",
+            "label": "小巷",
+            "color": "#c9b4da",
+            "replacementLabel": "步行地图",
+            "image": "illustrations/journey-4.svg"
+          },
+          {
+            "id": "5",
+            "label": "车窗",
+            "color": "#9aacbd",
+            "replacementLabel": "沿途光影",
+            "image": "illustrations/journey-5.svg"
+          },
+          {
+            "id": "6",
+            "label": "日落",
+            "color": "#d4a36d",
+            "replacementLabel": "黄昏时刻",
+            "image": "illustrations/journey-6.svg"
+          }
+        ],
+        "result": "旅途云相册"
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.32,
+        "x": 50,
+        "y": 38
+      },
+      "background": "#9bdff5"
+    }
+  ]
+}
