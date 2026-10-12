@@ -1,6 +1,6 @@
 # 常见问题与故障排查
 
-先区分问题发生在安装、Agent 发现、分镜校验、编译、ChatCut、npm／浏览器、媒体接入还是实际剪辑。保存完整错误末尾和正在运行的命令，通常比重复安装全部工具更有帮助。本文对应 `new_project.py --input PLAN` 创建的 `AdaptivePortrait` 工程；数字人 V3 是视觉基准，source-style 仅为辅助 UI，不是默认成片路线。
+先区分问题发生在安装、Agent 发现、分镜校验、编译、ChatCut、npm／浏览器、媒体接入还是实际剪辑。保存完整错误末尾和正在运行的命令，通常比重复安装全部工具更有帮助。当前入口自动识别v3效果库（SourceStyle）与v2图层（AdaptivePortrait）；先确认输入version和对应render命令。视觉依据是最初完整参考，数字人V3只是历史局部案例。
 
 返回 [README](../README.md) · [安装教程](INSTALL.md) · [完整工作流](WORKFLOW.md)
 

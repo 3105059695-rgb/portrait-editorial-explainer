@@ -1,0 +1,4155 @@
+{
+  "version": 3,
+  "title": "原片剪辑机制全集 · 可编辑演示",
+  "width": 540,
+  "height": 960,
+  "fps": 30,
+  "duration": 131.58,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {},
+  "sample": {
+    "duration": 12,
+    "reason": "本期开头，按完整话语边界截取"
+  },
+  "captions": [
+    {
+      "id": "effect-0",
+      "start": 0.22,
+      "end": 3.12,
+      "text": "01  素材快切与冲击推进"
+    },
+    {
+      "id": "effect-1",
+      "start": 3.24,
+      "end": 6.9399999999999995,
+      "text": "02  杂志排版与连线聚合"
+    },
+    {
+      "id": "effect-2",
+      "start": 7.06,
+      "end": 10.76,
+      "text": "03  代码编辑器与曲屏"
+    },
+    {
+      "id": "effect-3",
+      "start": 10.88,
+      "end": 14.38,
+      "text": "04  实拍与空间窗口"
+    },
+    {
+      "id": "effect-4",
+      "start": 14.5,
+      "end": 17.0,
+      "text": "05  灵感组装与放射线"
+    },
+    {
+      "id": "effect-5",
+      "start": 17.119999999999997,
+      "end": 19.62,
+      "text": "06  文稿逐行形成"
+    },
+    {
+      "id": "effect-6",
+      "start": 19.74,
+      "end": 23.040000000000003,
+      "text": "07  图库检索与放大镜"
+    },
+    {
+      "id": "effect-7",
+      "start": 23.16,
+      "end": 26.16,
+      "text": "08  素材转代码与进度"
+    },
+    {
+      "id": "effect-8",
+      "start": 26.279999999999998,
+      "end": 29.580000000000002,
+      "text": "09  输入指令与逐项替换"
+    },
+    {
+      "id": "effect-9",
+      "start": 29.7,
+      "end": 32.2,
+      "text": "10  大字叠层与聚拢"
+    },
+    {
+      "id": "effect-10",
+      "start": 32.32,
+      "end": 37.52,
+      "text": "11  立体阵列飞入翻牌"
+    },
+    {
+      "id": "effect-11",
+      "start": 37.64,
+      "end": 40.14,
+      "text": "12  双问题空间分栏"
+    },
+    {
+      "id": "effect-12",
+      "start": 40.26,
+      "end": 42.96,
+      "text": "13  网格筛选与否决"
+    },
+    {
+      "id": "effect-13",
+      "start": 43.08,
+      "end": 46.980000000000004,
+      "text": "14  票据弧线吸入计数"
+    },
+    {
+      "id": "effect-14",
+      "start": 47.1,
+      "end": 50.2,
+      "text": "15  对比柱与数值增长"
+    },
+    {
+      "id": "effect-15",
+      "start": 50.32,
+      "end": 53.82,
+      "text": "16  会员卡与金币落下"
+    },
+    {
+      "id": "effect-16",
+      "start": 53.94,
+      "end": 57.24,
+      "text": "17  厚度成本柱"
+    },
+    {
+      "id": "effect-17",
+      "start": 57.36,
+      "end": 60.06,
+      "text": "18  额度环与仪表"
+    },
+    {
+      "id": "effect-18",
+      "start": 60.18,
+      "end": 63.88,
+      "text": "19  透视图库穿行"
+    },
+    {
+      "id": "effect-19",
+      "start": 64.0,
+      "end": 67.2,
+      "text": "20  整屏曲面页面"
+    },
+    {
+      "id": "effect-20",
+      "start": 67.32,
+      "end": 70.62,
+      "text": "21  步骤对象接力"
+    },
+    {
+      "id": "effect-21",
+      "start": 70.74,
+      "end": 74.04,
+      "text": "22  列表升起详情窗"
+    },
+    {
+      "id": "effect-22",
+      "start": 74.16,
+      "end": 77.06,
+      "text": "23  解锁与内容揭示"
+    },
+    {
+      "id": "effect-23",
+      "start": 77.17999999999999,
+      "end": 80.38,
+      "text": "24  仓库复制与链接接力"
+    },
+    {
+      "id": "effect-24",
+      "start": 80.5,
+      "end": 83.4,
+      "text": "25  链接输入并发送"
+    },
+    {
+      "id": "effect-25",
+      "start": 83.52,
+      "end": 86.82000000000001,
+      "text": "26  结果纸张并排比较"
+    },
+    {
+      "id": "effect-26",
+      "start": 86.94,
+      "end": 90.44,
+      "text": "27  筛选标签与淘汰盖章"
+    },
+    {
+      "id": "effect-27",
+      "start": 90.56,
+      "end": 94.26,
+      "text": "28  手机着色与附件汇聚"
+    },
+    {
+      "id": "effect-28",
+      "start": 94.38,
+      "end": 97.28,
+      "text": "29  奖励飞行与归属"
+    },
+    {
+      "id": "effect-29",
+      "start": 97.4,
+      "end": 100.9,
+      "text": "30  身份徽章与滚动胶片"
+    },
+    {
+      "id": "effect-30",
+      "start": 101.02,
+      "end": 103.72,
+      "text": "31  云端上传与进度"
+    },
+    {
+      "id": "effect-31",
+      "start": 103.84,
+      "end": 106.54,
+      "text": "32  三维方块重组"
+    },
+    {
+      "id": "effect-32",
+      "start": 106.66,
+      "end": 109.36,
+      "text": "33  麦克风弧摆与声线"
+    },
+    {
+      "id": "effect-33",
+      "start": 109.48,
+      "end": 112.18,
+      "text": "34  机器人状态仪表"
+    },
+    {
+      "id": "effect-34",
+      "start": 112.3,
+      "end": 115.4,
+      "text": "35  厚金币堆与增长箭头"
+    },
+    {
+      "id": "effect-35",
+      "start": 115.52,
+      "end": 118.02,
+      "text": "36  厚问号与弹性落点"
+    },
+    {
+      "id": "effect-36",
+      "start": 118.14,
+      "end": 121.44,
+      "text": "37  消耗物投入容器与禁用"
+    },
+    {
+      "id": "effect-37",
+      "start": 121.56,
+      "end": 124.46000000000001,
+      "text": "38  玻璃罩与价值盖章"
+    },
+    {
+      "id": "effect-38",
+      "start": 124.58,
+      "end": 127.88,
+      "text": "39  人物关系与价值交换"
+    },
+    {
+      "id": "effect-39",
+      "start": 128.0,
+      "end": 131.5,
+      "text": "40  人群庆祝与逐字聚合"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "shot-1",
+      "start": 0,
+      "end": 3.2,
+      "mechanism": "feed-montage",
+      "intent": "对多份实拍或资料快速建立印象；每个item可带video/image",
+      "title": "素材快切与冲击推进",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.576,
+        "act": 1.6,
+        "resolve": 2.624
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "摄影动画示例",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "video": "media-sample.mp4"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "cut",
+        "duration": 0
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.6,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.624,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-2",
+      "start": 3.02,
+      "end": 7.02,
+      "mechanism": "magazine-collage",
+      "intent": "多张海报分层展开，再连向同一个结果",
+      "title": "杂志排版与连线聚合",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.72,
+        "act": 2.0,
+        "resolve": 3.28
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 2.0,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 3.28,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-3",
+      "start": 6.84,
+      "end": 10.84,
+      "mechanism": "code-editor",
+      "intent": "侧栏、选择、代码与终端联动；代码正文由本期输入",
+      "title": "代码编辑器与曲屏",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.72,
+        "act": 2.0,
+        "resolve": 3.28
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 2.0,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 3.28,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-4",
+      "start": 10.66,
+      "end": 14.46,
+      "mechanism": "media-stage",
+      "intent": "视频/照片在独立空间窗口中切换；可使用真实拍摄和数字人",
+      "title": "实拍与空间窗口",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 1.3299999999999998,
+        "act": 2.6599999999999997,
+        "resolve": 3.42
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "摄影动画示例",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "video": "media-sample.mp4"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          }
+        ],
+        "selectedId": "item-1",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.9,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 3.116,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-5",
+      "start": 14.28,
+      "end": 17.08,
+      "mechanism": "idea-burst",
+      "intent": "一个概念或物件从碎片建立，重点向外扩散",
+      "title": "灵感组装与放射线",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.504,
+        "act": 1.4,
+        "resolve": 2.296
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.4,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.296,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-6",
+      "start": 16.9,
+      "end": 19.7,
+      "mechanism": "document-write",
+      "intent": "本期正文随时间形成并聚焦关键内容",
+      "title": "文稿逐行形成",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.504,
+        "act": 1.4,
+        "resolve": 2.296
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.4,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.296,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-7",
+      "start": 19.52,
+      "end": 23.12,
+      "mechanism": "reference-search",
+      "intent": "检索候选网格，移动放大镜，再锁定selectedId",
+      "title": "图库检索与放大镜",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.648,
+        "act": 1.8,
+        "resolve": 2.952
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-5",
+            "label": "飞船记录",
+            "color": "#e2ae94",
+            "shape": "cup",
+            "value": 60,
+            "replacementLabel": "新现场记录",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-6",
+            "label": "月面资料",
+            "color": "#c0cfa1",
+            "shape": "person",
+            "value": 54,
+            "replacementLabel": "新关键证据",
+            "image": "scene-c.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.8,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 2.952,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-8",
+      "start": 22.94,
+      "end": 26.24,
+      "mechanism": "code-build",
+      "intent": "选中素材进入生成过程，代码和完成进度同步",
+      "title": "素材转代码与进度",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.594,
+        "act": 1.65,
+        "resolve": 2.706
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.65,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 2.706,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-9",
+      "start": 26.06,
+      "end": 29.66,
+      "mechanism": "prompt-substitute",
+      "intent": "原物件先出现，输入新要求后翻成replacementImage/Label",
+      "title": "输入指令与逐项替换",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.648,
+        "act": 1.8,
+        "resolve": 2.952
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.8,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 2.952,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-10",
+      "start": 29.48,
+      "end": 32.28,
+      "mechanism": "kinetic-type",
+      "intent": "文字本身形成空间重点；文字、节奏、方向由本期设置",
+      "title": "大字叠层与聚拢",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.504,
+        "act": 1.4,
+        "resolve": 2.296
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.4,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.296,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-11",
+      "start": 32.1,
+      "end": 37.6,
+      "mechanism": "object-array-flip",
+      "intent": "物件分别走弧线入阵列，依次翻面，再重组到展示面",
+      "title": "立体阵列飞入翻牌",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.99,
+        "act": 2.75,
+        "resolve": 4.51
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          },
+          {
+            "id": "item-5",
+            "label": "现场记录",
+            "color": "#e2ae94",
+            "shape": "cup",
+            "value": 60,
+            "replacementLabel": "新现场记录"
+          },
+          {
+            "id": "item-6",
+            "label": "关键证据",
+            "color": "#c0cfa1",
+            "shape": "person",
+            "value": 54,
+            "replacementLabel": "新关键证据"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 2.75,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 4.51,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-12",
+      "start": 37.42,
+      "end": 40.22,
+      "mechanism": "challenge-split",
+      "intent": "按当前论点建立两个或多个矛盾对象",
+      "title": "双问题空间分栏",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.504,
+        "act": 1.4,
+        "resolve": 2.296
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.4,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.296,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-13",
+      "start": 40.04,
+      "end": 43.04,
+      "mechanism": "rejection-grid",
+      "intent": "候选内容进入判断，焦点与否决状态随选择变化",
+      "title": "网格筛选与否决",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.54,
+        "act": 1.5,
+        "resolve": 2.46
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.5,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 2.46,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-14",
+      "start": 42.86,
+      "end": 47.06,
+      "mechanism": "token-intake",
+      "intent": "票据进入箱口后才计数；支持指定最终指标和到达数量",
+      "title": "票据弧线吸入计数",
+      "presenter": "hidden",
+      "marks": {
+        "collect": 0.756,
+        "resolve": 3.444
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ]
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 2.1,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 3.444,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-15",
+      "start": 46.88,
+      "end": 50.28,
+      "mechanism": "comparison-bars",
+      "intent": "按真实value比例变化；名称、单位、数量可改",
+      "title": "对比柱与数值增长",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.612,
+        "act": 1.7,
+        "resolve": 2.788
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始方案",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始方案"
+          },
+          {
+            "id": "item-2",
+            "label": "调整方案",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新调整方案"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          36,
+          72
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.7,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.788,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-16",
+      "start": 50.1,
+      "end": 53.9,
+      "mechanism": "premium-coins",
+      "intent": "中心对象旋转建立，金币落到对象周围",
+      "title": "会员卡与金币落下",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.684,
+        "act": 1.9,
+        "resolve": 3.116
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.9,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 3.116,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-17",
+      "start": 53.72,
+      "end": 57.32,
+      "mechanism": "cost-columns",
+      "intent": "有侧面厚度的柱形按本期数值增长",
+      "title": "厚度成本柱",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.648,
+        "act": 1.8,
+        "resolve": 2.952
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始方案",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始方案"
+          },
+          {
+            "id": "item-2",
+            "label": "调整方案",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新调整方案"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          36,
+          72
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.8,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.952,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-18",
+      "start": 57.14,
+      "end": 60.14,
+      "mechanism": "quota-ring",
+      "intent": "额度弧线、读数与物件形成完整仪表",
+      "title": "额度环与仪表",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.54,
+        "act": 1.5,
+        "resolve": 2.46
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 68,
+          "unit": "%",
+          "label": "剩余额度"
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.5,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.46,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-19",
+      "start": 59.96,
+      "end": 63.96,
+      "mechanism": "gallery-camera",
+      "intent": "穿过多行真实素材墙，再选中具体item",
+      "title": "透视图库穿行",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.72,
+        "act": 2.0,
+        "resolve": 3.28
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-5",
+            "label": "飞船记录",
+            "color": "#e2ae94",
+            "shape": "cup",
+            "value": 60,
+            "replacementLabel": "新现场记录",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-6",
+            "label": "月面资料",
+            "color": "#c0cfa1",
+            "shape": "person",
+            "value": 54,
+            "replacementLabel": "新关键证据",
+            "image": "scene-c.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 2.0,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 3.28,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-20",
+      "start": 63.78,
+      "end": 67.28,
+      "mechanism": "curved-screen",
+      "intent": "整张页面连内容一起弯曲推进，字幕保持屏幕层",
+      "title": "整屏曲面页面",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.63,
+        "act": 1.75,
+        "resolve": 2.87
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10,
+          "depth": 115
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.75,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 2.87,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-21",
+      "start": 67.1,
+      "end": 70.7,
+      "mechanism": "workflow-route",
+      "intent": "2–12个步骤按实际先后连接，物件沿路径接力",
+      "title": "步骤对象接力",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.648,
+        "act": 1.8,
+        "resolve": 2.952
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.8,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.952,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-22",
+      "start": 70.52,
+      "end": 74.12,
+      "mechanism": "window-detail",
+      "intent": "选中列表对象升成详情，保持素材身份一致",
+      "title": "列表升起详情窗",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.648,
+        "act": 1.8,
+        "resolve": 2.952
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.8,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 2.952,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-23",
+      "start": 73.94,
+      "end": 77.14,
+      "mechanism": "unlock-reveal",
+      "intent": "模糊/遮挡资料经操作展开，并显示实际结果",
+      "title": "解锁与内容揭示",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.576,
+        "act": 1.6,
+        "resolve": 2.624
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.6,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 2.624,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-24",
+      "start": 76.96,
+      "end": 80.46,
+      "mechanism": "repository-copy",
+      "intent": "页面、复制状态和url交接；产品界面明确标记示意",
+      "title": "仓库复制与链接接力",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.63,
+        "act": 1.75,
+        "resolve": 2.87
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.75,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 2.87,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-25",
+      "start": 80.28,
+      "end": 83.48,
+      "mechanism": "prompt-send",
+      "intent": "本期指令逐字输入、发送并显示result",
+      "title": "链接输入并发送",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.576,
+        "act": 1.6,
+        "resolve": 2.624
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.6,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 2.624,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-26",
+      "start": 83.3,
+      "end": 86.9,
+      "mechanism": "result-compare",
+      "intent": "使用不同结果素材进行侧向展示与相机聚焦",
+      "title": "结果纸张并排比较",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.648,
+        "act": 1.8,
+        "resolve": 2.952
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始方案",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新调整方案",
+            "image": "scene-b.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          36,
+          72
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.8,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.952,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-27",
+      "start": 86.72,
+      "end": 90.52,
+      "mechanism": "curation-stamp",
+      "intent": "候选按selectedId作取舍，印章、标签、离场形成因果",
+      "title": "筛选标签与淘汰盖章",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.684,
+        "act": 1.9,
+        "resolve": 3.116
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          },
+          {
+            "id": "item-5",
+            "label": "现场记录",
+            "color": "#e2ae94",
+            "shape": "cup",
+            "value": 60,
+            "replacementLabel": "新现场记录"
+          },
+          {
+            "id": "item-6",
+            "label": "关键证据",
+            "color": "#c0cfa1",
+            "shape": "person",
+            "value": 54,
+            "replacementLabel": "新关键证据"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "window",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.9,
+          "name": "tick",
+          "volume": 0.2
+        },
+        {
+          "at": 3.116,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-28",
+      "start": 90.34,
+      "end": 94.34,
+      "mechanism": "phone-focus",
+      "intent": "屏幕从低饱和转彩色，附件围绕本期主物件建立",
+      "title": "手机着色与附件汇聚",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.72,
+        "act": 2.0,
+        "resolve": 3.28
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 2.0,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 3.28,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-29",
+      "start": 94.16,
+      "end": 97.36,
+      "mechanism": "reward-transfer",
+      "intent": "奖励从判断处飞向目标对象，数量可改",
+      "title": "奖励飞行与归属",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.576,
+        "act": 1.6,
+        "resolve": 2.624
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.6,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.624,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-30",
+      "start": 97.18,
+      "end": 100.98,
+      "mechanism": "creator-filmstrip",
+      "intent": "身份物件、绶带、作品胶片形成一体，作品可为图片/视频",
+      "title": "身份徽章与滚动胶片",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.684,
+        "act": 1.9,
+        "resolve": 3.116
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "地球影像",
+            "color": "#b8c8b4",
+            "shape": "person",
+            "value": 36,
+            "replacementLabel": "新原始素材",
+            "image": "scene-a.jpg"
+          },
+          {
+            "id": "item-2",
+            "label": "飞船记录",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择",
+            "image": "scene-b.jpg"
+          },
+          {
+            "id": "item-3",
+            "label": "月面资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果",
+            "image": "scene-c.jpg"
+          },
+          {
+            "id": "item-4",
+            "label": "地球影像",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果",
+            "image": "scene-a.jpg"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "NASA 摄影 · 来源见素材说明",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.9,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 3.116,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-31",
+      "start": 100.8,
+      "end": 103.8,
+      "mechanism": "upload-beam",
+      "intent": "本期素材依次离队飞入云端，实际上传动作同步进度",
+      "title": "云端上传与进度",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.54,
+        "act": 1.5,
+        "resolve": 2.46
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.5,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.46,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-32",
+      "start": 103.62,
+      "end": 106.62,
+      "mechanism": "remix-cube",
+      "intent": "有多个面的立方体旋转，面内容来自本期items",
+      "title": "三维方块重组",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.54,
+        "act": 1.5,
+        "resolve": 2.46
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.5,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.46,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-33",
+      "start": 106.44,
+      "end": 109.44,
+      "mechanism": "microphone-swing",
+      "intent": "发声物件围绕支点摆动，声线与动作同步",
+      "title": "麦克风弧摆与声线",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.54,
+        "act": 1.5,
+        "resolve": 2.46
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.5,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.46,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-34",
+      "start": 109.26,
+      "end": 112.26,
+      "mechanism": "robot-meter",
+      "intent": "主体表情/状态和量表一起变化，可替换主体素材",
+      "title": "机器人状态仪表",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.54,
+        "act": 1.5,
+        "resolve": 2.46
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.5,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.46,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-35",
+      "start": 112.08,
+      "end": 115.48,
+      "mechanism": "coin-growth",
+      "intent": "有侧面厚度的金币堆按本期values增长",
+      "title": "厚金币堆与增长箭头",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.612,
+        "act": 1.7,
+        "resolve": 2.788
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.7,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.788,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-36",
+      "start": 115.3,
+      "end": 118.1,
+      "mechanism": "question-bounce",
+      "intent": "夸张重点物件弹入并保留停顿，允许换成其他图片物件",
+      "title": "厚问号与弹性落点",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.504,
+        "act": 1.4,
+        "resolve": 2.296
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.4,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.296,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-37",
+      "start": 117.92,
+      "end": 121.52,
+      "mechanism": "consumable-ban",
+      "intent": "指定物件走抛物线进入前景容器，禁用标记随后落下",
+      "title": "消耗物投入容器与禁用",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.648,
+        "act": 1.8,
+        "resolve": 2.952
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "cup",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.8,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.952,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-38",
+      "start": 121.34,
+      "end": 124.54,
+      "mechanism": "luxury-dome",
+      "intent": "主体进入带高光的玻璃罩，标签和盖章强调价值变化",
+      "title": "玻璃罩与价值盖章",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.576,
+        "act": 1.6,
+        "resolve": 2.624
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "chip",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.6,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.624,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-39",
+      "start": 124.36,
+      "end": 127.96,
+      "mechanism": "sharing-network",
+      "intent": "关系网络围绕多人建立，物件在实际节点间传递",
+      "title": "人物关系与价值交换",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.648,
+        "act": 1.8,
+        "resolve": 2.952
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.8,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 2.952,
+          "name": "drop",
+          "volume": 0.16
+        }
+      ]
+    },
+    {
+      "id": "shot-40",
+      "start": 127.78,
+      "end": 131.58,
+      "mechanism": "celebration-type",
+      "intent": "多个角色、字粒和纸屑独立运动，最后形成完整结尾",
+      "title": "人群庆祝与逐字聚合",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.684,
+        "act": 1.9,
+        "resolve": 3.116
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "原始素材",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新原始素材"
+          },
+          {
+            "id": "item-2",
+            "label": "方案选择",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新方案选择"
+          },
+          {
+            "id": "item-3",
+            "label": "执行结果",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新执行结果"
+          },
+          {
+            "id": "item-4",
+            "label": "共享成果",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新共享成果"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "从本期内容出发，找到重点。让物件发生变化，再把变化交给下一个镜头。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "本期结果已就绪",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          24,
+          58,
+          82,
+          46
+        ],
+        "pack": {
+          "columns": 2,
+          "angle": -10
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.18,
+        "x": 50,
+        "y": 50
+      },
+      "sounds": [
+        {
+          "at": 0,
+          "name": "whoosh",
+          "volume": 0.17
+        },
+        {
+          "at": 1.9,
+          "name": "pop",
+          "volume": 0.2
+        },
+        {
+          "at": 3.116,
+          "name": "chime",
+          "volume": 0.16
+        }
+      ]
+    }
+  ]
+}

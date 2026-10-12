@@ -1,4 +1,4 @@
 interface:
-  display_name: "数字人口播动效剪辑"
+  display_name: "原片风格竖屏动效剪辑"
   short_description: "按完整参考的丰富视觉语言组织真实素材、UI与图形，直接制作本期开头"
-  default_prompt: "请使用 $portrait-editorial-explainer，以最初完整参考的视觉语言为依据，按本期口播组合真实素材、UI、图形、镜头和转场。V3和净水器仅作局部机制参考，人物布局按内容与我的要求安排；先直接制作本期开头10–15秒。"
+  default_prompt: "请使用 $portrait-editorial-explainer，以最初完整参考的视觉语言为依据，按本期口播组合真实素材、UI、图形、镜头和转场。从完整效果库复用动作，按本期重新安排物件和镜头，人物布局按内容与我的要求安排；先直接制作本期开头10–15秒。"

@@ -17,7 +17,7 @@
 
 `intent` 用完整动作句写清为什么选这个机制。`title` 最多24字；长句留给字幕。`presenter` 选 hidden/pip/full。示意场景没有人像时不要补一个假的口播人物。
 
-`marks` 是**本地秒**，不是全片绝对秒；六个完整场景按预定动作顺序严格递增；ui-stage自行命名语义事件，resolve必须是最晚事件，不固定剪辑步骤。动作在该时刻达到其结果，部分动作提前预备。最后 resolve 至少留0.15秒读数。
+`marks` 是**本地秒**，不是全片绝对秒；早期六条链按各自动作名递增；新版39个独立场景使用reveal/act/resolve递增；ui-stage自行命名语义事件，resolve必须是最晚事件，不固定剪辑步骤。动作在该时刻达到其结果，部分动作提前预备。最后 resolve 至少留0.15秒读数。
 
 正式制作 `markCues` 必须覆盖所有mark，值是字幕id。`scene.start + marks[key]` 必须位于对应字幕时段±0.12秒；机器只能检查区间，关键词本身仍需听音核对。案例：场景start=4.18，select=3.3，则选择落点在全片7.48秒。
 
@@ -42,3 +42,9 @@
 ## 精确计数与比例示意
 
 `token-intake` 的 metric.events 可指定2–160个可见输入。表达“一条对应一条”时，events应等于整数value；大数字采用少量票据代表多个单位时明确为比例示意，省略events默认为84张。不能把通过JSON校验视为语义已经正确。
+
+## 3.2扩展字段
+
+完整机制索引、素材角色和配置例子见[完整效果库](full-effects-guide.md)。Item新增video、trimStart、playbackRate、fit、value、shape；image与video二选一。Scene新增camera相机关键帧、sounds音效事件。Content新增kicker、values、pack布局选项。具体边界由当前types.ts和source_episode.py校验。
+
+新入口自动识别v2/v3；v3默认导出开头，render:full可直接导出用户要求的全片，无审批JSON门禁。

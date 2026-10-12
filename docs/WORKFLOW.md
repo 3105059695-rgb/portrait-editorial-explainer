@@ -1,4 +1,4 @@
-> 当前入口是 `new_project.py --input PLAN`。先按[最初完整参考的剪辑方向](../references/approved-editing-direction.md)组织本期内容；V3、净水器及现有UI模块只是局部实现，均不是全片默认风格。现有引擎尚未完整覆盖原片。
+> 当前入口 `new_project.py --input PLAN` 自动识别v3完整效果库或v2自由图层。新版运行命令见[完整效果库](../references/full-effects-guide.md)，视觉依据仍为最初完整参考。
 
 # 从本期素材到可编辑成片
 

@@ -14,6 +14,7 @@ import sys
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_FILES = (
+    "scripts/effect_library.py", "assets/effects-catalog.json", "references/full-effects-guide.md",
     "SKILL.md", "agents/openai.yaml", "references/approved-editing-direction.md", "references/editorial-motion-contract.md", "scripts/install_skill.py", "scripts/doctor.py",
     "scripts/new_project.py", "scripts/check_timeline.py", "references/approved-presenter-v3.md",
     "references/presenter-workflow.md", "references/visual-grammar.md", "references/timing-format.md",
@@ -27,6 +28,8 @@ REQUIRED_FILES = (
 )
 CASES = {
     "source-style-template": (
+        "src/pack-shared.tsx", "src/effects/EditorialPack.tsx", "src/effects/SpatialPack.tsx", "src/effects/WebPack.tsx", "src/effects/IllustratedPack.tsx",
+        "public/sfx/whoosh.wav", "public/sfx/tick.wav", "public/sfx/pop.wav", "public/sfx/chime.wav", "public/sfx/drop.wav",
         "src/effects/UiStage.tsx", "src/ui-types.ts",
         "package.json", "package-lock.json", "tsconfig.json", "render.cjs",
         "src/index.ts", "src/Root.tsx", "src/Film.tsx", "src/episode.json",

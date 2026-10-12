@@ -1,0 +1,326 @@
+{
+  "version": "3.2.0",
+  "style": "original-full-reference",
+  "effects": [
+    {
+      "id": "feed-montage",
+      "title": "素材快切与冲击推进",
+      "group": "实拍/资料",
+      "sourceRange": "0–2",
+      "suggestedDuration": 3.2,
+      "purpose": "对多份实拍或资料快速建立印象；每个item可带video/image"
+    },
+    {
+      "id": "magazine-collage",
+      "title": "杂志排版与连线聚合",
+      "group": "排版",
+      "sourceRange": "2–7",
+      "suggestedDuration": 4,
+      "purpose": "多张海报分层展开，再连向同一个结果"
+    },
+    {
+      "id": "code-editor",
+      "title": "代码编辑器与曲屏",
+      "group": "软件UI",
+      "sourceRange": "7–14",
+      "suggestedDuration": 4,
+      "purpose": "侧栏、选择、代码与终端联动；代码正文由本期输入"
+    },
+    {
+      "id": "media-stage",
+      "title": "实拍与空间窗口",
+      "group": "实拍/资料",
+      "sourceRange": "14–20",
+      "suggestedDuration": 3.8,
+      "purpose": "视频/照片在独立空间窗口中切换；可使用真实拍摄和数字人"
+    },
+    {
+      "id": "idea-burst",
+      "title": "灵感组装与放射线",
+      "group": "插画",
+      "sourceRange": "20–22.8",
+      "suggestedDuration": 2.8,
+      "purpose": "一个概念或物件从碎片建立，重点向外扩散"
+    },
+    {
+      "id": "document-write",
+      "title": "文稿逐行形成",
+      "group": "排版",
+      "sourceRange": "22.8–24.4",
+      "suggestedDuration": 2.8,
+      "purpose": "本期正文随时间形成并聚焦关键内容"
+    },
+    {
+      "id": "reference-search",
+      "title": "图库检索与放大镜",
+      "group": "软件UI",
+      "sourceRange": "24.4–26.35",
+      "suggestedDuration": 3.6,
+      "purpose": "检索候选网格，移动放大镜，再锁定selectedId"
+    },
+    {
+      "id": "code-build",
+      "title": "素材转代码与进度",
+      "group": "软件UI",
+      "sourceRange": "26.35–28.65",
+      "suggestedDuration": 3.3,
+      "purpose": "选中素材进入生成过程，代码和完成进度同步"
+    },
+    {
+      "id": "prompt-substitute",
+      "title": "输入指令与逐项替换",
+      "group": "软件UI",
+      "sourceRange": "28.65–31.08",
+      "suggestedDuration": 3.6,
+      "purpose": "原物件先出现，输入新要求后翻成replacementImage/Label"
+    },
+    {
+      "id": "kinetic-type",
+      "title": "大字叠层与聚拢",
+      "group": "排版",
+      "sourceRange": "31.08–33.3",
+      "suggestedDuration": 2.8,
+      "purpose": "文字本身形成空间重点；文字、节奏、方向由本期设置"
+    },
+    {
+      "id": "object-array-flip",
+      "title": "立体阵列飞入翻牌",
+      "group": "空间",
+      "sourceRange": "33.3–41.15",
+      "suggestedDuration": 5.5,
+      "purpose": "物件分别走弧线入阵列，依次翻面，再重组到展示面"
+    },
+    {
+      "id": "challenge-split",
+      "title": "双问题空间分栏",
+      "group": "排版",
+      "sourceRange": "41.15–43.3",
+      "suggestedDuration": 2.8,
+      "purpose": "按当前论点建立两个或多个矛盾对象"
+    },
+    {
+      "id": "rejection-grid",
+      "title": "网格筛选与否决",
+      "group": "软件UI",
+      "sourceRange": "43.3–45.83",
+      "suggestedDuration": 3,
+      "purpose": "候选内容进入判断，焦点与否决状态随选择变化"
+    },
+    {
+      "id": "token-intake",
+      "title": "票据弧线吸入计数",
+      "group": "信息图",
+      "sourceRange": "45.83–50.08",
+      "suggestedDuration": 4.2,
+      "purpose": "票据进入箱口后才计数；支持指定最终指标和到达数量"
+    },
+    {
+      "id": "comparison-bars",
+      "title": "对比柱与数值增长",
+      "group": "信息图",
+      "sourceRange": "50.08–53.45",
+      "suggestedDuration": 3.4,
+      "purpose": "按真实value比例变化；名称、单位、数量可改"
+    },
+    {
+      "id": "premium-coins",
+      "title": "会员卡与金币落下",
+      "group": "空间/信息图",
+      "sourceRange": "53.45–58.2",
+      "suggestedDuration": 3.8,
+      "purpose": "中心对象旋转建立，金币落到对象周围"
+    },
+    {
+      "id": "cost-columns",
+      "title": "厚度成本柱",
+      "group": "信息图",
+      "sourceRange": "58.2–62.43",
+      "suggestedDuration": 3.6,
+      "purpose": "有侧面厚度的柱形按本期数值增长"
+    },
+    {
+      "id": "quota-ring",
+      "title": "额度环与仪表",
+      "group": "信息图",
+      "sourceRange": "62.43–65.53",
+      "suggestedDuration": 3,
+      "purpose": "额度弧线、读数与物件形成完整仪表"
+    },
+    {
+      "id": "gallery-camera",
+      "title": "透视图库穿行",
+      "group": "空间",
+      "sourceRange": "65.53–68.67",
+      "suggestedDuration": 4,
+      "purpose": "穿过多行真实素材墙，再选中具体item"
+    },
+    {
+      "id": "curved-screen",
+      "title": "整屏曲面页面",
+      "group": "软件UI/空间",
+      "sourceRange": "68.67–70.7",
+      "suggestedDuration": 3.5,
+      "purpose": "整张页面连内容一起弯曲推进，字幕保持屏幕层"
+    },
+    {
+      "id": "workflow-route",
+      "title": "步骤对象接力",
+      "group": "信息图",
+      "sourceRange": "70.7–75",
+      "suggestedDuration": 3.6,
+      "purpose": "2–12个步骤按实际先后连接，物件沿路径接力"
+    },
+    {
+      "id": "window-detail",
+      "title": "列表升起详情窗",
+      "group": "软件UI",
+      "sourceRange": "75–80.1",
+      "suggestedDuration": 3.6,
+      "purpose": "选中列表对象升成详情，保持素材身份一致"
+    },
+    {
+      "id": "unlock-reveal",
+      "title": "解锁与内容揭示",
+      "group": "软件UI",
+      "sourceRange": "80.1–83.2",
+      "suggestedDuration": 3.2,
+      "purpose": "模糊/遮挡资料经操作展开，并显示实际结果"
+    },
+    {
+      "id": "repository-copy",
+      "title": "仓库复制与链接接力",
+      "group": "软件UI",
+      "sourceRange": "83.2–87.47",
+      "suggestedDuration": 3.5,
+      "purpose": "页面、复制状态和url交接；产品界面明确标记示意"
+    },
+    {
+      "id": "prompt-send",
+      "title": "链接输入并发送",
+      "group": "软件UI",
+      "sourceRange": "87.47–90.17",
+      "suggestedDuration": 3.2,
+      "purpose": "本期指令逐字输入、发送并显示result"
+    },
+    {
+      "id": "result-compare",
+      "title": "结果纸张并排比较",
+      "group": "排版/资料",
+      "sourceRange": "90.17–96.27",
+      "suggestedDuration": 3.6,
+      "purpose": "使用不同结果素材进行侧向展示与相机聚焦"
+    },
+    {
+      "id": "curation-stamp",
+      "title": "筛选标签与淘汰盖章",
+      "group": "软件UI/漫画",
+      "sourceRange": "96.27–101.6;105.55–110.33",
+      "suggestedDuration": 3.8,
+      "purpose": "候选按selectedId作取舍，印章、标签、离场形成因果"
+    },
+    {
+      "id": "phone-focus",
+      "title": "手机着色与附件汇聚",
+      "group": "空间",
+      "sourceRange": "101.6–105.55",
+      "suggestedDuration": 4,
+      "purpose": "屏幕从低饱和转彩色，附件围绕本期主物件建立"
+    },
+    {
+      "id": "reward-transfer",
+      "title": "奖励飞行与归属",
+      "group": "漫画",
+      "sourceRange": "110.33–114.27",
+      "suggestedDuration": 3.2,
+      "purpose": "奖励从判断处飞向目标对象，数量可改"
+    },
+    {
+      "id": "creator-filmstrip",
+      "title": "身份徽章与滚动胶片",
+      "group": "漫画",
+      "sourceRange": "114.27–118.03",
+      "suggestedDuration": 3.8,
+      "purpose": "身份物件、绶带、作品胶片形成一体，作品可为图片/视频"
+    },
+    {
+      "id": "upload-beam",
+      "title": "云端上传与进度",
+      "group": "漫画",
+      "sourceRange": "118.03–120.2",
+      "suggestedDuration": 3,
+      "purpose": "本期素材依次离队飞入云端，实际上传动作同步进度"
+    },
+    {
+      "id": "remix-cube",
+      "title": "三维方块重组",
+      "group": "空间/漫画",
+      "sourceRange": "120.2–121.55",
+      "suggestedDuration": 3,
+      "purpose": "有多个面的立方体旋转，面内容来自本期items"
+    },
+    {
+      "id": "microphone-swing",
+      "title": "麦克风弧摆与声线",
+      "group": "漫画",
+      "sourceRange": "121.55–123.25",
+      "suggestedDuration": 3,
+      "purpose": "发声物件围绕支点摆动，声线与动作同步"
+    },
+    {
+      "id": "robot-meter",
+      "title": "机器人状态仪表",
+      "group": "漫画/信息图",
+      "sourceRange": "123.25–125.2",
+      "suggestedDuration": 3,
+      "purpose": "主体表情/状态和量表一起变化，可替换主体素材"
+    },
+    {
+      "id": "coin-growth",
+      "title": "厚金币堆与增长箭头",
+      "group": "漫画/信息图",
+      "sourceRange": "125.2–127.8",
+      "suggestedDuration": 3.4,
+      "purpose": "有侧面厚度的金币堆按本期values增长"
+    },
+    {
+      "id": "question-bounce",
+      "title": "厚问号与弹性落点",
+      "group": "漫画",
+      "sourceRange": "127.8–129.67",
+      "suggestedDuration": 2.8,
+      "purpose": "夸张重点物件弹入并保留停顿，允许换成其他图片物件"
+    },
+    {
+      "id": "consumable-ban",
+      "title": "消耗物投入容器与禁用",
+      "group": "漫画",
+      "sourceRange": "129.67–132.47",
+      "suggestedDuration": 3.6,
+      "purpose": "指定物件走抛物线进入前景容器，禁用标记随后落下"
+    },
+    {
+      "id": "luxury-dome",
+      "title": "玻璃罩与价值盖章",
+      "group": "漫画/空间",
+      "sourceRange": "132.47–134.3",
+      "suggestedDuration": 3.2,
+      "purpose": "主体进入带高光的玻璃罩，标签和盖章强调价值变化"
+    },
+    {
+      "id": "sharing-network",
+      "title": "人物关系与价值交换",
+      "group": "漫画",
+      "sourceRange": "134.3–137.67",
+      "suggestedDuration": 3.6,
+      "purpose": "关系网络围绕多人建立，物件在实际节点间传递"
+    },
+    {
+      "id": "celebration-type",
+      "title": "人群庆祝与逐字聚合",
+      "group": "漫画",
+      "sourceRange": "137.67–140.5",
+      "suggestedDuration": 3.8,
+      "purpose": "多个角色、字粒和纸屑独立运动，最后形成完整结尾"
+    }
+  ]
+}

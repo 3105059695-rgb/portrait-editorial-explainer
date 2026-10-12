@@ -18,3 +18,9 @@
 公开预览从本仓库占位或自绘样例渲染：`docs/editorial-career-preview.mp4` 使用示意人物和访谈，`docs/editorial-water-preview.mp4` 使用原创安装示意；历史 `docs/public-preview.mp4` 同样使用几何占位人物。原委托者的真实数字人样段只向其交付。仓库不包含原用户真人/数字人视频、原风格参考视频、私人声音/克隆模型、访谈人物照片、账号凭证或签名素材下载地址。
 
 工作流说明参考了当前 ChatCut 口播编辑能力；没有复制分发 ChatCut 的私有插件包。工具参数和授权情况由使用者环境实际返回为准。
+
+## 3.2新增资源
+
+examples/full-effects/media的三张摄影来自NASA官方，media-sample.mp4是这些照片的镜头动画，不是原始拍摄视频。来源、署名与独立使用依据见[素材说明](references/full-effects-media.md)。docs/full-effects-preview.mp4使用上述素材及原创动效，不将NASA照片改授MIT。
+
+public/sfx五个WAV由scripts/make_sounds.py以确定性数学波形生成，为本仓库原创，按MIT分发；未提取参考原片音轨。

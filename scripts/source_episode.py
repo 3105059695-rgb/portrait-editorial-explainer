@@ -21,6 +21,8 @@ EFFECTS = {
     'creator-strip': ['badge', 'strip', 'resolve'],
     'upload-progress': ['launch', 'resolve'],
 }
+PACK_EFFECTS = '''feed-montage magazine-collage code-editor idea-burst document-write reference-search code-build prompt-substitute kinetic-type challenge-split rejection-grid workflow-route object-array-flip comparison-bars premium-coins cost-columns quota-ring gallery-camera curved-screen window-detail unlock-reveal repository-copy prompt-send result-compare phone-focus curation-stamp reward-transfer media-stage creator-filmstrip upload-beam remix-cube microphone-swing robot-meter coin-growth question-bounce consumable-ban luxury-dome sharing-network celebration-type'''.split()
+EFFECTS.update({name:['reveal','act','resolve'] for name in PACK_EFFECTS})
 ROOT = Path(__file__).resolve().parents[1]
 
 class Invalid(ValueError): pass
@@ -65,7 +67,7 @@ def asset_paths(plan):
         paths.extend(n['image'] for n in ui.get('nodes',[]) if n.get('image'))
         paths.extend(f['set']['image'] for tr in ui.get('tracks',[]) for f in tr['frames'] if f['set'].get('image'))
         for item in c['items']:
-            paths.extend(item[k] for k in ('image','replacementImage') if item.get(k))
+            paths.extend(item[k] for k in ('image','replacementImage','video') if item.get(k))
     return sorted(set(relative(p) for p in paths))
 
 UI_TYPES={'panel','text','button','input','badge','image','progress','line','chart','cursor'}
@@ -160,13 +162,30 @@ def validate(p, production=False, media_dir=None):
     scenes=p['scenes']; need(isinstance(scenes,list) and 1<=len(scenes)<=200,'Need 1..200 scenes')
     ids=set(); previous=None
     for s in scenes:
-        keys(s,['id','start','end','mechanism','intent','title','presenter','marks','content','enter'],['id','start','end','mechanism','intent','title','presenter','marks','content','enter','accent','background','markCues'],'scene')
+        keys(s,['id','start','end','mechanism','intent','title','presenter','marks','content','enter'],['id','start','end','mechanism','intent','title','presenter','marks','content','enter','accent','background','markCues','camera','sounds'],'scene')
         need(text(s['id'],64) and s['id'] not in ids and all(c.isalnum() or c in '_-' for c in s['id']),'Unique safe scene id required')
         ids.add(s['id'])
         need(s['mechanism'] in EFFECTS,'Unsupported mechanism; extend effect, contract and validator together')
         need(number(s['start']) and number(s['end']) and 0<=s['start']<s['end']<=p['duration'],'Invalid scene range')
         need(s['end']-s['start']>=1,'Scene too short')
         need(text(s['intent'],200) and text(s['title'],24),'Specify semantic intent and short title')
+        if 'sounds' in s:
+            need(isinstance(s['sounds'],list) and len(s['sounds'])<=60,'sounds must be an array up to60 events')
+            for event in s['sounds']:
+                keys(event,['at','name'],['at','name','volume'],'sound event')
+                need(event['name'] in ('whoosh','tick','pop','chime','drop'),'Unknown bundled sound')
+                need(number(event['at']) and 0<=event['at']<s['end']-s['start'],'Sound must land within scene')
+                need(number(event.get('volume',.32)) and 0<=event.get('volume',.32)<=1,'Sound volume must be0..1')
+        if 'camera' in s:
+            need(s['mechanism'] in PACK_EFFECTS,'Scene camera is supported by the full effect pack; ui-stage uses content.ui.camera')
+            need(isinstance(s['camera'],list) and 1<=len(s['camera'])<=100,'camera needs1..100 poses')
+            last_at=-1
+            for pose in s['camera']:
+                keys(pose,['at','x','y','scale'],['at','x','y','scale','rotate'],'camera pose')
+                need(all(number(v) for v in pose.values()),'camera pose must be finite')
+                need(last_at<pose['at']<=s['end']-s['start'] and pose['at']>=0,'camera time must increase within scene')
+                need(abs(pose['x'])<=4000 and abs(pose['y'])<=4000 and .25<=pose['scale']<=6 and abs(pose.get('rotate',0))<=360,'camera pose out of range')
+                last_at=pose['at']
         need(s['presenter'] in ('hidden','pip','full'),'Unknown presenter mode')
         for color in ('accent','background'):
             if color in s:
@@ -199,7 +218,17 @@ def validate(p, production=False, media_dir=None):
             need(cid in cues,f'Missing caption cue {cid}')
             at=s['start']+marks[name]; cue=cues[cid]
             need(cue['start']-0.12<=at<=cue['end']+0.12,f'{s["id"]}.{name} result does not land in linked spoken cue')
-        c=s['content']; keys(c,['items'],['items','selectedId','body','code','prompt','url','result','avatar','metric','emphasis','ui'],'content')
+        c=s['content']; keys(c,['items'],['items','selectedId','body','code','prompt','url','result','avatar','metric','emphasis','ui','kicker','values','pack'],'content')
+        if 'values' in c: need(isinstance(c['values'],list) and 1<=len(c['values'])<=12 and all(number(v) and 0<=v<=1e12 for v in c['values']),'values needs1..12 finite nonnegative numbers')
+        if 'pack' in c:
+            pack=c['pack'];keys(pack,[],['columns','density','angle','direction','depth','focusX','focusY','speed','showTitle','labels'],'content.pack')
+            for k,low,high in [('columns',1,6),('density',1,160),('angle',-80,80),('depth',0,2000),('focusX',0,544),('focusY',0,2000),('speed',.1,4)]:
+                if k in pack: need(number(pack[k]) and low<=pack[k]<=high,f'pack.{k} outside {low}..{high}')
+            for k in ('columns','density'):
+                if k in pack: need(isinstance(pack[k],int) and not isinstance(pack[k],bool),f'pack.{k} must be integer')
+            if 'direction' in pack: need(pack['direction'] in ('left','right','up','down'),'pack.direction unsupported')
+            if 'showTitle' in pack: need(isinstance(pack['showTitle'],bool),'pack.showTitle must be boolean')
+            if 'labels' in pack: need(isinstance(pack['labels'],list) and 1<=len(pack['labels'])<=12 and all(text(v,24) for v in pack['labels']),'pack.labels needs1..12 short labels')
         if 'emphasis' in c: need(text(c['emphasis'],24) and c['emphasis'] in s['title'],'emphasis must be a nonempty substring of title')
         need(isinstance(c['items'],list) and (0 if s['mechanism']=='ui-stage' else 1)<=len(c['items'])<=12,'Need content items (UI stage may use an empty array)')
         if s['mechanism']=='ui-stage':
@@ -210,12 +239,19 @@ def validate(p, production=False, media_dir=None):
         if s['mechanism']=='selection-build': need(4<=len(c['items'])<=9,'selection-build needs4..9 candidates; first4 become replacement tray')
         itemids=set()
         for item in c['items']:
-            keys(item,['id','label'],['id','label','color','image','replacementImage','replacementLabel'],'item')
+            keys(item,['id','label'],['id','label','color','image','replacementImage','replacementLabel','value','video','trimStart','playbackRate','fit','shape'],'item')
             need(text(item['id'],64) and item['id'] not in itemids and text(item['label'],16),'Unique itemid and short label required')
             itemids.add(item['id'])
             if 'replacementLabel' in item: need(text(item['replacementLabel'],16),'replacementLabel too long')
+            if 'color' in item: need(isinstance(item['color'],str) and len(item['color'])==7 and item['color'][0]=='#' and all(x in '0123456789abcdefABCDEF' for x in item['color'][1:]),'item.color must be #RRGGBB')
+            if 'value' in item: need(number(item['value']) and 0<=item['value']<=1e12,'item.value must be finite nonnegative')
+            if 'trimStart' in item: need(number(item['trimStart']) and item['trimStart']>=0,'trimStart must be nonnegative seconds')
+            if 'playbackRate' in item: need(number(item['playbackRate']) and .1<=item['playbackRate']<=4,'playbackRate outside .1..4')
+            if 'fit' in item: need(item['fit'] in ('contain','cover'),'fit must be contain or cover')
+            if 'shape' in item: need(item['shape'] in ('circle','square','diamond','person','chip','cup','coin'),'Unsupported native shape')
+            need(not (item.get('image') and item.get('video')),'An item uses image or video; split simultaneous layers into different items')
         if 'selectedId' in c: need(c['selectedId'] in itemids,'selectedId must reference an actual item')
-        for field,limit in [('body',300),('code',1000),('prompt',100),('url',160),('result',40)]:
+        for field,limit in [('body',300),('code',1000),('prompt',100),('url',160),('result',40),('kicker',40)]:
             if field in c: need(text(c[field],limit),f'{field}: max{limit} chars')
         if s['mechanism'] in ('selection-build','ui-handoff'): need('selectedId' in c,'Interactive effect requires selectedId')
         if s['mechanism']=='selection-build': need(all(k in c for k in ('body','code','prompt')),'selection-build needs body/code/prompt')
@@ -268,6 +304,7 @@ def build(input_path,out,media_dir=None,production=False):
     shutil.copy2(Path(__file__),dest/'validate_episode.py')
     planbytes=(json.dumps(p,ensure_ascii=False,indent=2)+'\n').encode('utf-8')
     (dest/'src/episode.json').write_bytes(planbytes)
+    shutil.copy2(ROOT/'references/approved-editing-direction.md',dest/'STYLE_TARGET.md')
     inventory=[]
     for rel in paths:
         origin=Path(media_dir)/rel; target=dest/'public'/rel

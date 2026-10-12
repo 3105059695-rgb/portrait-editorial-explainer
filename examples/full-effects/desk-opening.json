@@ -1,0 +1,517 @@
+{
+  "version": 3,
+  "title": "换题组合：整理创作桌面",
+  "width": 540,
+  "height": 960,
+  "fps": 30,
+  "duration": 20.3,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {},
+  "sample": {
+    "duration": 11.26,
+    "reason": "本期开头，按完整话语边界截取"
+  },
+  "captions": [],
+  "scenes": [
+    {
+      "id": "shot-1",
+      "start": 0,
+      "end": 3.5,
+      "mechanism": "media-stage",
+      "intent": "先腾出一张桌面",
+      "title": "先腾出一张桌面",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.63,
+        "act": 1.75,
+        "resolve": 2.87
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "桌面",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新桌面"
+          },
+          {
+            "id": "item-2",
+            "label": "设备",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新设备"
+          },
+          {
+            "id": "item-3",
+            "label": "参考资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新参考资料"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "先确定这一刻最重要的任务，再为它准备工具和资料。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "开始今天的创作",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          30,
+          40,
+          50
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": 16,
+          "direction": "right"
+        }
+      },
+      "enter": {
+        "type": "cut",
+        "duration": 0
+      }
+    },
+    {
+      "id": "shot-2",
+      "start": 3.28,
+      "end": 6.88,
+      "mechanism": "reference-search",
+      "intent": "找到你真正要做的事",
+      "title": "找到你真正要做的事",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.648,
+        "act": 1.8,
+        "resolve": 2.952
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "阅读",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新阅读"
+          },
+          {
+            "id": "item-2",
+            "label": "写作",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新写作"
+          },
+          {
+            "id": "item-3",
+            "label": "会议",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新会议"
+          },
+          {
+            "id": "item-4",
+            "label": "收纳",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新收纳"
+          },
+          {
+            "id": "item-5",
+            "label": "学习",
+            "color": "#e2ae94",
+            "shape": "cup",
+            "value": 60,
+            "replacementLabel": "新学习"
+          },
+          {
+            "id": "item-6",
+            "label": "休息",
+            "color": "#c0cfa1",
+            "shape": "person",
+            "value": 54,
+            "replacementLabel": "新休息"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "先确定这一刻最重要的任务，再为它准备工具和资料。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "开始今天的创作",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          30,
+          40,
+          50,
+          60,
+          70,
+          80
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": 16,
+          "direction": "right"
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.22,
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "shot-3",
+      "start": 6.66,
+      "end": 11.26,
+      "mechanism": "object-array-flip",
+      "intent": "按用途重新安排物件",
+      "title": "按用途重新安排物件",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.828,
+        "act": 2.3,
+        "resolve": 3.772
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "笔记本",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新笔记本"
+          },
+          {
+            "id": "item-2",
+            "label": "水杯",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新水杯"
+          },
+          {
+            "id": "item-3",
+            "label": "资料",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新资料"
+          },
+          {
+            "id": "item-4",
+            "label": "台灯",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新台灯"
+          },
+          {
+            "id": "item-5",
+            "label": "耳机",
+            "color": "#e2ae94",
+            "shape": "cup",
+            "value": 60,
+            "replacementLabel": "新耳机"
+          },
+          {
+            "id": "item-6",
+            "label": "键盘",
+            "color": "#c0cfa1",
+            "shape": "person",
+            "value": 54,
+            "replacementLabel": "新键盘"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "先确定这一刻最重要的任务，再为它准备工具和资料。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "开始今天的创作",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          30,
+          40,
+          50,
+          60,
+          70,
+          80
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": 16,
+          "direction": "right"
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.22,
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "shot-4",
+      "start": 11.04,
+      "end": 14.14,
+      "mechanism": "comparison-bars",
+      "intent": "把时间留给重点",
+      "title": "把时间留给重点",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.558,
+        "act": 1.55,
+        "resolve": 2.542
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "整理前",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新整理前"
+          },
+          {
+            "id": "item-2",
+            "label": "整理后",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新整理后"
+          },
+          {
+            "id": "item-3",
+            "label": "深度工作",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新深度工作"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "先确定这一刻最重要的任务，再为它准备工具和资料。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "开始今天的创作",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          25,
+          65,
+          85
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": 16,
+          "direction": "right"
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.22,
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "shot-5",
+      "start": 13.92,
+      "end": 17.32,
+      "mechanism": "sharing-network",
+      "intent": "成果分享给伙伴",
+      "title": "成果分享给伙伴",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.612,
+        "act": 1.7,
+        "resolve": 2.788
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "设计",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新设计"
+          },
+          {
+            "id": "item-2",
+            "label": "写作",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新写作"
+          },
+          {
+            "id": "item-3",
+            "label": "研究",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新研究"
+          },
+          {
+            "id": "item-4",
+            "label": "剪辑",
+            "color": "#adcbd0",
+            "shape": "chip",
+            "value": 90,
+            "replacementLabel": "新剪辑"
+          },
+          {
+            "id": "item-5",
+            "label": "教学",
+            "color": "#e2ae94",
+            "shape": "cup",
+            "value": 60,
+            "replacementLabel": "新教学"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "先确定这一刻最重要的任务，再为它准备工具和资料。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "开始今天的创作",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          30,
+          40,
+          50,
+          60,
+          70
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": 16,
+          "direction": "right"
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.22,
+        "x": 50,
+        "y": 50
+      }
+    },
+    {
+      "id": "shot-6",
+      "start": 17.1,
+      "end": 20.3,
+      "mechanism": "celebration-type",
+      "intent": "让每次开始轻一点",
+      "title": "让每次开始轻一点",
+      "presenter": "hidden",
+      "marks": {
+        "reveal": 0.576,
+        "act": 1.6,
+        "resolve": 2.624
+      },
+      "content": {
+        "items": [
+          {
+            "id": "item-1",
+            "label": "创造",
+            "color": "#b8c8b4",
+            "shape": "square",
+            "value": 36,
+            "replacementLabel": "新创造"
+          },
+          {
+            "id": "item-2",
+            "label": "专注",
+            "color": "#d1bedf",
+            "shape": "circle",
+            "value": 72,
+            "replacementLabel": "新专注"
+          },
+          {
+            "id": "item-3",
+            "label": "分享",
+            "color": "#e8c997",
+            "shape": "diamond",
+            "value": 48,
+            "replacementLabel": "新分享"
+          }
+        ],
+        "selectedId": "item-2",
+        "body": "先确定这一刻最重要的任务，再为它准备工具和资料。",
+        "code": "const input = await readMaterials();\nconst result = transform(input);\nawait render(result);",
+        "prompt": "根据本期材料，重新设计物件与镜头",
+        "url": "example.test/project",
+        "result": "开始今天的创作",
+        "kicker": "可编辑机制演示",
+        "metric": {
+          "value": 1280,
+          "unit": "次",
+          "label": "已处理",
+          "events": 32
+        },
+        "values": [
+          30,
+          40,
+          50
+        ],
+        "pack": {
+          "columns": 3,
+          "angle": 16,
+          "direction": "right"
+        }
+      },
+      "enter": {
+        "type": "circle",
+        "duration": 0.22,
+        "x": 50,
+        "y": 50
+      }
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-> 当前入口是 `new_project.py --input PLAN`。先读[原始完整参考的剪辑方向](../references/approved-editing-direction.md)；V3、净水器和现有UI组件均是局部实现，不是默认全片风格。安装成功不代表现有代码已覆盖原片全部表达。
+> 当前入口 `new_project.py --input PLAN` 自动识别v3完整效果库或v2自由图层。新版运行命令见[完整效果库](../references/full-effects-guide.md)，视觉依据仍为最初完整参考。
 
 # 安装与首次运行
 

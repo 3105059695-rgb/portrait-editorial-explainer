@@ -16,6 +16,16 @@ IGNORED = shutil.ignore_patterns("node_modules", "out", ".git", ".env", ".env.*"
 
 def create_episode(input_path: Path, destination: Path, media_dir: Path | None, *, draft: bool) -> int:
     """Use the storyboard compiler's preflight and copy checks without bypasses."""
+    try:
+        supplied=json.loads(input_path.read_text(encoding='utf-8-sig'))
+        if isinstance(supplied,dict) and supplied.get('version')==3:
+            from source_episode import build, Invalid
+            build(input_path,destination,media_dir or input_path.parent,production=not draft)
+            print(f'Created full effect-library episode: {destination}')
+            print('Next: npm ci; npm run dev; npm run render (opening); npm run render:full (when requested).')
+            return 0
+    except (OSError,ValueError,TypeError) as exc:
+        print(f'ERROR: {exc}',file=sys.stderr);return 1
     import compile_storyboard as compiler
 
     try:
@@ -54,7 +64,7 @@ def create_episode(input_path: Path, destination: Path, media_dir: Path | None, 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input", type=Path, help="This episode's UTF-8 v2 storyboard JSON; the default production entry.")
+    parser.add_argument("--input", type=Path, help="This episode's UTF-8 v3 effect-library JSON or v2 free-layer storyboard.")
     parser.add_argument("--media-dir", type=Path, help="Media root for relative asset paths (default: input JSON's directory).")
     parser.add_argument("--draft", action="store_true", help="Compile an explicitly marked draft using the storyboard compiler's draft checks.")
     parser.add_argument("--case", choices=("source-style", "adaptive", "presenter-v3", "approved-reference"), help="Explicit calibration/helper case only; never selected automatically.")

@@ -1,122 +1,93 @@
 # portrait-editorial-explainer
 
-用已有数字人、真人口播或配音，制作按内容切换素材、构图和表达方式的竖屏讲解。**本项目的风格依据是最初提供的完整参考视频；V3和净水器只是局部机制示例，不能替代原片的整体视觉语言。**
+把已有数字人、真人口播或配音剪成与最初完整参考同类的竖屏讲解：排版、真实素材、软件UI、信息图、空间镜头和漫画按内容变化。使用 Remotion；物件、数量、时长、镜头和顺序都能重组。
 
-用 Remotion 组合排版拼贴、真人与视频素材、真实屏幕和网站、概念图形、信息图表、多窗口、透视画廊及漫画段，根据本期声音选择表达。现有代码只覆盖其中一部分；提供的分镜与可运行示例不代表已经完整覆盖原片。
+**当前版本3.2：原片机制库。** 新增39个独立场景实现，连同已有票据计数组成40段全程机制演示；保留5条组合链与自由UI，共46个调用入口。素材阵列、透视图库、整页曲屏、多窗操作、手机、审核奖励和后段漫画都有具体组件代码。
 
-[下载当前修订](https://github.com/3105059695-rgb/portrait-editorial-explainer/archive/refs/heads/main.zip) · [Skill入口](SKILL.md) · [已确认剪辑方向](references/approved-editing-direction.md) · [V3局部机制与源码](references/approved-presenter-v3.md) · [制作流程](references/presenter-workflow.md)
+[下载3.2.0完整包](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/download/v3.2.0/portrait-editorial-explainer-v3.2.0.zip) · [Skill入口](SKILL.md) · [完整效果与参数](references/full-effects-guide.md) · [安装教程](docs/INSTALL.md) · [本轮实际验证](docs/FULL-EFFECTS-3.2.md)
 
-[历史 v3.1.0-rc.1 Skill 包](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/tag/v3.1.0-rc.1)保留已实现的物体开窗、连续入场、胶片红线和人物小窗。优先下载上方当前修订；这些局部能力不是原片全套风格已完成的证明。
+## 先看画面
 
-## 要继承的效果
+[播放40段机制总览](docs/full-effects-preview.mp4) · [画面索引](docs/full-effects-contact.jpg)
 
-- 用排版、真实素材、UI、概念图标和图表表达当前这句话，镜头随重点变化。
-- 使用筛选、输入替换、进度、粒子、对比、窗口接力等实际动作推动信息变化。
-- 需要时进入多窗口、透视画廊、手绘浏览器壳与真实内容，或完整漫画场景。
-- 按段落组织视觉变化，不让同一软件界面或同一种纸感插画统治全片，也不在每10秒硬塞所有风格。
-- 人物是否出现、占多大、用什么形状由内容和使用者要求决定；出现时保持声音与字幕的连续时钟。
+总览用于查看实现，包含公开来源摄影、照片动画、原创图形与原创动作音效。它没有私人配音或数字人。演示顺序按原片段落整理，**新视频不需要按这个顺序**。
 
-[职业主题局部机制片](docs/editorial-career-preview.mp4) 使用占位人物和示意访谈；[净水器局部机制片](docs/editorial-water-preview.mp4) 使用原创物件和四格过程胶片。两者都是静音草案，展示代码能力，不是整体风格基准。原委托者的实际数字人、声音、参考视频不随包公开。
+参考原片仍是风格基准。早期数字人V3、职业、净水器样段只代表局部用法，不能把整个Skill重新定义成它们的一种画法。
 
-历史版本仍可查看：[V3机制预览](docs/public-preview.mp4) · [V3校准画面](docs/preview.jpg)。
+## 下载、安装、直接调用
 
-这里的旧主题不是固定脚本。新视频不必出现公司、公文包、访谈或紫色漫画，也不必使用全部效果；保留设计做法，按新话意重组。
+需要Python3.10+、Node.js/npm；渲染使用Remotion浏览器；音视频处理需要FFmpeg/ffprobe。ChatCut只在真人原片粗剪分支需要。源码和锁文件随包提供，不需要作者的账号、文件路径或私人素材。
 
-日常调用直接按口播语义设计并用 Remotion 剪辑，完成必要成片检查后交付10–15秒开头。只有首次学习参考、使用者明确指出不像，或要求复刻对照时，才做针对性比较；不默认反复制作对照图、分析报告或另开审查流程。
-
-## 安装与调用
-
-需要完整仓库。安装器需要Python3.10+；渲染还需Node/npm、Remotion兼容浏览器、FFmpeg/ffprobe。ChatCut仅在真人原片粗剪分支需要，使用者提供本期工具与账号。
-
-```powershell
+```shell
 git clone https://github.com/3105059695-rgb/portrait-editorial-explainer.git
 cd portrait-editorial-explainer
-python -X utf8 scripts/install_skill.py --dry-run
-python -X utf8 scripts/install_skill.py
-python -X utf8 scripts/doctor.py --profile production
+python scripts/install_skill.py
 ```
 
-默认安装到 `$CODEX_HOME/skills` 或 `~/.codex/skills`，其他宿主可用 `--skills-dir`。已有非空同名目录不会被覆盖，升级先备份；无需作者电脑上的盘符、声音或账号。
+默认安装到 `$CODEX_HOME/skills` 或 `~/.codex/skills`，其他宿主用 `--skills-dir`。已有同名非空目录不会覆盖，升级前保留旧目录备份。
 
-调用示例：
+调用：
 
 ```text
 使用 $portrait-editorial-explainer。
-本期素材：<已有数字人/真人口播/最终配音文件>。
-按最初完整参考的视觉语言，结合本期内容组合真实素材、UI、图形、镜头和转场；不固定为V3或净水器的画法。
-真人原片先ChatCut粗剪；数字人跳过。
-先制作实际开头10–15秒，我看过整体风格后再继续全片。
+这是本期已有数字人/口播/最终配音：<素材路径>。
+沿用完整参考的剪辑语言，按这期内容重新选素材、物件、镜头和转场。
+真人原片先ChatCut粗剪，数字人跳过。先给我实际开头10–15秒。
 ```
 
-## 本期生成入口
+## 不准备素材也能跑完整示例
 
-Agent先根据真实口播写 [v2分镜](references/storyboard-contract.md)，所有素材使用相对路径。新入口不自动替你虚构一个主题：
-
-```powershell
-python -X utf8 scripts/new_project.py --input episode.json --media-dir media-root --out ../this-episode
-cd ../this-episode
+```shell
+python scripts/new_project.py --input examples/full-effects/catalog.json --media-dir examples/full-effects/media --out ../effect-catalog --draft
+cd ../effect-catalog
 npm ci
 npm run check
-npm run test:motion
-npm run render
-```
-
-**先把本期分镜范围设为第0秒开始的10–15秒完整话语。** 底座render命令会渲染传入分镜的整个时长；当前没有自动截取开头或用户认可门禁。用户认可后再扩展全片分镜，不能提交全片后声称只做样段。无最终声音时可用 `--draft` 做明确草案，不当成正式交付。
-
-生成工程附 `STYLE_TARGET.md`，记录相同视觉基准、反例和实现边界。缺少输入时命令返回提示，不创建资料工作台，也不自动复制固定10.74秒旧片。缺素材/非法路径沿用编译器校验，不能跳过。
-
-## 下载后先跑一个完整例子
-
-在仓库根目录执行，无需作者的素材目录或账号：
-
-```powershell
-python -X utf8 scripts/new_project.py --input examples/storyboards/editorial-water-opening.json --media-dir examples/media --out ../water-opening --draft
-cd ../water-opening
-npm ci
-npm run check
-npm run test:motion
-npm run render
-```
-
-输出为 `out/adaptive-portrait.mp4`。把输入换成 `examples/storyboards/editorial-career-opening.json`，并另设一个空输出目录，即可运行另一份校准案例。
-
-| 可运行分镜 | 展示内容 | 素材边界 |
-| --- | --- | --- |
-| [职业主题开头](examples/storyboards/editorial-career-opening.json) | 特写回拉、物件移动、表面开窗、曲屏资料、漫画胶片、竖向人物窗口 | 公开占位人物、原创道具与示意访谈，不含原委托者声音 |
-| [净水器安装开头](examples/storyboards/editorial-water-opening.json) | 接口与空间换焦点、滤芯进入机身、水窗展开资料、四格过程连线 | 原创自绘插画和安装示意，不是厂商说明书或实际产品操作指导 |
-
-这两份数据仅用于学习已有局部机制。默认入口不会自动选择其中一份；自己的主题需要自己的台词、素材、动作和时点，不能把示例画法升为全片默认风格。
-
-## 研究历史风格校准
-
-```powershell
-python -X utf8 scripts/new_project.py --case presenter-v3 --out ../v3-calibration
-cd ../v3-calibration
-npm ci
 npm run dev
+npm run render:full
 ```
 
-`presenter-v3` 仅供研究已认可镜头实现，不能仅替换人像或字幕当作完成新一期。`--case adaptive` 是基础动作草案；`--case source-style` 是辅助UI示例。所有示例都需显式选择，不是默认成片。
+输出 `out/full.mp4`。`npm run render`只导出开头，`npm run still -- 1.2 5`导出指定秒数静帧。正式输出可把JSON尺寸改成1080×1920再生成。
 
-## 能力与验证边界
+另有不同顺序、物件和数据的[桌面整理示例](examples/full-effects/desk-opening.json)：
 
-`scene.editorial` 让模型填写本期构图和动作数据，复用已写好的动画。结构以 [JSON Schema](references/storyboard.schema.json) 和 [分镜契约](references/storyboard-contract.md) 为准：
+```shell
+python scripts/new_project.py --input examples/full-effects/desk-opening.json --out ../desk-opening --draft
+```
 
-| 已实现的局部机制 | 每期可以改变什么 |
-| --- | --- |
-| 精确物体表面开窗 | `transitionAnchor` 指向任意本期图层内的矩形，跟随图层移动、旋转、缩放及镜头，再展开为下一场 |
-| 下一场连续进入 | 图层和镜头支持场景开始前的负时间关键帧；窗口内使用正在推进的同一时间轴，到切场边界不冻结或重播 |
-| 胶片与贯穿红线 | `filmstrip` 支持不同画面数量、尺寸、位置、转角、入场与连线时间；可用本期资料重新排列 |
-| 竖向人物小窗 | `presenterStyle` 配置圆角、倾斜和位置；人物从全屏连续缩小，声音与人物始终沿同一主时钟 |
+进入新工程后同样 `npm ci` 和 `npm run render`。这个示例用原生图形，不包含真实桌面素材。它用于展示重组能力，不作为其他题材的固定模板。
 
-同时提供直接编排的镜头关键帧、独立图层动作、前景纸片、整屏曲面资料和按语句变化的标题。无需为了换题材再复制一份固定剧情组件；现有配置确实表达不了的新动作，才扩展实现。
+## 新一期怎么做
 
-原片中的完整素材视频编排、筛选与输入状态、多种图表和粒子、透视画廊、多窗口及丰富漫画表达尚未由这套底座全面覆盖。UI本身是重要表达手段；问题是整段套用一种固定软件界面，或用一种插画替代所有内容。
+较轻模型只需读Skill入口、效果用途表和相应参数，选择机制并填写素材与语义时间点；运动代码不用重写。先按真实口播写 `brief.json` 或完整 `episode.json`：
 
-本轮已实际渲染原委托者提供的数字人开头 **10.74秒**，以及另一题材的净水器示范 **13.4秒**。私人样段仅交付给素材提供者；公开预览使用占位或自绘素材。参数校验、源码检查、可运行动效测试和成功渲染说明实现可执行，不能代替对本期字幕、音画和审美的检查，也不代表用户已认可这次新版效果。
+```shell
+python scripts/effect_library.py list
+python scripts/effect_library.py compose brief.json --media-dir media-root --out episode.json
+python scripts/new_project.py --input episode.json --media-dir media-root --out ../this-episode
+```
 
-较轻模型的工作应集中在读懂口播、选素材和填写经过校验的分镜，镜头、转场和材质由成熟组件执行。仓库没有跨模型盲测结果，不能保证每个模型独立达到同样审美。先交真实开头，由实际视觉反馈校准；样段不合格时修复画面，不以组件数或测试数替代结果。
+真实音轨必须用实测字幕和动作落点。未有声音的草案加 `--draft`，不能冒充正式成片。新效果库采用v3契约；旧v2自由图层分镜仍兼容，但v2的render输出整个传入分镜，使用时只传要交付的开头。
+
+## 效果范围
+
+| 表达方式 | 具体实现 |
+|---|---|
+| 排版与材料 | 快切推进、照片/视频窗口、杂志海报连线、文稿逐行、大字叠层、结果纸张 |
+| 软件与网页 | 曲屏代码编辑器、检索放大镜、代码进度、输入替换、列表到详情、解锁、复制、发送、筛选盖章 |
+| 空间和图表 | 阵列飞入翻面聚拢、透视图库穿行、整页曲面、手机着色和附件、对比柱、成本柱、额度环、票据入箱计数 |
+| 漫画场景 | 徽章胶片、上传云、六面立方体、摆动麦克风、机器人仪表、厚金币图表、厚问号、入桶遮挡、玻璃罩、关系交换、人群与字粒结尾 |
+| 自由组合 | 独立镜头关键帧、真实媒体、自由UI、原创音效；v2另提供任意图层和跟随物件的精确开窗 |
+
+每个机制支持的具体参数见[完整指南](references/full-effects-guide.md)、[空间/网页角色](references/spatial-web-pack-usage.md)、[漫画角色](references/illustrated-pack-usage.md)。先选表达方式，再选组件；不要为了使用某个特效篡改本期内容。
+
+## 如实说明边界
+
+复现的是可辨识的外层剪辑机制。原作者内层实拍、复杂3D作品、私有声音和素材不会随包公开；本期通过图片/视频接口接入。阵列/逐项翻面为2.5D，方块为CSS3D，玻璃罩为矢量分层高光，不是原始3D工程恢复。
+
+技术验证、正常渲染与用户审美认可不同。当前没有跨模型盲测，不能承诺所有模型独立达到相同效果；通过直接复用代码，减少模型临场写动效的负担。公开默认图形是演示材料，正式片仍需合适的摄影、产品、页面和人像。
+
+日常直接剪辑并做必要成片检查，不强制对比报告、独立审查或审批JSON。既有口播保留声音主线，先交本期10–15秒；需要全片时直接 `npm run render:full`。
 
 ## 来源与许可
 
-独立编写代码和原创素材采用MIT。第三方依赖、字体与历史图片见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。参考原片、私人声音、人物和凭证不公开。Skill不另外授权收费服务、生成声音或发布。
+独立代码、原创图形和程序生成音效采用MIT。NASA摄影及其照片动画有独立署名与使用依据，见[素材来源](references/full-effects-media.md)，不重新声明为MIT原创。[第三方说明](THIRD_PARTY_NOTICES.md)列出依赖、字体和历史素材。私人原片、声音、人物、凭证和签名地址不公开。

@@ -1,13 +1,18 @@
 import {UiStage} from './effects/UiStage';
 import React from 'react';
-import {AbsoluteFill, Audio, OffthreadVideo, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Audio, OffthreadVideo, Sequence, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {PosterRoute, SelectionBuild, UiHandoff} from './effects/WhiteEffects';
 import {TokenIntake, CreatorStrip, UploadProgress} from './effects/ComicEffects';
 import {smooth} from './motion';
-import type {Episode, Scene, EffectProps} from './types';
+import type {Episode, EffectProps} from './types';
 import './fonts';
+import {editorialPack} from './effects/EditorialPack';
+import {spatialPack} from './effects/SpatialPack';
+import {webPack} from './effects/WebPack';
+import {illustratedPack} from './effects/IllustratedPack';
 
-const registry: Record<Scene['mechanism'], React.FC<EffectProps>> = {
+export const registry: Record<string, React.FC<EffectProps>> = {
+  ...editorialPack, ...spatialPack, ...webPack, ...illustratedPack,
   'ui-stage': UiStage, 'poster-route': PosterRoute, 'selection-build': SelectionBuild, 'ui-handoff': UiHandoff,
   'token-intake': TokenIntake, 'creator-strip': CreatorStrip, 'upload-progress': UploadProgress,
 };
@@ -41,9 +46,10 @@ export const Film: React.FC<{episode: Episode}> = ({episode}) => {
       }}/>}
     {(episode.media.voice || episode.media.presenter) && <Audio src={staticFile((episode.media.voice || episode.media.presenter)!)}/>}
     {music && <Audio src={staticFile(music)} loop volume={f=>0.12*smooth(f/fps,0,0.4)*(1-smooth(f/fps,episode.duration-0.6,episode.duration))}/>}
+    {episode.scenes.flatMap(scene=>(scene.sounds??[]).map((sound,i)=><Sequence key={`${scene.id}-sound-${i}`} from={Math.round((scene.start+sound.at)*fps)} durationInFrames={Math.ceil(.65*fps)} layout="none"><Audio src={staticFile(`sfx/${sound.name}.wav`)} volume={sound.volume??.32}/></Sequence>))}
     {caption && <div style={{position:'absolute',bottom:'5.7%',left:'9%',width:'82%',display:'flex',justifyContent:'center'}}>
       <div style={{fontFamily:'Noto Sans SC',fontSize:episode.width*0.031,fontWeight:600,lineHeight:1.5,textAlign:'center',color:'#28282a',background:'#fffff0ed',borderRadius:3,padding:'3px 10px',boxShadow:'0 2px 5px #2221',whiteSpace:'pre-wrap'}}>{caption.text}</div>
     </div>}
-    {episode.source.type==='demo' && <div style={{position:'absolute',top:'1.4%',right:'3%',fontFamily:'Noto Sans SC',fontSize:episode.width*0.016,color:'#65655d'}}>机制校准 · 无声演示</div>}
+    {episode.source.type==='demo' && <div style={{position:'absolute',top:'1.4%',right:'3%',fontFamily:'Noto Sans SC',fontSize:episode.width*0.016,color:'#65655d'}}>可编辑机制演示</div>}
   </AbsoluteFill>;
 };
