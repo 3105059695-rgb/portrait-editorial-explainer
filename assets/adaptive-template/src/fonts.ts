@@ -1,0 +1,11 @@
+import '@fontsource/noto-sans-sc/400.css';
+import '@fontsource/noto-sans-sc/600.css';
+import '@fontsource/noto-sans-sc/700.css';
+import '@fontsource/noto-sans-sc/800.css';
+import '@fontsource/noto-sans-sc/900.css';
+import '@fontsource/noto-serif-sc/400.css';
+import '@fontsource/noto-serif-sc/700.css';
+import '@fontsource/tinos/400.css';
+import '@fontsource/tinos/400-italic.css';
+import '@fontsource/tinos/700.css';
+import '@fontsource/tinos/700-italic.css';

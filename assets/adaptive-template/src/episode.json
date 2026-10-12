@@ -1,0 +1,252 @@
+{
+  "version": 2,
+  "title": "客户提问整理：从混杂到可核对",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 18.6,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {
+    "presenter": null,
+    "voice": null,
+    "music": null
+  },
+  "assets": [],
+  "objects": [
+    {
+      "id": "price",
+      "kind": "message",
+      "label": "价格问题",
+      "detail": "保留原话"
+    },
+    {
+      "id": "delivery",
+      "kind": "message",
+      "label": "交付问题",
+      "detail": "检查时间"
+    },
+    {
+      "id": "box",
+      "kind": "folder",
+      "label": "收件箱",
+      "detail": "所有原始问题"
+    },
+    {
+      "id": "batch",
+      "kind": "document",
+      "label": "问题清单"
+    },
+    {
+      "id": "ui",
+      "kind": "device",
+      "label": "整理界面",
+      "detail": "示意"
+    },
+    {
+      "id": "result",
+      "kind": "chart",
+      "label": "已核对条目",
+      "detail": "演示数据"
+    }
+  ],
+  "captions": [
+    {
+      "id": "b1",
+      "start": 0,
+      "end": 2.7,
+      "text": "客户问题先放进同一个收件箱。"
+    },
+    {
+      "id": "b2",
+      "start": 2.7,
+      "end": 5.2,
+      "text": "价格和交付分开，别漏掉原话。"
+    },
+    {
+      "id": "b3",
+      "start": 5.2,
+      "end": 7.3,
+      "text": "把这批问题交给整理界面。"
+    },
+    {
+      "id": "b4",
+      "start": 7.3,
+      "end": 9.4,
+      "text": "处理之后，回到原问题核对。"
+    },
+    {
+      "id": "b5",
+      "start": 9.4,
+      "end": 12,
+      "text": "先检查分类，再检查有没有漏项。"
+    },
+    {
+      "id": "b6",
+      "start": 12,
+      "end": 14.2,
+      "text": "确认后的条目才进入结果。"
+    },
+    {
+      "id": "b7",
+      "start": 14.2,
+      "end": 16.5,
+      "text": "这个演示里，八条问题先确认三条。"
+    },
+    {
+      "id": "b8",
+      "start": 16.5,
+      "end": 18.6,
+      "text": "剩下的继续处理，不要假装全完成。"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "b-group",
+      "start": 0,
+      "end": 5.2,
+      "cueIds": [
+        "b1",
+        "b2"
+      ],
+      "intent": "同一批问题进入容器并保留身份",
+      "mechanism": "group-sort",
+      "title": "先收集，再整理",
+      "objectIds": [
+        "price",
+        "delivery",
+        "box"
+      ],
+      "beats": [
+        {
+          "at": 1.2,
+          "cueId": "b1",
+          "action": "group",
+          "targetId": "price",
+          "withId": "box"
+        },
+        {
+          "at": 3.7,
+          "cueId": "b2",
+          "action": "group",
+          "targetId": "delivery",
+          "withId": "box"
+        }
+      ],
+      "transition": "match",
+      "presenter": "hidden"
+    },
+    {
+      "id": "b-send",
+      "start": 5.2,
+      "end": 9.4,
+      "cueIds": [
+        "b3",
+        "b4"
+      ],
+      "intent": "问题清单送入工具后再核对",
+      "mechanism": "route-transfer",
+      "title": "同一批问题进入工具",
+      "objectIds": [
+        "batch",
+        "box",
+        "ui"
+      ],
+      "beats": [
+        {
+          "at": 5.65,
+          "cueId": "b3",
+          "action": "focus",
+          "targetId": "box"
+        },
+        {
+          "at": 6.65,
+          "cueId": "b3",
+          "action": "transfer",
+          "targetId": "batch",
+          "withId": "ui"
+        },
+        {
+          "at": 8.1,
+          "cueId": "b4",
+          "action": "result",
+          "targetId": "ui"
+        }
+      ],
+      "transition": "window",
+      "presenter": "hidden"
+    },
+    {
+      "id": "b-check",
+      "start": 9.4,
+      "end": 14.2,
+      "cueIds": [
+        "b5",
+        "b6"
+      ],
+      "intent": "可读界面先选择再显示处理结果",
+      "mechanism": "evidence-zoom",
+      "title": "检查分类和漏项",
+      "objectIds": [
+        "price",
+        "delivery",
+        "batch"
+      ],
+      "beats": [
+        {
+          "at": 9.9,
+          "cueId": "b5",
+          "action": "select",
+          "targetId": "price"
+        },
+        {
+          "at": 11.2,
+          "cueId": "b5",
+          "action": "select",
+          "targetId": "delivery"
+        },
+        {
+          "at": 12.85,
+          "cueId": "b6",
+          "action": "result",
+          "targetId": "batch"
+        }
+      ],
+      "transition": "match",
+      "presenter": "hidden"
+    },
+    {
+      "id": "b-count",
+      "start": 14.2,
+      "end": 18.6,
+      "cueIds": [
+        "b7",
+        "b8"
+      ],
+      "intent": "明确演示中部分完成，不夸大为全部",
+      "mechanism": "metric-build",
+      "title": "已核对的只是其中一部分",
+      "objectIds": [
+        "result"
+      ],
+      "beats": [
+        {
+          "at": 15.2,
+          "cueId": "b7",
+          "action": "count",
+          "targetId": "result"
+        }
+      ],
+      "transition": "circle",
+      "presenter": "hidden",
+      "metric": {
+        "value": 3,
+        "total": 8,
+        "unit": "条"
+      }
+    }
+  ]
+}

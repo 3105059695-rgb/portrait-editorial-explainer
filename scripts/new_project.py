@@ -15,10 +15,10 @@ IGNORED = shutil.ignore_patterns("node_modules", "out", ".git", ".env", ".env.*"
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--case", default="presenter-v3", choices=("presenter-v3", "approved-reference"))
+    parser.add_argument("--case", default="adaptive", choices=("adaptive", "presenter-v3", "approved-reference"))
     parser.add_argument("--out", required=True, type=Path, help="Destination must not exist or must be empty.")
     args = parser.parse_args()
-    case_folder = "presenter-v3-template" if args.case == "presenter-v3" else "approved-remotion-case"
+    case_folder = {"adaptive": "adaptive-template", "presenter-v3": "presenter-v3-template", "approved-reference": "approved-remotion-case"}[args.case]
     source = SKILL_ROOT / "assets" / case_folder
     destination = args.out.expanduser().resolve()
     if not (source / "package.json").is_file():
@@ -41,7 +41,12 @@ def main() -> int:
         print(f"ERROR: Copy failed; partial files may remain at {destination}: {exc}", file=sys.stderr)
         return 2
     print(f"Created editable reference project: {destination}")
-    if args.case == "presenter-v3":
+    if args.case == "adaptive":
+        print("Adaptive portrait engine: edit src/episode.json or compile a new storyboard JSON.")
+        print("Scene order, duration, objects, assets and action timing come from the storyboard.")
+        print("The bundled episode is a silent draft demonstration, not a finished new-topic video.")
+        print("For your plan, use scripts/compile_storyboard.py --input PLAN --out NEW_PROJECT.")
+    elif args.case == "presenter-v3":
         print("V3 portrait motion sample: 1080 x 1920, 50 fps, 10.74 seconds.")
         print("Presenter and interview use placeholders; audio is intentionally empty.")
         print("Configure src/mediaConfig.ts and rebuild captions, timing and shots for the new narration.")
@@ -49,7 +54,7 @@ def main() -> int:
     else:
         print("This is a silent historical style case at its original 816 x 1080 ratio.")
         print("Its old topic and timings are examples, not a new-topic script or a 9:16 layout.")
-    print("Rebuild the semantic shot plan for a new topic; re-layout objects for another aspect ratio.")
+    print("Choose objects and actions from the new narration, not the historical career topic.")
     print("Dependencies were not installed. Next: cd to this folder; npm ci; npm run dev.")
     return 0
 

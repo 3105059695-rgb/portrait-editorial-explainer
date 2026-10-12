@@ -1,0 +1,302 @@
+{
+  "version": 2,
+  "title": "器物记录：每一步都有依据",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 22.4,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {
+    "presenter": null,
+    "voice": null,
+    "music": null
+  },
+  "assets": [
+    {
+      "id": "artifact-img",
+      "path": "media/ceramic.svg",
+      "source": "本仓库原创教学示意SVG，非真实藏品",
+      "role": "illustration"
+    },
+    {
+      "id": "brush-img",
+      "path": "media/brush.svg",
+      "source": "本仓库原创教学示意SVG，非真实藏品",
+      "role": "illustration"
+    }
+  ],
+  "objects": [
+    {
+      "id": "artifact",
+      "kind": "image",
+      "label": "器物",
+      "detail": "观察当前状态",
+      "assetId": "artifact-img"
+    },
+    {
+      "id": "archive",
+      "kind": "document",
+      "label": "观察档案",
+      "detail": "原始状态与位置"
+    },
+    {
+      "id": "spot-a",
+      "kind": "symbol",
+      "label": "观察位置一",
+      "detail": "不代表修复前"
+    },
+    {
+      "id": "spot-b",
+      "kind": "symbol",
+      "label": "观察位置二",
+      "detail": "不代表修复后"
+    },
+    {
+      "id": "brush",
+      "kind": "image",
+      "label": "工具示意",
+      "assetId": "brush-img"
+    },
+    {
+      "id": "tray",
+      "kind": "folder",
+      "label": "准备区"
+    }
+  ],
+  "captions": [
+    {
+      "id": "c1",
+      "start": 0,
+      "end": 3.2,
+      "text": "看到一件器物，先记录它现在的样子。"
+    },
+    {
+      "id": "c2",
+      "start": 3.2,
+      "end": 6.8,
+      "text": "把观察写进档案，保留可追溯的记录。"
+    },
+    {
+      "id": "c3",
+      "start": 6.8,
+      "end": 8.8,
+      "text": "比较的是两个观察位置。"
+    },
+    {
+      "id": "c4",
+      "start": 8.8,
+      "end": 10.8,
+      "text": "不要把示意画面当成修复结果。"
+    },
+    {
+      "id": "c5",
+      "start": 10.8,
+      "end": 12.8,
+      "text": "工具从准备区来到观察位置。"
+    },
+    {
+      "id": "c6",
+      "start": 12.8,
+      "end": 14.6,
+      "text": "具体处理仍要由专业人员判断。"
+    },
+    {
+      "id": "c7",
+      "start": 14.6,
+      "end": 16.6,
+      "text": "观察和记录互相对应。"
+    },
+    {
+      "id": "c8",
+      "start": 16.6,
+      "end": 18.6,
+      "text": "每次变化，都能回到原始档案。"
+    },
+    {
+      "id": "c9",
+      "start": 18.6,
+      "end": 22.4,
+      "text": "先看清，再记录。这是本段教学示意。"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "c-view",
+      "start": 0,
+      "end": 3.2,
+      "cueIds": [
+        "c1"
+      ],
+      "intent": "观察器物当前状态",
+      "mechanism": "object-focus",
+      "title": "先记录它现在的样子",
+      "objectIds": [
+        "artifact"
+      ],
+      "beats": [
+        {
+          "at": 0.9,
+          "cueId": "c1",
+          "action": "focus",
+          "targetId": "artifact"
+        }
+      ],
+      "transition": "match",
+      "presenter": "hidden"
+    },
+    {
+      "id": "c-record",
+      "start": 3.2,
+      "end": 6.8,
+      "cueIds": [
+        "c2"
+      ],
+      "intent": "档案中选择观察记录",
+      "mechanism": "evidence-zoom",
+      "title": "把观察写入档案",
+      "objectIds": [
+        "archive"
+      ],
+      "beats": [
+        {
+          "at": 4.25,
+          "cueId": "c2",
+          "action": "select",
+          "targetId": "archive"
+        },
+        {
+          "at": 5.7,
+          "cueId": "c2",
+          "action": "result",
+          "targetId": "archive"
+        }
+      ],
+      "transition": "window",
+      "presenter": "hidden"
+    },
+    {
+      "id": "c-compare",
+      "start": 6.8,
+      "end": 10.8,
+      "cueIds": [
+        "c3",
+        "c4"
+      ],
+      "intent": "区别两个观察位置不暗示修复效果",
+      "mechanism": "compare-pan",
+      "title": "比较观察位置",
+      "objectIds": [
+        "spot-a",
+        "spot-b"
+      ],
+      "beats": [
+        {
+          "at": 7.35,
+          "cueId": "c3",
+          "action": "focus",
+          "targetId": "spot-a"
+        },
+        {
+          "at": 9.3,
+          "cueId": "c4",
+          "action": "focus",
+          "targetId": "spot-b"
+        }
+      ],
+      "transition": "match",
+      "presenter": "hidden"
+    },
+    {
+      "id": "c-route",
+      "start": 10.8,
+      "end": 14.6,
+      "cueIds": [
+        "c5",
+        "c6"
+      ],
+      "intent": "工具位置变化示意专业流程",
+      "mechanism": "route-transfer",
+      "title": "工具与位置示意",
+      "objectIds": [
+        "brush",
+        "tray",
+        "artifact"
+      ],
+      "beats": [
+        {
+          "at": 11.85,
+          "cueId": "c5",
+          "action": "transfer",
+          "targetId": "brush",
+          "withId": "artifact"
+        },
+        {
+          "at": 13.4,
+          "cueId": "c6",
+          "action": "result",
+          "targetId": "artifact"
+        }
+      ],
+      "transition": "circle",
+      "presenter": "hidden"
+    },
+    {
+      "id": "c-thread",
+      "start": 14.6,
+      "end": 18.6,
+      "cueIds": [
+        "c7",
+        "c8"
+      ],
+      "intent": "同一器物与其记录建立可追溯关系",
+      "mechanism": "question-thread",
+      "title": "观察与档案相对应",
+      "objectIds": [
+        "artifact",
+        "archive"
+      ],
+      "beats": [
+        {
+          "at": 15.35,
+          "cueId": "c7",
+          "action": "connect",
+          "targetId": "artifact",
+          "withId": "archive"
+        },
+        {
+          "at": 17.25,
+          "cueId": "c8",
+          "action": "focus",
+          "targetId": "archive"
+        }
+      ],
+      "transition": "match",
+      "presenter": "hidden"
+    },
+    {
+      "id": "c-close",
+      "start": 18.6,
+      "end": 22.4,
+      "cueIds": [
+        "c9"
+      ],
+      "intent": "回到主讲人收束而非继续叠加效果",
+      "mechanism": "presenter",
+      "title": "先看清，再记录",
+      "objectIds": [],
+      "beats": [],
+      "transition": "window",
+      "presenter": "full"
+    }
+  ],
+  "theme": {
+    "paper": "#f4eee1",
+    "ink": "#332b2f",
+    "accent": "#b35d3e",
+    "comic": "#e4c4ad"
+  }
+}

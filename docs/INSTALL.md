@@ -9,7 +9,7 @@
 | 工具或条件 | 何时需要 | 说明 |
 | --- | --- | --- |
 | 能读取 Skill 与本地文件的 Agent | 使用本 Skill | 支持程度取决于宿主；不是所有聊天界面都能访问本地工程 |
-| Python 3.10+ | 安装器、诊断、复制、时间轴检查 | Python 脚本使用标准库，无需 `pip install` |
+| Python 3.10+ | 安装器、诊断、分镜校验和编译 | Python 脚本使用标准库，无需 `pip install` |
 | Git | 用 `git clone` 下载 | 使用 ZIP 时可不安装 Git |
 | Node.js 与 npm | 安装与运行 Remotion | 建议 Node.js 22+；使用锁定的 `package-lock.json` 配合 `npm ci` |
 | FFmpeg 与 ffprobe | 音轨提取、成片探测、完整解码 | 需要命令能在当前终端找到 |
@@ -17,7 +17,7 @@
 | ChatCut 连接与授权 | 真人原始口播的默认粗剪 | 要在 Agent 端单独检查；安装 Skill 不会安装或登录 ChatCut |
 | 足够的本地空间 | npm 依赖、素材、输出 | 容量取决于视频长度、素材和缓存，仓库下载大小不代表制作所需空间 |
 
-公开验证环境的具体版本与结果见 [VALIDATION.md](VALIDATION.md)。工具在某台机器通过检查，不等于所有操作系统和所有版本已实际测试。
+当前通用引擎的实际验证见 [VALIDATION-V2.md](VALIDATION-V2.md)，历史 V1 发布记录见 [VALIDATION.md](VALIDATION.md)。工具在某台机器通过检查，不等于所有操作系统和所有版本已实际测试；本页提供 Windows 与 macOS／Linux 命令，不将命令说明当作跨平台测试结果。
 
 不要把账号密码、API Key 或私人授权配置写进 Skill 文件。这里的安装与样例运行不要求提交任何此类信息。
 
@@ -116,11 +116,11 @@ python3 scripts/install_skill.py --skills-dir "$HOME/my-agent/skills"
 
 ```text
 请使用 $portrait-editorial-explainer。
-先读取 SKILL.md，并告诉我：真人原始素材、数字人素材、已经粗剪素材分别走什么流程。
+先读取 SKILL.md 和 references/director-playbook.md，并告诉我：真人原始素材、数字人素材、已经粗剪素材分别走什么流程，以及如何把本期口播编成 episode.json。
 这一步先不创建视频或调用外部生成服务。
 ```
 
-正确的流程应包含：真人先 ChatCut 粗剪；数字人默认跳过；已经粗剪的素材先检查并沿用；动效以最终口播时间轴为准。
+正确的流程应包含：真人先 ChatCut 粗剪；数字人默认跳过；已经粗剪的素材先检查并沿用；模型根据本期内容选择物体、机制和动作，生成 `episode.json`，再校验、编译、渲染。动效以最终口播时间轴为准，不能默认复制旧求职案例。
 
 如果自动发现失败，改用明确路径：
 
@@ -153,25 +153,61 @@ python -X utf8 scripts/doctor.py --profile production --json
 
 ChatCut 是否可用应由当前 Agent 通过其连接状态与实际工具能力检查。不要把终端诊断成功当作 ChatCut 登录成功。
 
-## 创建独立的 V3 工程
+## 第一次运行：编译一个跨主题草案
 
-仍在仓库根目录运行：
+仍在仓库根目录运行。先用随包的客户问题整理分镜验证工具链；它是明确标注的静音示意，不需要账号、配音或私人媒体：
 
 ```powershell
-python -X utf8 scripts/new_project.py --case presenter-v3 --out "../my-first-portrait"
+python -X utf8 scripts/validate_storyboard.py examples/storyboards/customer-questions.json --mode draft --json
+python -X utf8 scripts/compile_storyboard.py --input examples/storyboards/customer-questions.json --out "../my-first-portrait" --draft
 cd "../my-first-portrait"
 npm ci
 npm run check
 npm run dev
 ```
 
-macOS／Linux 将第一条的 `python -X utf8` 换成 `python3`，其他命令相同。
+macOS／Linux 将前两条的 `python -X utf8` 换成 `python3`，其他命令相同。校验无结构错误时仍会提示草案、缺少定稿声音等警告，这是示例的真实边界；不要修改状态来消除这些警告。
 
-创建目录必须在 Skill／仓库目录及其祖先目录之外，且不存在或为空；推荐使用仓库的同级新目录。这样更新 Skill 不会覆盖正在编辑的视频工程。复制时会忽略依赖、输出、版本控制与环境文件，不会沿用另一台机器的已安装包。
+新工程目录必须不存在或为空，不能位于 Skill 目录内，也不能是 Skill 或输入资料的祖先目录；推荐使用仓库的同级新目录。编译器复制通用引擎、分镜和明确引用的本地媒体，生成 `src/episode.json` 与记录来源哈希的 `BUILD_REPORT.json`，不会安装依赖、调用模型或开始渲染。这样更新 Skill 不会覆盖正在编辑的视频工程。
 
 `npm ci` 会根据工程内锁文件安装依赖；它不会生成新的台词、人物或声音。首次联网安装需要耐心等待，查看终端的真实结果。`npm run check` 是 TypeScript 检查，不是画面或声音验收。
 
-预览服务的实际地址由终端输出给出。成功打开后，应该看到占位人物、历史案例画面和字幕；没有声音是预期行为。
+预览服务的实际地址由终端输出给出。选择 `AdaptivePortrait` Composition。画面由这份分镜的对象、动作与镜头顺序生成；字幕与草案标记来自数据。示例没有定稿声音，静音是预期行为。浏览器预览应由使用者实际打开检查，本教程不预先宣称该环境已成功。
+
+若只想复制空白工作起点，使用 `python scripts/new_project.py --out "../my-adaptive-project"`；默认 `--case adaptive`，内置 `src/episode.json` 仍只是可替换的示意。正式工作优先走上面的编译器，避免漏复制新素材。
+
+## 用自己的内容创建工程
+
+让 Agent 读取 [导演手册](../references/director-playbook.md) 与 [v2 分镜契约](../references/storyboard-contract.md)，根据本期最终口播生成 `episode.json`。主题、对象、场景数量与顺序、配色、时长和动作时点由这份 JSON 决定；不要求保持示例结构，也不需要轻量模型先改 TSX。
+
+把本期输入放在独立工作目录，例如：
+
+```text
+episode-work/
+├── episode.json
+└── media-root/
+    └── media/
+        ├── presenter-final.mp4
+        ├── voice-final.wav
+        └── evidence.png
+```
+
+JSON 路径相对于媒体根目录，不加 `public/`，例如 `media.voice` 为 `media/voice-final.wav`。静态资料通过 `assets` 和对象的 `assetId` 引用；当前引擎支持 SVG、PNG、JPEG、WebP。一般视频不能作为静态图像素材直接接入，人物视频使用 `media.presenter`。
+
+从 Skill／仓库根目录执行，以下路径按自己的目录调整：
+
+```powershell
+python -X utf8 scripts/validate_storyboard.py "../episode-work/episode.json" --mode production --json
+python -X utf8 scripts/compile_storyboard.py --input "../episode-work/episode.json" --media-dir "../episode-work/media-root" --out "../my-final-portrait"
+cd "../my-final-portrait"
+npm ci
+npm run check
+npm run render
+```
+
+macOS／Linux 使用 `python3`。校验器默认生产模式，编译器未传 `--draft` 也默认生产模式：必须有实测 `timing: "measured"`、定稿声音及符合输入类型的粗剪状态；真人／数字人还必须有对应人物文件。具体文件存在与安全路径在编译阶段检查。只有稿件或未完成素材时，用 `--mode draft` 与编译的 `--draft`，输出会显示草案标记；不能捏造实测时间、粗剪完成状态或来源来通过校验。
+
+`BUILD_REPORT.json` 只记录结构、声明与文件字节检查，不证明实际声音对齐、ChatCut 已剪完、素材权利或画面好看。最终仍按 [工作流](WORKFLOW.md) 检查真实结果。
 
 ## 导出视频和静帧
 
@@ -181,7 +217,7 @@ macOS／Linux 将第一条的 `python -X utf8` 换成 `python3`，其他命令�
 npm run render
 ```
 
-默认输出 `out/presenter-v3-example.mp4`。渲染脚本使用 `PresenterEditorialV3` Composition，读取当前工程的帧率、尺寸与总帧数。
+默认输出 `out/adaptive-portrait.mp4`。渲染脚本使用 `AdaptivePortrait` Composition，由 `src/episode.json` 的 `duration`、`fps`、尺寸与场景数据决定成片，不再固定为 537 帧或 10.74 秒。
 
 选择数个秒数导出静帧：
 
@@ -189,11 +225,15 @@ npm run render
 npm run render -- 0.6 2.8 5.6 7.6 9.8
 ```
 
-对应输出 `out/frame-0.60.png` 等文件。时间参数必须落在 Composition 内；10.74 秒默认样例的精确结束点不是一个可采样帧。
+对应输出 `out/frame-0.60.png` 等文件。参数单位是秒，必须满足 `0 <= 时间 < episode.duration`；短片应相应减少或修改采样时点。不要把帧号作为秒数传入。
 
 首次渲染时，Remotion 可能需要准备兼容浏览器。若你已安装兼容浏览器，`render.cjs` 也支持进程环境变量 `REMOTION_BROWSER_EXECUTABLE`。该变量只供此自定义脚本读取，不要假设所有其他命令都自动使用它。示例见[浏览器问题](TROUBLESHOOTING.md#浏览器下载失败或找不到浏览器)。
 
-样例跑通后，按[工作流](WORKFLOW.md)制作新一期。仅换 `mediaConfig.ts` 不会自动重排镜头、更新字幕或延长工程。
+修改分镜后重新校验，并编译到新目录保留前一版；若直接编辑已生成的 `src/episode.json`，也须运行校验与实际渲染。总时长变化不会替你重测字幕，必须同步更新最后一镜、字幕与动作落点。
+
+## 历史案例只用于风格研究
+
+`python scripts/new_project.py --case presenter-v3 --out "../v3-style-study"` 显式复制固定 10.74 秒的 V3 历史机制样例；`--case approved-reference` 复制旧 816×1080 数学案例。这两个选项保留以便阅读过去的相机、材质和转场代码，均不是新主题默认入口，脚本与输出名也不同。仅替换它们的媒体路径不会自动变成新一期。具体边界见 [V3 风格基准](../references/approved-presenter-v3.md)。
 
 ## 更新已有安装
 

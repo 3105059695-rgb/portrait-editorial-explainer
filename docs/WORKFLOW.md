@@ -2,7 +2,7 @@
 
 这一页说明正式制作时每一步的输入、动作与交接结果。它不要求你把工作拆成固定等长的镜头，也不把历史样例视为新一期已经完成的剪辑。
 
-返回 [README](../README.md) · [安装教程](INSTALL.md) · [时间轴完整规范](../references/timing-format.md)
+返回 [README](../README.md) · [安装教程](INSTALL.md) · [V2 分镜规范](../references/storyboard-contract.md)
 
 ## 1. 先认清本期输入
 
@@ -99,109 +99,67 @@
 
 长口播应有紧松变化，不能把十秒样例的密度连续重复几分钟。
 
-## 5. 新建工程并接入本期媒体
+## 5. 模型写本期分镜，通用引擎执行动作
 
-从下载仓库根目录创建本期工程：
+先读[导演手册](../references/director-playbook.md)和[V2 分镜契约](../references/storyboard-contract.md)。V2 的默认工程直接读取 `src/episode.json`；字幕、场景、对象和动作使用同一份数据。改变主题不要求模型重新实现整套 TSX。
 
-```powershell
-python -X utf8 scripts/new_project.py --case presenter-v3 --out "../episode-001"
-cd "../episode-001"
-npm ci
-```
+把一句话拆成主语、动词、对象关系和需要展示的证据，再选择机制。例如“把散落的问题按主题整理”对应同一组 message 对象进入 folder；“把整理结果交给负责人”对应 document 沿 route-transfer 路径移动。不能仅因句子换了就切一张新标题卡。
 
-将最终可用的媒体放入该工程的 `public/media/`。使用易识别的文件名，保留素材来源记录。建议结构如下，文件名可以自行调整：
+推荐设计顺序：
+
+1. 写本期 `captions`，每句有稳定 ID、实测起止点。
+2. 建立 `objects`，同一实体反复出现时复用 ID；`assetId` 可绑定本期原创插画或真实图片。
+3. 按语义分段写 `scenes`，从零连续覆盖 `duration`，镜头数量不固定。
+4. 每镜填写 `intent`、`mechanism`、`objectIds` 和 `cueIds`，说明画面要让观众理解什么。
+5. `beats` 使用全片绝对秒数、真实 cue 引用和动作目标。人物出场、语义强调、转场与读取停顿随本期安排。
+6. 填入 `source`、`media`、`timing` 与配色。没有最终声音的输入必须标为 estimated/demo，不能写 measured。
+
+详尽可运行输入见[客户问题](../examples/storyboards/customer-questions.json)、[净水器](../examples/storyboards/water-filter.json)和[文物记录](../examples/storyboards/artifact-recording.json)。这些样例展示不同组合，不是必须遵守的镜头顺序。
+
+人物、声音、音乐与图像路径相对于 `--media-dir` 指定的素材目录。示意目录：
 
 ```text
-episode-001/
-├── public/media/
+episode-work/
+├── episode.json
+├── media-root/media/
 │   ├── presenter-final.mp4
 │   ├── voice-final.wav
-│   └── reference-evidence.png
-├── src/
-├── timeline.json
-├── roughcut-edl.json        # 真人粗剪任务才需要，或等价映射表
-├── TIMELINE.md
+│   └── evidence.png
+├── roughcut-edl.json
 └── SOURCES.md
 ```
 
-这些本期记录文件需要自行创建，复制脚本不会自动生成真实转写、剪辑映射或素材来源。
+相应 JSON 使用 `media/presenter-final.mp4`、`media/voice-final.wav`，不能写电脑绝对路径、URL、`../` 或 `public/` 前缀。提供图片时在 `assets` 登记路径、来源与用途，由对象 `assetId` 或场景 `evidenceAssetId` 引用。
 
-编辑 `src/mediaConfig.ts`，路径相对于 `public/`：
-
-```ts
-export const mediaConfig: MediaConfig = {
-  presenterVideo: 'media/presenter-final.mp4',
-  voiceTrack: 'media/voice-final.wav',
-  referenceImage: 'media/reference-evidence.png',
-};
-```
-
-注意：
-
-- 不写 `public/media/...`，不写自己机器的绝对路径；路径应与文件大小写一致，便于跨平台迁移。
-- `presenterVideo: null` 显示人物占位；`voiceTrack: null` 不输出旁白。
-- 模板人物视频始终静音，声音只从 `voiceTrack` 输出，避免双人声。仅放入人物视频不会自动有声音。
-- 人物和声音应来自同一最终时间轴且足够长；模板不会自动修正嘴型或拉伸时长。
-- `referenceImage` 在多个位置复用。现有裁切按 2992 × 1060 双人画布设计，换成不同构图要同步修改相关裁切与镜头，不能只换路径。
-- 若本期没有访谈图，应重新设计相应场景与配置使用，不要把中性占位继续当作真实证据。
-
-若粗剪后的 `presenter-final.mp4` 已有正确人声，可以提取成独立轨道。**确认输入确实是最终剪后版本**，在新工程中执行：
+人物视频默认静音播放，人声只从 `media.voice` 输出一次。人物和声音必须来自同一最终时间轴。只有带声音的最终人物视频时，可在自己的工作目录提取独立人声轨：
 
 ```powershell
-ffmpeg -n -i "public/media/presenter-final.mp4" -vn -c:a pcm_s16le "public/media/voice-final.wav"
+ffmpeg -n -i "media-root/media/presenter-final.mp4" -vn -c:a pcm_s16le "media-root/media/voice-final.wav"
 ```
 
-`-n` 遇到已有目标文件会拒绝覆盖。该命令只提取音轨，不会去噪、删停顿或完成字幕对齐；有 BGM 的混合音轨也不会因此自动分离成人声。
+这只提取音轨，不会粗剪、分离混合 BGM 或校正嘴型。媒体时长不足应修复实际文件或重排本期分镜，不能靠延长 JSON 伪造有效画面。
 
-## 6. 重做字幕、事件与总时长
+## 6. 校验、修复、编译
 
-正式项目需要同时改以下内容：
-
-| 文件或数据 | 应改什么 |
-| --- | --- |
-| `src/Root.tsx` | 本期宽高、fps、`durationInFrames` |
-| `src/captions.json` | 本期真实字幕、稳定 `id`、实测开始／结束时间 |
-| `timeline.json` | 字幕对应动作、物体身份、镜头与声音落点，作为可检查的制作记录 |
-| `src/FilmV3.tsx` | 场景分界、镜头、人物裁切、转场与字幕层 |
-| `src/CareerActionV3.tsx`、`src/ComicThreadV3.tsx` 等 | 按本期语义修改动作与道具，不机械保留旧案例关系 |
-
-总帧数依据最终声音时长与选定 fps 计算，并在整帧边界校准结尾。例如 50 fps 的一帧为 0.02 秒。检查最后一个音节、字幕与视觉收束是否都在输出范围内，不能沿用默认的 537 帧截断长稿。
-
-时间轴最小示例：
-
-```json
-{
-  "fps": 50,
-  "duration": 4.0,
-  "timingSource": "DEMO / 手写示例，未对齐真实音频",
-  "captions": [
-    {"id": "cue-select", "start": 1.0, "end": 3.0, "text": "选中最重要的一句。"}
-  ],
-  "events": [
-    {
-      "id": "page-select",
-      "cueId": "cue-select",
-      "objectId": "working-page",
-      "action": "同一张纸上的目标句逐渐被选中",
-      "phase": "land",
-      "offset": 0.0,
-      "duration": 0.6
-    }
-  ]
-}
-```
-
-动作时间为 `caption.start + event.offset`，示例中为 1.0 秒，持续 0.6 秒。稳定的 `cueId` 指向已有字幕 `id`；`objectId` 表明画面中连续存在的对象，不能只用同名 ID 掩盖物体实际被换掉。
-
-`prepare` 可提前准备，负 `offset` 必须解释 `anticipationReason`；`land` 是语义落点；`exit` 是退场或收束。所有绝对时点必须在片长内，同轨字幕不能重叠。详见[格式规范](../references/timing-format.md)。
-
-在工程目录执行检查，将 `<Skill目录>` 换成实际安装目录或下载仓库目录：
+在下载的 Skill 仓库根目录执行，路径换成本期实际位置：
 
 ```powershell
-python -X utf8 "<Skill目录>/scripts/check_timeline.py" "timeline.json" --csv "alignment.csv"
+python -X utf8 scripts/validate_storyboard.py ../episode-work/episode.json --mode production --json
+python -X utf8 scripts/compile_storyboard.py --input ../episode-work/episode.json --media-dir ../episode-work/media-root --out ../episode-final
+cd ../episode-final
+npm ci
+npm run check
 ```
 
-`alignment.csv` 默认拒绝覆盖；第二次导出可换新文件名。检查器只验证数据结构、引用和时间范围；**它不会把 `timeline.json` 自动导入 V3 源码，也不会改变 Remotion 场景**。需要由 Agent 按已校准的时间轴实现画面与字幕，避免记录数据和渲染源码各自漂移。
+JSON 校验器给出具体字段位置与错误；模型应按[修复表](../references/repair-recipes.md)修改后再运行。比如 cueId 不存在就修正引用，动作早于台词就检查真实关键词时点，缺少真实材料就补材料或转为明确的草案，而不是关闭规则。
+
+只有视觉草案时，校验改为 `--mode draft`，编译加 `--draft`。草案可以没有声音，但引用了路径的文件仍需存在；渲染带明确的草案标识。
+
+编译器先预检，再把通用源码、锁文件、引用素材和本期 JSON 复制进新的空工程。生成的 `BUILD_REPORT.json` 记录输入及素材摘要、模式和校验结果。数据中的 `duration` 和 `fps` 决定总帧数，无需每期手改 `Root.tsx`；字幕与动作直接来自同一 `episode.json`。
+
+直接编辑新工程的 `src/episode.json` 也能预览变化。正式交付仍应对最终这份 JSON 再跑校验；大幅修改应重新编译到另一个空目录，以便保留版本和来源记录。编译器不会覆盖非空输出目录。
+
+校验器不能证明实际口播同步、粗剪真的执行过、事实正确或素材获准使用。生产模式中的状态标记必须来自实际工作。已有旧版 `timeline.json` 的项目可继续用[历史时间轴检查器](../references/timing-format.md)，但它不是 V2 schema，不能直接输入新编译器。
 
 ## 7. 处理声音与字幕安全区
 
@@ -231,13 +189,13 @@ npm run dev
 npm run render
 ```
 
-V3 默认脚本导出 `out/presenter-v3-example.mp4`。新一期可以在本期工程中改输出名称，但交付说明必须与真实文件一致。
+默认通用工程脚本导出 `out/adaptive-portrait.mp4`。新一期可以在本期工程中改输出名称，但交付说明必须与真实文件一致。
 
 检查媒体信息和完整视频解码的示例：
 
 ```powershell
-ffprobe -v error -show_entries format=duration:stream=codec_type,codec_name,width,height,r_frame_rate -of json "out/presenter-v3-example.mp4"
-ffmpeg -v error -i "out/presenter-v3-example.mp4" -f null -
+ffprobe -v error -show_entries format=duration:stream=codec_type,codec_name,width,height,r_frame_rate -of json "out/adaptive-portrait.mp4"
+ffmpeg -v error -i "out/adaptive-portrait.mp4" -f null -
 ```
 
 终端无解码错误只说明媒体能解码，不能证明台词正确、音画同步或视觉好看。抽听真实音轨与所有修改切口，若未完整听看，应写明抽查范围。
@@ -260,7 +218,7 @@ ffmpeg -v error -i "out/presenter-v3-example.mp4" -f null -
 
 - 实际导出的视频与便于查看的预览。
 - 可编辑工程源码、`package.json`、`package-lock.json` 与必要的合法媒体。
-- 本期字幕、语义时间轴和 `TIMELINE.md`。
+- 本期 `episode.json`（字幕、语义场景、动作时点）与 `BUILD_REPORT.json`；需要时附 `TIMELINE.md`。
 - `SOURCES.md`：素材来源、用途、采集或生成方式及需要保留的许可说明。
 - 真人粗剪的工程与源片到剪后时间映射；数字人注明默认跳过该步骤。
 - 实际运行命令和检查范围，注明仍未验证的项目。

@@ -1,21 +1,29 @@
 ---
 name: portrait-editorial-explainer
-description: 制作和精修中文竖屏口播、真人或数字人讲解视频：真人原始素材先用 ChatCut 粗剪，数字人默认跳过粗剪，再按已认可的 V3 风格制作近景推拉、真实素材、曲屏证据、漫画物体接力和同步字幕。适用于持续换主题的 Remotion 口播剪辑及参考风格校准。
+description: 把不同主题的中文竖屏口播转换为可编译分镜：真人先经 ChatCut 粗剪，数字人跳过；模型按语义选择物体、镜头和动作，输出 JSON，由通用 Remotion 引擎渲染并同步字幕，减少轻量模型从零编写动画代码的负担。
 ---
 
 # 竖屏口播与数字人动效剪辑
 
-当前首选风格基准是 **竖屏口播 V3**，公开包附带可独立运行的占位素材版本。每期沿用镜头、材质和语义接力的方法，围绕新口播设计物体与动作；孙宇晨/OpenAI、钱币、公文包、10.74 秒和四个场景都只是该案例的内容，不能变成固定套壳。
+**默认走“语义分镜 JSON → 校验 → 编译 → 通用渲染”，不要从历史案例改标题。** 模型负责理解本期口播、选证据和动作，组件负责物体、镜头与材质。V3 提供风格参照，不固定主题、场景顺序、物体或时长。基础字典可以自由组合，特殊题材可加入本期图片/SVG或扩展机制。
 
 ## 首次使用与能力检查
 
 在新环境先读 [安装指南](docs/INSTALL.md)，运行 `python scripts/doctor.py --profile skill` 检查技能资源，需要渲染时运行 `python scripts/doctor.py --profile production`。这不会安装依赖或访问账号。根据实际工具确认 ChatCut 可用性；未连接时说明缺少的步骤，不能将生成建议当作已完成粗剪。已就绪的环境无需每次重装。完整教程与调用示例见 [README](README.md)。
 
+## 必须先读的执行路径
+
+1. 读 [导演手册](references/director-playbook.md) 和 [分镜契约](references/storyboard-contract.md)，根据本期最终声音确定主体、动词、关系和关键词时点。
+2. 按下方素材分流完成真人粗剪/数字人定稿，形成本期字幕和来源清单。
+3. 生成 `episode.json`：自选机制顺序、镜头数量与时长；稳定objectId、真实素材和beats对应字幕cue。参考 [跨主题示例](examples/storyboards/)，不要复制其台词和顺序。
+4. 先运行校验，根据字段错误只修相关数据；再编译为独立工程。轻量模型优先改JSON，不从零改TSX。
+5. 渲染本期视频，查看词义落点和转场，按 [修复配方](references/repair-recipes.md) 修正。机器校验无法判断语义和审美，不能省略实际画面检查。
+
 ## 先确定要延续什么
 
 - 用户已有视频、工程、字幕或声音时，先读这些材料，保留已经认可的部分。只改字幕同步时，沿用原人声和已认可的材质、构图、镜头，不重新设计整片。
 - **先分流再做动效**：真人原始口播先在 ChatCut 做语音粗剪，剪除明确口误、无效重复、废片和冗余停顿，保留语义与自然呼吸；数字人口播默认跳过粗剪。已有完成粗剪的素材先检查并沿用，避免重复删减。按用户说明和工程来源判断类型，不凭外貌猜测。详见 [粗剪与动效的衔接](references/presenter-workflow.md#真人素材先用-chatcut-粗剪)。
-- 竖屏口播或数字人任务先读 [V3 已认可基准](references/approved-presenter-v3.md) 与 [持续口播生产](references/presenter-workflow.md)，查看 [公开样例画面](docs/preview.jpg) 与 [静音机制预览](docs/public-preview.mp4)。预览来自包内占位工程，不含原用户人物、声音或原参考视频；它不是本期待剪素材。
+- 流程细节读 [持续口播生产](references/presenter-workflow.md)。需要校准材质/镜头时再读 [V3 历史风格基准](references/approved-presenter-v3.md)，不要让历史钱币/求职场景决定新选题。当前多主题预览及限制见 [v2 验证](docs/VALIDATION-V2.md)。
 - 已有明确的新参考时，以新要求为准。用户反馈“不像”时，重新取得原参考，检查相关动作的前/中/后三帧，记录景别、构图、色彩、动作和落点的具体差距，再修改；不要只增加纸纹或贴纸。[V3 对照方法](references/approved-presenter-v3.md#原片对照带来的修正)
 - 默认用 Remotion 交付可编辑工程。已有其它引擎工程时可继续使用，不为使用本技能而强制迁移。
 - 比例优先服从用户和现有工程；新建本风格竖屏口播可从 1080×1920、50 fps（逻辑 540×960）开始，与 V3 一致。人物源的真实帧率不因输出变高而增加。旧数学案例是 816×1080，不可拉伸当作竖屏适配。
@@ -31,7 +39,7 @@ description: 制作和精修中文竖屏口播、真人或数字人讲解视频�
 4. 节奏取决于信息和动作：短促特写、快速回拉、停顿读数、空间接力互相配合。不能用等长页面或每句话统一淡入来替代剪辑。
 5. 对齐字幕、物体落点、音效和音乐重拍；人声可懂和句子意义优先于踩节拍。不要为卡点随意加速既定人声。
 
-语义时间轴格式与检查命令见 [时间轴契约](references/timing-format.md)。字幕全文检索容易被改稿破坏，新作使用稳定 ID；历史案例保留了原文检索写法，迁移时要改。
+新作的数据与检查命令见 [V2 分镜契约](references/storyboard-contract.md)。字幕与动作使用稳定 ID；旧项目的独立时间表见 [历史时间轴格式](references/timing-format.md)，不要把两种 schema 混用。
 
 ## 视觉语言
 
@@ -48,18 +56,20 @@ description: 制作和精修中文竖屏口播、真人或数字人讲解视频�
 
 ## 复用代码与音频
 
-本包提供 V3 可编辑机制样例，默认人物和访谈素材为清晰占位、声音为空，避免误用上期私人素材。它的历史分镜和时长是示范；正式制作先换成本期素材并重排时间轴。
+本包提供 `assets/adaptive-template` 通用引擎，`episode.json` 决定标题、物体、素材、镜头顺序、时长、动作落点、人物布局和配色。没有定稿声音时只能输出明确草案。
 
-```powershell
-python -X utf8 "<skill目录>/scripts/new_project.py" --case presenter-v3 --out "<新工程目录>"
-cd "<新工程目录>"
+```shell
+python scripts/validate_storyboard.py episode.json --mode production --json
+python scripts/compile_storyboard.py --input episode.json --media-dir ./media-root --out ../new-episode
+cd ../new-episode
 npm ci
-npm run dev
 npm run check
 npm run render
 ```
 
-代码与媒体接口见 [V3 基准](references/approved-presenter-v3.md)。旧 [数学案例](references/approved-case.md) 和 `--case approved-reference` 保留，用于需要其论文/多页归档机制的任务；它不是当前口播默认值。所有动画依据帧数计算，使跳帧与离线导出一致。
+草案用 `validate_storyboard.py --mode draft` 和 `compile_storyboard.py --draft`，不得仅为了通过校验而捏造 measured/粗剪完成状态。`new_project.py --out <新目录>` 默认复制通用引擎，其内置示例仅用于测试。历史 `--case presenter-v3` 与 `--case approved-reference` 明确为风格研究，不能当作新题默认开工入口。
+
+八种基础机制：看清对象、比较推拉、物体沿路线移交、条目归组、曲屏证据、计数/集合、关联连线、人物回场。它们可以组合，不是八类固定视频；必须由本期语义选择。复杂专业图或新创意用真实资产/新增组件，不把题材硬塞进不合适的动作。
 
 最终口播时间轴是基准：真人使用粗剪后的一份人声母带，数字人使用已定稿人声；保留片段原速播放，人物视频与声音采用相同剪切映射，合成时人物视频静音，避免双人声。不能把剪后画面配上未剪原音轨。中文素材保持中文。只有明确要求换声/生成数字人时才调用对应能力；指定声音时使用当前环境可用且获授权的配音能力；本包不预置私人声音，也不依赖作者的 `voice-clone` 配置。BGM 和音效配合语义落点，不能为了踩拍改快原声；112 BPM 只是 V3 的自制节奏示例。无声占位样例不代表正式交付可以缺人声。本技能不授权收费生成或发布。
 

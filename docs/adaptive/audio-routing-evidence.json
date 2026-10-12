@@ -1,0 +1,14 @@
+{
+  "purpose": "Synthetic color-clock and test-tone routing; no real narration, avatar or measured speech alignment",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "videoFrames": 90,
+  "fullDecodeExit": 0,
+  "audioPeakHz": 660.0,
+  "voice660OverMutedPresenter440Db": 107.41,
+  "presenterFrameAt2_5sCorrectClockMeanAbsError": 4.481,
+  "presenterFrameIfResetTo1_0sMeanAbsError": 28.814,
+  "audioPassed": true,
+  "videoClockPassed": true
+}

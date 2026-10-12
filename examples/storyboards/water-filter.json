@@ -1,0 +1,273 @@
+{
+  "version": 2,
+  "title": "净水器选购：先把问题问清楚",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 20.8,
+  "timing": "demo",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {
+    "presenter": null,
+    "voice": null,
+    "music": null
+  },
+  "assets": [
+    {
+      "id": "filter-img",
+      "path": "media/water-filter.svg",
+      "source": "本仓库原创SVG示意，非真实产品照片",
+      "role": "illustration"
+    },
+    {
+      "id": "cup-img",
+      "path": "media/water-cup.svg",
+      "source": "本仓库原创SVG示意，非真实产品照片",
+      "role": "illustration"
+    },
+    {
+      "id": "tap-img",
+      "path": "media/faucet.svg",
+      "source": "本仓库原创SVG示意，非真实产品照片",
+      "role": "illustration"
+    }
+  ],
+  "objects": [
+    {
+      "id": "tap",
+      "kind": "image",
+      "label": "入水接口",
+      "assetId": "tap-img"
+    },
+    {
+      "id": "cup",
+      "kind": "image",
+      "label": "实际用水",
+      "assetId": "cup-img"
+    },
+    {
+      "id": "filter",
+      "kind": "image",
+      "label": "滤芯",
+      "detail": "接口与维护空间",
+      "assetId": "filter-img"
+    },
+    {
+      "id": "manual",
+      "kind": "document",
+      "label": "产品说明书",
+      "detail": "尺寸与安装条件"
+    }
+  ],
+  "captions": [
+    {
+      "id": "a1",
+      "start": 0,
+      "end": 2.8,
+      "text": "选净水器，先把问题问清楚。"
+    },
+    {
+      "id": "a2",
+      "start": 2.8,
+      "end": 5.2,
+      "text": "这边是入水，另一边才是实际用水。"
+    },
+    {
+      "id": "a3",
+      "start": 5.2,
+      "end": 7.4,
+      "text": "别把两个环节当成同一个问题。"
+    },
+    {
+      "id": "a4",
+      "start": 7.4,
+      "end": 9.4,
+      "text": "水从接口进入滤芯。"
+    },
+    {
+      "id": "a5",
+      "start": 9.4,
+      "end": 11.4,
+      "text": "最后到杯子，中间还有安装条件。"
+    },
+    {
+      "id": "a6",
+      "start": 11.4,
+      "end": 13.4,
+      "text": "把滤芯拿近，看看它的接口。"
+    },
+    {
+      "id": "a7",
+      "start": 13.4,
+      "end": 15.4,
+      "text": "再给更换维护留出空间。"
+    },
+    {
+      "id": "a8",
+      "start": 15.4,
+      "end": 18,
+      "text": "具体尺寸，要回到实际说明书核对。"
+    },
+    {
+      "id": "a9",
+      "start": 18,
+      "end": 20.8,
+      "text": "这份画面只是选购思路示意。"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "a-intro",
+      "start": 0,
+      "end": 2.8,
+      "cueIds": [
+        "a1"
+      ],
+      "intent": "提出选购问题",
+      "mechanism": "presenter",
+      "title": "先把问题问清楚",
+      "objectIds": [],
+      "beats": [],
+      "transition": "match",
+      "presenter": "full"
+    },
+    {
+      "id": "a-compare",
+      "start": 2.8,
+      "end": 7.4,
+      "cueIds": [
+        "a2",
+        "a3"
+      ],
+      "intent": "比较入水条件与用水需求",
+      "mechanism": "compare-pan",
+      "title": "两个环节分开看",
+      "objectIds": [
+        "tap",
+        "cup"
+      ],
+      "beats": [
+        {
+          "at": 3.15,
+          "cueId": "a2",
+          "action": "focus",
+          "targetId": "tap"
+        },
+        {
+          "at": 5.55,
+          "cueId": "a3",
+          "action": "focus",
+          "targetId": "cup"
+        }
+      ],
+      "transition": "window",
+      "presenter": "hidden"
+    },
+    {
+      "id": "a-relation",
+      "start": 7.4,
+      "end": 11.4,
+      "cueIds": [
+        "a4",
+        "a5"
+      ],
+      "intent": "把接口滤芯用水依次关联",
+      "mechanism": "question-thread",
+      "title": "看清整条路径",
+      "objectIds": [
+        "tap",
+        "filter",
+        "cup"
+      ],
+      "beats": [
+        {
+          "at": 7.9,
+          "cueId": "a4",
+          "action": "connect",
+          "targetId": "tap",
+          "withId": "filter"
+        },
+        {
+          "at": 9.95,
+          "cueId": "a5",
+          "action": "connect",
+          "targetId": "filter",
+          "withId": "cup"
+        }
+      ],
+      "transition": "circle",
+      "presenter": "hidden"
+    },
+    {
+      "id": "a-detail",
+      "start": 11.4,
+      "end": 15.4,
+      "cueIds": [
+        "a6",
+        "a7"
+      ],
+      "intent": "推近真实物体检查接口与空间",
+      "mechanism": "object-focus",
+      "title": "先看接口，再看空间",
+      "objectIds": [
+        "filter"
+      ],
+      "beats": [
+        {
+          "at": 11.85,
+          "cueId": "a6",
+          "action": "focus",
+          "targetId": "filter"
+        },
+        {
+          "at": 13.9,
+          "cueId": "a7",
+          "action": "result",
+          "targetId": "filter"
+        }
+      ],
+      "transition": "match",
+      "presenter": "hidden"
+    },
+    {
+      "id": "a-proof",
+      "start": 15.4,
+      "end": 20.8,
+      "cueIds": [
+        "a8",
+        "a9"
+      ],
+      "intent": "强调需要实际说明书不能凭示意下结论",
+      "mechanism": "evidence-zoom",
+      "title": "回到说明书核对",
+      "objectIds": [
+        "manual"
+      ],
+      "beats": [
+        {
+          "at": 16.2,
+          "cueId": "a8",
+          "action": "select",
+          "targetId": "manual"
+        },
+        {
+          "at": 18.6,
+          "cueId": "a9",
+          "action": "result",
+          "targetId": "manual"
+        }
+      ],
+      "transition": "window",
+      "presenter": "hidden"
+    }
+  ],
+  "theme": {
+    "paper": "#f2f4ee",
+    "ink": "#263438",
+    "accent": "#498c94",
+    "comic": "#c8e5e2"
+  }
+}

@@ -1,43 +1,42 @@
 # portrait-editorial-explainer
 
-面向中文竖屏口播的 AI Agent Skill：把最终口播时间轴转成连续的镜头、真实资料、物体动作和同步字幕，并交付可编辑的 Remotion 工程。
+**把剪辑方法交给小模型，把动画执行交给确定性的引擎。** 这是面向中文竖屏讲解的 Agent Skill：模型根据新口播选择对象、关系、镜头和动作，生成分镜 JSON；通用 Remotion 引擎读取它，生成可编辑视频。
 
-默认流程：**真人原始视频 → ChatCut 粗剪 → 锁定剪后人声 → V3 风格动效与字幕 → 检查、导出。** 数字人视频默认跳过语音粗剪；已经粗剪的素材沿用现有版本。
+V2 的默认入口已经改为 **新内容 → 语义分镜 → JSON 校验 → 自动编译 → 渲染**。片长、场景数量与顺序、道具、图片、字幕和动作时点都由本期数据决定。求职、公文包、OpenAI 和 10.74 秒旧案例仅保留为历史研究案例。
 
-[下载最新版](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/latest) · [安装教程](docs/INSTALL.md) · [完整工作流](docs/WORKFLOW.md) · [常见问题](docs/TROUBLESHOOTING.md) · [实际验证记录](docs/VALIDATION.md)
+[下载最新版](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/latest) · [安装教程](docs/INSTALL.md) · [制作流程](docs/WORKFLOW.md) · [导演手册](references/director-playbook.md) · [故障排查](docs/TROUBLESHOOTING.md) · [V2 验证记录](docs/VALIDATION-V2.md)
 
-## 先看效果与范围
+## 复用什么，改变什么
 
-[![V3 占位工程预览](docs/preview.jpg)](docs/public-preview.mp4)
-
-[下载／查看静音预览 MP4](docs/public-preview.mp4)。这是仓库公开占位工程的机制预览，用来理解相机推拉、曲屏、窗口接力和漫画段的运动。它没有真实口播声音，也没有附带原案例的人物素材。
-
-| 项目 | 本仓库提供什么 |
+| 引擎与 Skill 负责 | 每期由模型根据内容重新编排 |
 | --- | --- |
-| Skill | 工作流程、风格规则、时间轴规范和 Agent 调用入口 |
-| 默认 V3 工程 | 1080 × 1920、50 fps、537 帧／10.74 秒，可编辑源码与锁定依赖 |
-| 默认媒体 | 明确的人物占位和访谈占位；声音为空 |
-| 历史内容 | 保留历史案例台词和专用镜头时点，用于说明机制；新稿必须重新设计 |
-| 辅助脚本 | 安装 Skill、环境诊断、复制新工程、检查时间轴并导出 CSV |
-| 旧参考工程 | 816 × 1080 的数学解释案例，可选，用于纸页、研究编辑器等机制参考 |
-| 不包含 | 私人人像、用户原视频、克隆声音、账号、密钥、ChatCut 授权、已安装的 Node 依赖或浏览器 |
+| 纸张材质、景深层次、相机运动、遮罩转场、字幕层和人物层 | 主题、台词、镜头数量、时长、顺序、节奏与配色 |
+| 物体聚焦、比较、转移、归类、证据放大、数字变化、关系连接、人物讲述等可组合动作 | 用什么物体解释哪句话、动作何时发生、证据来自哪里 |
+| 数据约束、字段级错误提示、素材复制、依赖锁定与工程生成 | 最终声音、真实截图、品牌素材、照片和使用权 |
+| 连续物体身份和动作进度、按字幕关联镜头关注点 | 哪些段落需要留白、回到人物、或扩展新的专用动作 |
 
-**这不是“输入任意稿件，直接生成成片”的独立软件。** Skill 给支持它的 Agent 提供制作方法；新一期仍要准备素材、校准真实声音、重新导演动作，并实际渲染。完整视频质量取决于这些步骤，安装成功不能替代剪辑与验收。
+八种机制是可组合的动作词汇，**没有限定视频只能讲八种题材**。没有真实配图时可先使用原生 SVG 示意；拿到合适图片后通过资产引用替换。精细三维、特定地图路径、复杂产品操作等内容需要提供素材或扩展组件，现有引擎不声称覆盖所有视觉任务。
 
-## 适合什么任务
+这份 Skill 仍需支持读写文件和运行命令的 Agent。更弱的模型不必先学会写 React 动画，但仍要理解口播、选择合适的视觉关系并执行校验与修改。模型越弱，越应把复杂长稿分成小段设计；不能把一次结构通过当成任意模型的成片质量保证。
 
-- 真人原始口播：剪除口误、试录重复和冗余停顿，保留意思、自然呼吸与原声，再制作动效。
-- 数字人口播：保留已有定稿声音与口型，以当前视频时间轴制作字幕、证据画面和语义动画。
-- 已粗剪视频：直接沿用有效剪辑，避免再清理一遍造成吞字或语义跳跃。
-- 只有声音：围绕最终旁白制作说明画面。
-- 只有稿件：先做分镜与可编辑视觉草案，取得最终录音后再校准同步。
-- 已有工程修复：只修字幕、画面遮挡、动作落点或指定风格差距，保留已认可部分。
+## 跨主题示例与小模型试用
 
-核心方法是“**说了什么 → 哪个物体 → 它如何变化 → 镜头看哪里**”。例如同一张纸被写入、选中、检查、原处修正，让动作传递因果，而不是每句字幕换一张卡。
+![四个主题使用同一引擎的实际渲染](docs/adaptive/overview.jpg)
 
-## 快速开始：下载、安装、调用
+同一套源码可读取下面不同的分镜，不需要为每个主题另写 TSX：
 
-下面命令在仓库根目录执行。Windows 使用 PowerShell；macOS／Linux 的对应步骤见[安装教程](docs/INSTALL.md)。首次下载与依赖安装需要网络，实际耗时取决于环境。
+| 示例 / 静音 MP4 | 时长 / 镜头数 | 编排重点 |
+| --- | --- | --- |
+| [净水器选购](docs/adaptive/water-filter.mp4) | 20.8 秒 / 5 | 比较、提问、对象聚焦和记录证据 |
+| [客户问题整理](docs/adaptive/customer-questions.mp4) | 18.6 秒 / 4 | 问题归组、转交、核对和进度变化 |
+| [文物记录](docs/adaptive/artifact-recording.mp4) | 22.4 秒 / 6 | 观察证据、前后比较、归档和信息关联 |
+| [旅行照片整理](docs/adaptive/travel-photo.mp4) | 19.2 秒 / 6 | 由 gpt-6-luna（low）独立生成分镜；[原始输入与条件](examples/model-evaluation/README.md) |
+
+这些是公开的**静音视觉草案**，不是配好真实人声的正式口播。示例时间是演示/估算数据，示意道具不充当事实证据。实际渲染、抽帧及轻量模型试用记录集中在 [VALIDATION-V2](docs/VALIDATION-V2.md)。
+
+## 快速安装
+
+需要 Python 3.10+。渲染另需 Node.js、npm、兼容浏览器；媒体检查使用 FFmpeg/ffprobe。下面在 Windows PowerShell 中运行，macOS/Linux 对照见[安装教程](docs/INSTALL.md)。
 
 ```powershell
 git clone https://github.com/3105059695-rgb/portrait-editorial-explainer.git
@@ -47,129 +46,84 @@ python -X utf8 scripts/install_skill.py
 python -X utf8 scripts/doctor.py --profile skill
 ```
 
-没有 Git 也可以从[仓库页面](https://github.com/3105059695-rgb/portrait-editorial-explainer)下载 ZIP、完整解压，再进入含 `SKILL.md` 的目录执行后面三条命令。Windows 若只有 `py` 命令，将 `python -X utf8` 换成 `py -3 -X utf8`。
+无 Git 可下载仓库或 Release ZIP，完整解压后进入含 `SKILL.md` 的目录执行后三条命令。默认安装到 `$CODEX_HOME/skills/portrait-editorial-explainer`，没有设置 `CODEX_HOME` 时安装到 `~/.codex/skills/portrait-editorial-explainer`。安装器不会覆盖非空同名目录；已有版本请先按安装教程备份。
 
-安装器默认安装到：
-
-- 已设置 `CODEX_HOME`：`$CODEX_HOME/skills/portrait-editorial-explainer`。
-- 未设置：当前用户的 `~/.codex/skills/portrait-editorial-explainer`。
-
-安装器不覆盖非空目录。已有同名 Skill 时按[更新说明](docs/INSTALL.md#更新已有安装)备份处理。它不会安装 ChatCut、登录账号或替你配置其他 Agent。
-
-安装后重新打开支持 Skill 的 Agent 会话，或重启相应应用，再发送：
+安装后重新打开 Agent 会话，发送下面提示词。若宿主不自动发现 Skill，把第一行换成 `请读取 <实际安装路径>/SKILL.md 并执行`。
 
 ```text
 请使用 $portrait-editorial-explainer。
-先读取这个 Skill，检查当前可用工具和我的输入，按其中的流程处理。
+输入：<本期口播视频、最终声音或稿件的真实位置>。
+主题：<本期主题>；素材状态：<真人原片 / 已粗剪 / 数字人 / 只有声音 / 只有稿件>。
+请先读导演手册和分镜契约，围绕本期语义重新选择对象与动作。
+优先输出 episode.json，通过校验后编译到新的工程目录；不要复制历史案例的镜头顺序。
+真人原片先用已授权的 ChatCut 粗剪；数字人跳过语音粗剪。
+以最终人声校准字幕和动作；只有稿件时标为草案，不宣称已完成音画同步。
+交付视频、可编辑工程、本期 JSON、素材来源和实际检查记录。
 ```
 
-若技能选择器未显示，给 Agent 明确路径：
+不需要告诉模型必须选择哪个道具、几秒换场或只能用几种场景。更细的决策方法已经写入[导演手册](references/director-playbook.md)和[修复表](references/repair-recipes.md)。
 
-```text
-请读取我刚安装的 portrait-editorial-explainer/SKILL.md，按该文件和其引用文档执行。
-Skill 的完整路径是：<安装器输出的路径>/SKILL.md
-```
+## 无账号、无私有素材跑通一个示例
 
-把尖括号部分换成真实路径。不同 Agent 的 Skill 发现方式不同；能够读取文件不等于该 Agent 已具备 ChatCut、终端或渲染能力。
-
-## 跑通一个可编辑样例
-
-这是独立的“模板运行”步骤，不需要真人素材，也不要求先连接 ChatCut。需要 Python 3.10+、Node.js、npm；建议 Node.js 22+，制作与技术检查还需要 FFmpeg／ffprobe。具体环境与验证范围见[安装教程](docs/INSTALL.md#准备运行环境)和[验证记录](docs/VALIDATION.md)。
-
-在下载的仓库根目录执行：
+在仓库根目录运行：
 
 ```powershell
-python -X utf8 scripts/doctor.py
-python -X utf8 scripts/new_project.py --case presenter-v3 --out "../my-portrait-demo"
-cd "../my-portrait-demo"
+python -X utf8 scripts/validate_storyboard.py examples/storyboards/water-filter.json --mode draft
+python -X utf8 scripts/compile_storyboard.py --input examples/storyboards/water-filter.json --media-dir examples/media --draft --out ../water-filter-demo
+cd ../water-filter-demo
 npm ci
 npm run check
 npm run dev
 ```
 
-`npm run dev` 启动预览服务，按终端给出的地址打开 Remotion Studio；使用 `Ctrl+C` 停止。目标工程必须在 Skill／仓库目录之外，且不存在或为空。复制脚本不会安装 npm 依赖。
-
-另开终端进入新工程，导出视频或静帧：
+按终端地址打开 Remotion Studio。另开终端进入生成的工程，可以输出完整视频或指定秒数静帧：
 
 ```powershell
 npm run render
-npm run render -- 0.6 2.8 5.6 7.6 9.8
+npm run render -- 1.2 5.2 10.8 15.4 19.8
 ```
 
-- 视频：`out/presenter-v3-example.mp4`。
-- 静帧：例如 `out/frame-0.60.png`。参数是**秒**，不是帧号。
-- 默认输出静音，这是预期状态。人物视频与旁白通过 `src/mediaConfig.ts` 分开接入。
-- 首次渲染可能需要下载兼容浏览器；也可给 `render.cjs` 设置 `REMOTION_BROWSER_EXECUTABLE`，详见[故障排查](docs/TROUBLESHOOTING.md#浏览器下载失败或找不到浏览器)。
+视频写入 `out/adaptive-portrait.mp4`，静帧写入 `out/frame-1.20.png` 等文件。首次渲染可能下载浏览器；可选 `REMOTION_BROWSER_EXECUTABLE` 的配置见故障排查。输出目录必须不存在或为空；编译器不覆盖已有工程。
 
-正式制作请复制另一份新工程，不要把演示用的 537 帧、旧台词和固定镜头直接套到新稿上。
+切换示例只需更换 `--input` 并使用一个新 `--out`。`customer-questions.json` 不需要外部图片，其他两个示例的原创新素材随 `examples/media` 提供。也可用 `python scripts/new_project.py --out ../my-project` 复制默认通用工程，然后编辑其 `src/episode.json`；正式交付推荐先走校验/编译入口。
 
-## 直接复制的调用提示词
+## 正式制作：同一入口，更严格的输入
 
-将示例路径换成你的真实文件路径，并说明素材是否已经剪过。可提供本地路径或当前 Agent 能访问的附件；仅写“桌面上那个视频”可能不足以定位文件。
+1. 真人原片先经 ChatCut 完成实际粗剪，保留剪前到剪后的映射；数字人、已经粗剪的素材使用各自有效的最终版本。
+2. 实测字幕时点，建立“台词 → 对象 → 动作 → 关注点”。按本期内容生成 [V2 分镜 JSON](references/storyboard-contract.md)。
+3. 将声音、人物和真实图像放在本期素材根目录，JSON 使用相对于该目录的安全路径。
+4. 使用下面默认生产模式校验和编译；最后试听、预览和渲染。字段错误按[修复表](references/repair-recipes.md)处理。
 
-### 真人原始口播
+```powershell
+python -X utf8 scripts/validate_storyboard.py episode.json --mode production --json
+python -X utf8 scripts/compile_storyboard.py --input episode.json --media-dir ./media-root --out ../episode-final
+```
+
+生产模式要求实测时间和声音文件；真人/数字人还要求相应人物媒体与剪辑状态。`source.roughcut=done` 是对已完成粗剪的记录，不能用修改标记代替实际操作。编译器检查结构、文件和引用，无法判断一句话是不是在真实录音中恰好这个时点说出。
+
+草案才使用 `--mode draft` 和编译的 `--draft`；生成画面始终显示草案标识。编译器自动写入 `renderMode`，不会把估算数据默认为正式同步视频。
+
+## 文件结构
 
 ```text
-请使用 $portrait-editorial-explainer 制作这期中文竖屏口播。
-输入：<真人原始视频完整路径>；这是未经粗剪的真人素材。
-先通过我当前可用且已授权的 ChatCut 做粗剪：删除明确口误、重复试录、废片和冗余停顿，
-保留完整意思、原人声、自然呼吸和保留片段原速。请保存原片到剪后时间的映射。
-再以剪后人声为主时钟，按 V3 的连续物体动作和镜头语法设计本期画面、素材与字幕。
-成片为 9:16，输出视频、可编辑 Remotion 工程、字幕、时间轴、素材来源和实际检查记录。
-如果 ChatCut 当前不可用，请明确说明，先完成素材检查和可独立开展的分镜工作，
-不要把未经处理的原片记为已粗剪。
+SKILL.md                         Agent 入口：识别输入、导演、生成、检查、交付
+agents/openai.yaml               Skill 调用信息
+scripts/                        安装、诊断、JSON 校验与编译
+references/director-playbook.md  让小模型按语义选择镜头的方法
+references/storyboard-contract.md 字段、机制与时间规范
+references/repair-recipes.md     字段错误和常见视觉问题的修改方法
+assets/adaptive-template/       默认通用 Remotion 引擎及 package-lock.json
+examples/storyboards/           不同主题的完整输入 JSON
+examples/media/                 公开原创 SVG 素材
+assets/presenter-v3-template/   显式选择的历史风格案例
+assets/approved-remotion-case/  显式选择的历史数学案例
+docs/                           安装、制作、排错及实际验证记录
 ```
 
-### 数字人／已定稿口播
+历史案例仅用 `--case presenter-v3` 或 `--case approved-reference` 显式复制。V1 原始预览和验证仍保留在 [V1 验证记录](docs/VALIDATION.md)，不要把旧预览当作 V2 唯一输出。
 
-```text
-请使用 $portrait-editorial-explainer。
-输入：<数字人口播完整路径>；这是已定稿的数字人视频，请默认跳过语音粗剪。
-保留现有人声与口型节奏，以最终视频时间轴制作竖屏动效和同步字幕。
-根据这期内容重新设计物体、证据和镜头，不能沿用旧案例主题或固定 10.74 秒长度。
-人物画面、字幕与证据特效分别分层，交付视频与可编辑工程。
-```
+## 能力与交付边界
 
-### 只有稿件
+ChatCut 需要使用者自己的已授权连接；Skill 不提供账号或额度。没有 ChatCut 仍能处理已粗剪素材、声音、分镜和通用引擎，但不可声称已完成 ChatCut 粗剪。
 
-```text
-请使用 $portrait-editorial-explainer，把下面稿件做成竖屏口播分镜和可编辑视觉草案。
-当前还没有最终录音，所有时点先标为估算，不宣称已经完成音画同步。
-先做“台词—物体—动作—镜头”的语义表，并列出需要我提供的真实资料。
-不要擅自生成数字人、克隆声音或调用收费服务。
-稿件：<粘贴稿件>
-```
-
-### 修复现有工程
-
-```text
-请使用 $portrait-editorial-explainer 修复已有工程：<工程完整路径>。
-问题：<例如 12.4 秒字幕先于声音；转场中白字看不清；镜头未跟随被介绍对象>。
-保留已认可的人声、材质和构图，仅调整解决该问题所需的内容。
-请检查相关片段的前、中、后三个状态，说明实际修改与检查范围。
-```
-
-## 目录与进一步阅读
-
-```text
-portrait-editorial-explainer/
-├── SKILL.md                         # Agent 工作入口
-├── agents/openai.yaml               # Skill 展示信息
-├── scripts/                         # 安装、诊断、复制、时间轴检查
-├── references/                      # 风格、时间轴与流程规范
-├── examples/                        # 本期输入与粗剪映射示例
-├── assets/presenter-v3-template/     # 默认竖屏机制工程
-├── assets/approved-remotion-case/    # 可选历史数学工程
-├── assets/timing-example/            # 中性时间轴测试数据
-└── docs/                            # 公共教程与占位预览
-```
-
-建议按[安装](docs/INSTALL.md) → [完整制作](docs/WORKFLOW.md) → [时间轴格式](references/timing-format.md)阅读。可直接填写[本期输入表](examples/episode-brief.md)；ChatCut 与 Remotion 的交接见[粗剪衔接](references/chatcut-handoff.md)。代码和资产说明见 [V3 CASE-NOTES](assets/presenter-v3-template/CASE-NOTES.md)；风格方法见[镜头与材质语法](references/visual-grammar.md)、[V3 机制说明](references/approved-presenter-v3.md)。
-
-## 使用边界
-
-ChatCut 粗剪需要使用者当前可用、已经授权的插件和账号环境；Skill 本身不提供该服务。没有 ChatCut 时仍能安装 Skill、运行占位样例、设计分镜或处理已粗剪素材，但不能据此声称完成了 ChatCut 粗剪。
-
-公开包不提供原案例私人人像或声音使用权。代码、品牌字标、字体和第三方依赖的许可与来源见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。新一期应使用具有相应使用权限的素材，模拟 UI 明确标注“示意”。本仓库不代表第三方品牌背书，也不承诺平台审核结果。
-
-Skill 不会自动对外发布，不默认授权收费生成。技术检查、视觉抽查、完整音画复核和使用者风格认可应分别记录；本仓库实际做过的检查以[验证记录](docs/VALIDATION.md)为准。
+公开包不包含原用户视频、人像、私人声音、密钥或签名下载地址。示例均为示意；新一期的事实、素材使用权和完整音画质量需要实际核对。许可与资产来源见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。不默认调用收费生成、克隆声音或对外发布。

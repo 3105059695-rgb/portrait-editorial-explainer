@@ -4,6 +4,7 @@
 
 | 内容 | 来源与范围 |
 | --- | --- |
+| V2 示例 SVG 与通用对象 | `examples/media/media/` 中的净水器、水杯、水龙头、陶器与画笔，以及通用引擎的几何道具均为本仓库原创示意图，按 MIT 分发，不是产品照片或真实文物证据。 |
 | OpenAI 黑色字标 | 历史示例所用[官方品牌资源](https://openai.com/brand/)与[官方标识下载](https://cdn.openai.com/brand/OpenAI-Logos-2025.zip)。商标归权利人，示例不表示合作或背书；新主题应换成对应来源素材。 |
 | 数学目录页 | 旧案例的 `catalog-page.png` 来自 [openai/math 的 overview.pdf](https://github.com/openai/math/blob/main/overview.pdf)，转换为图片以用于历史机制示范。随包保留 [上游 Apache 2.0 文本](assets/approved-remotion-case/public/assets/math-license.txt)，文件摘要见 [asset-manifest.json](assets/approved-remotion-case/asset-manifest.json)。历史字幕与数字不是当前新闻事实来源。 |
 | 中文与拉丁字体 | Noto Sans SC、Noto Serif SC、Tinos 通过锁定的 Fontsource npm 包加载，字体许可文件随对应依赖安装；字体未被重新改为 MIT。 |

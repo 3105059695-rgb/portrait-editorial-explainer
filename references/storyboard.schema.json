@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:portrait-editorial-explainer:storyboard:v2",
+  "title": "Portrait editorial storyboard v2",
+  "description": "Structural contract. validate_storyboard.py also checks unique ids, references, timeline coverage, cue alignment, finite numbers, percentages and production readiness. Unknown extension fields are preserved with warnings, never treated as implemented renderer features. Production is the CLI default; renderMode is compiler metadata.",
+  "type": "object",
+  "required": ["version", "title", "width", "height", "fps", "duration", "timing", "source", "media", "assets", "objects", "captions", "scenes"],
+  "properties": {
+    "version": {"const": 2},
+    "title": {"type": "string", "minLength": 1, "maxLength": 80, "pattern": "\\S"},
+    "width": {"const": 1080},
+    "height": {"const": 1920},
+    "fps": {"enum": [25, 30, 50, 60]},
+    "duration": {"type": "number", "exclusiveMinimum": 0, "maximum": 1800},
+    "timing": {"enum": ["measured", "estimated", "demo"]},
+    "renderMode": {"enum": ["draft", "production"]},
+    "source": {"$ref": "#/$defs/source"},
+    "media": {"$ref": "#/$defs/media"},
+    "theme": {"$ref": "#/$defs/theme"},
+    "assets": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
+    "objects": {"type": "array", "items": {"$ref": "#/$defs/object"}},
+    "captions": {"type": "array", "items": {"$ref": "#/$defs/caption"}},
+    "scenes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/scene"}}
+  },
+  "additionalProperties": true,
+  "allOf": [{
+    "if": {"required": ["renderMode"], "properties": {"renderMode": {"const": "production"}}},
+    "then": {"$ref": "#/$defs/production"}
+  }],
+  "$defs": {
+    "id": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "localPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!.*(?:^|/)(?:\\.{1,2})(?:/|$))(?!.*[. ](?:/|$))(?!\\s)(?!.*\\s$)[^/\\\\:\\u0000-\\u001f<>\"|?*]+(?:/[^/\\\\:\\u0000-\\u001f<>\"|?*]+)*$",
+      "description": "Local forward-slash relative path under --media-dir. No URLs, drives, backslashes, dot/parent components, trailing dots/spaces, or Windows device names. Additional portable-name rules are enforced by the compiler."
+    },
+    "nullablePath": {"anyOf": [{"$ref": "#/$defs/localPath"}, {"type": "null"}]},
+    "color": {"type": "string", "pattern": "^#[0-9a-fA-F]{6}$"},
+    "source": {
+      "type": "object",
+      "required": ["type", "roughcut"],
+      "properties": {
+        "type": {"enum": ["raw-presenter", "roughcut-presenter", "digital-human", "narration", "demo"]},
+        "roughcut": {"enum": ["pending", "done", "skipped-digital", "not-needed"]},
+        "tool": {"type": "string", "minLength": 1, "pattern": "\\S"}
+      },
+      "additionalProperties": true
+    },
+    "media": {
+      "type": "object", "required": ["presenter", "voice"],
+      "properties": {"presenter": {"$ref": "#/$defs/nullablePath"}, "voice": {"$ref": "#/$defs/nullablePath"}, "music": {"$ref": "#/$defs/nullablePath"}},
+      "additionalProperties": true
+    },
+    "theme": {
+      "type": "object", "required": ["paper", "ink", "accent", "comic"],
+      "properties": {"paper": {"$ref": "#/$defs/color"}, "ink": {"$ref": "#/$defs/color"}, "accent": {"$ref": "#/$defs/color"}, "comic": {"$ref": "#/$defs/color"}},
+      "additionalProperties": true
+    },
+    "asset": {
+      "type": "object", "required": ["id", "path", "role"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "path": {"$ref": "#/$defs/localPath"},
+        "source": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "role": {"enum": ["illustration", "evidence", "brand"]}
+      },
+      "additionalProperties": true
+    },
+    "object": {
+      "type": "object", "required": ["id", "kind", "label"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["document", "message", "folder", "device", "product", "person", "coin", "chart", "image", "symbol"]},
+        "label": {"type": "string", "minLength": 1, "maxLength": 16, "pattern": "\\S"},
+        "detail": {"type": "string", "maxLength": 60},
+        "assetId": {"$ref": "#/$defs/id"}
+      },
+      "additionalProperties": true
+    },
+    "caption": {
+      "type": "object", "required": ["id", "start", "end", "text"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "start": {"type": "number", "minimum": 0}, "end": {"type": "number", "exclusiveMinimum": 0},
+        "text": {"type": "string", "minLength": 1, "maxLength": 54, "pattern": "\\S"}
+      },
+      "additionalProperties": true
+    },
+    "beat": {
+      "type": "object", "required": ["at", "cueId", "action", "targetId"],
+      "properties": {
+        "at": {"type": "number", "minimum": 0}, "cueId": {"$ref": "#/$defs/id"},
+        "action": {"enum": ["reveal", "focus", "transfer", "group", "select", "result", "count", "connect"]},
+        "targetId": {"$ref": "#/$defs/id"}, "withId": {"$ref": "#/$defs/id"}
+      },
+      "allOf": [{"if": {"properties": {"action": {"enum": ["transfer", "group", "connect"]}}}, "then": {"required": ["withId"]}}],
+      "additionalProperties": true
+    },
+    "metric": {
+      "type": "object", "required": ["value", "unit"],
+      "properties": {"value": {"type": "number", "minimum": 0}, "total": {"type": "number", "exclusiveMinimum": 0}, "unit": {"type": "string"}},
+      "allOf": [{"if": {"properties": {"unit": {"enum": ["%", "％", "percent", "percentage", "百分比"]}}}, "then": {"properties": {"value": {"maximum": 100}, "total": {"maximum": 100}}}}],
+      "additionalProperties": true
+    },
+    "scene": {
+      "type": "object", "required": ["id", "start", "end", "cueIds", "intent", "mechanism", "title", "objectIds", "beats", "transition", "presenter"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "start": {"type": "number", "minimum": 0}, "end": {"type": "number", "minimum": 0.8},
+        "cueIds": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "intent": {"type": "string", "minLength": 1, "maxLength": 100, "pattern": "\\S"},
+        "mechanism": {"enum": ["object-focus", "compare-pan", "route-transfer", "group-sort", "evidence-zoom", "metric-build", "question-thread", "presenter"]},
+        "title": {"type": "string", "maxLength": 24},
+        "objectIds": {"type": "array", "maxItems": 6, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+        "beats": {"type": "array", "items": {"$ref": "#/$defs/beat"}},
+        "transition": {"enum": ["circle", "window", "match", "cut"]},
+        "presenter": {"enum": ["full", "pip", "hidden"]},
+        "metric": {"$ref": "#/$defs/metric"}, "evidenceAssetId": {"$ref": "#/$defs/id"}
+      },
+      "allOf": [
+        {"if": {"properties": {"mechanism": {"const": "object-focus"}}}, "then": {"properties": {"objectIds": {"minItems": 1}, "beats": {"contains": {"properties": {"action": {"enum": ["focus", "reveal", "result"]}}, "required": ["action"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "compare-pan"}}}, "then": {"properties": {"objectIds": {"minItems": 2}, "beats": {"minItems": 2, "contains": {"properties": {"action": {"enum": ["focus", "select"]}}, "required": ["action"]}, "minContains": 2}}}},
+        {"if": {"properties": {"mechanism": {"const": "route-transfer"}}}, "then": {"properties": {"objectIds": {"minItems": 3}, "beats": {"contains": {"properties": {"action": {"const": "transfer"}}, "required": ["action", "withId"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "group-sort"}}}, "then": {"properties": {"objectIds": {"minItems": 3}, "beats": {"contains": {"properties": {"action": {"const": "group"}}, "required": ["action", "withId"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "evidence-zoom"}}}, "then": {"properties": {"objectIds": {"minItems": 1}, "beats": {"contains": {"properties": {"action": {"enum": ["focus", "select", "result"]}}, "required": ["action"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "metric-build"}}}, "then": {"required": ["metric"], "properties": {"objectIds": {"minItems": 1}, "beats": {"contains": {"properties": {"action": {"const": "count"}}, "required": ["action"]}}}}},
+        {"if": {"properties": {"mechanism": {"const": "question-thread"}}}, "then": {"properties": {"objectIds": {"minItems": 2}, "beats": {"contains": {"properties": {"action": {"const": "connect"}}, "required": ["action", "withId"]}}}}},
+        {"if": {"required": ["metric"]}, "then": {"properties": {"mechanism": {"const": "metric-build"}}}},
+        {"if": {"required": ["evidenceAssetId"]}, "then": {"properties": {"mechanism": {"const": "evidence-zoom"}}}}
+      ],
+      "additionalProperties": true
+    },
+    "production": {
+      "properties": {
+        "timing": {"const": "measured"},
+        "media": {"properties": {"voice": {"$ref": "#/$defs/localPath"}}},
+        "assets": {"items": {"required": ["source"], "properties": {"source": {"type": "string", "minLength": 1, "pattern": "\\S"}}}}
+      },
+      "allOf": [
+        {"if": {"properties": {"source": {"properties": {"type": {"enum": ["raw-presenter", "roughcut-presenter"]}}}}}, "then": {"properties": {"source": {"required": ["tool"], "properties": {"roughcut": {"const": "done"}, "tool": {"const": "ChatCut"}}}, "media": {"properties": {"presenter": {"$ref": "#/$defs/localPath"}}}}}},
+        {"if": {"properties": {"source": {"properties": {"type": {"const": "digital-human"}}}}}, "then": {"properties": {"source": {"properties": {"roughcut": {"enum": ["skipped-digital", "done"]}}, "allOf": [{"if": {"properties": {"roughcut": {"const": "done"}}}, "then": {"required": ["tool"], "properties": {"tool": {"const": "ChatCut"}}}}]}, "media": {"properties": {"presenter": {"$ref": "#/$defs/localPath"}}}}}},
+        {"if": {"properties": {"source": {"properties": {"type": {"enum": ["narration", "demo"]}}}}}, "then": {"properties": {"source": {"properties": {"roughcut": {"const": "not-needed"}}}}}}
+      ]
+    }
+  }
+}

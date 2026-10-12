@@ -19,8 +19,15 @@ REQUIRED_FILES = (
     "references/presenter-workflow.md", "references/visual-grammar.md", "references/timing-format.md",
     "references/approved-case.md", "assets/timing-example/timeline.json",
     "assets/timing-example/alignment-example.csv",
+    "scripts/validate_storyboard.py", "scripts/compile_storyboard.py",
+    "references/storyboard-contract.md", "references/storyboard.schema.json",
+    "references/director-playbook.md", "references/repair-recipes.md",
 )
 CASES = {
+    "adaptive-template": (
+        "package.json", "package-lock.json", "tsconfig.json", "render.cjs",
+        "src/index.ts", "src/Root.tsx", "src/episode.json",
+    ),
     "presenter-v3-template": (
         "package.json", "package-lock.json", "tsconfig.json", "render.cjs", "src/index.ts",
         "src/Root.tsx", "src/FilmV3.tsx", "src/mediaConfig.ts", "src/fonts.ts", "src/captions.json",

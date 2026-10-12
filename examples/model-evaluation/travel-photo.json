@@ -1,0 +1,148 @@
+{
+  "version": 2,
+  "title": "旅行照片整理：从拍完到分享",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 19.2,
+  "timing": "estimated",
+  "renderMode": "draft",
+  "source": {
+    "type": "demo",
+    "roughcut": "not-needed"
+  },
+  "media": {
+    "presenter": null,
+    "voice": null
+  },
+  "theme": {
+    "paper": "#F5F2ED",
+    "ink": "#242323",
+    "accent": "#B75E43",
+    "comic": "#D9C9EF"
+  },
+  "assets": [],
+  "objects": [
+    { "id": "trip_stack", "kind": "image", "label": "旅行照片", "detail": "抽象示意照片堆；无真实照片素材" },
+    { "id": "blurred_photo", "kind": "image", "label": "模糊照片", "detail": "示意占位，不代表真实照片" },
+    { "id": "duplicate_photo", "kind": "image", "label": "重复照片", "detail": "示意占位，不代表真实照片" },
+    { "id": "kept_city_a", "kind": "image", "label": "保留照片A", "detail": "地点分组用示意占位" },
+    { "id": "kept_city_b", "kind": "image", "label": "保留照片B", "detail": "地点分组用示意占位" },
+    { "id": "city_folder", "kind": "folder", "label": "地点组A", "detail": "示意地点文件夹" },
+    { "id": "coast_folder", "kind": "folder", "label": "地点组B", "detail": "示意地点文件夹" },
+    { "id": "story_city", "kind": "image", "label": "候选照片A", "detail": "从一组中选出的示意照片" },
+    { "id": "story_coast", "kind": "image", "label": "候选照片B", "detail": "从另一组中选出的示意照片" },
+    { "id": "story_sequence", "kind": "document", "label": "故事顺序", "detail": "照片顺序示意轨道" },
+    { "id": "original_photo", "kind": "image", "label": "原图", "detail": "保留的原始照片示意" },
+    { "id": "share_copy", "kind": "image", "label": "分享版本", "detail": "导出副本示意" },
+    { "id": "share_device", "kind": "device", "label": "分享设备", "detail": "仅作导出目标示意" }
+  ],
+  "captions": [
+    { "id": "p1", "start": 0.0, "end": 2.4, "text": "拍完旅行照片，先别急着全发出去。" },
+    { "id": "p2", "start": 2.4, "end": 5.7, "text": "把模糊和重复的照片挑出来。" },
+    { "id": "p3", "start": 5.7, "end": 8.9, "text": "再把保留下来的照片按地点分组。" },
+    { "id": "p4", "start": 8.9, "end": 12.0, "text": "从每组里选出最能讲故事的一张。" },
+    { "id": "p5", "start": 12.0, "end": 15.6, "text": "把它们连起来，再看顺序是不是自然。" },
+    { "id": "p6", "start": 15.6, "end": 19.2, "text": "最后保留原图，导出要分享的版本。" }
+  ],
+  "scenes": [
+    {
+      "id": "s1_intake",
+      "start": 0.0,
+      "end": 2.4,
+      "cueIds": ["p1"],
+      "intent": "先建立刚拍完、尚未筛选的一叠旅行照片，再停住手指，提示暂缓群发。",
+      "mechanism": "object-focus",
+      "title": "先别急着分享",
+      "objectIds": ["trip_stack"],
+      "beats": [
+        { "at": 0.25, "cueId": "p1", "action": "reveal", "targetId": "trip_stack" },
+        { "at": 1.55, "cueId": "p1", "action": "focus", "targetId": "trip_stack" }
+      ],
+      "transition": "match",
+      "presenter": "hidden"
+    },
+    {
+      "id": "s2_review",
+      "start": 2.4,
+      "end": 5.7,
+      "cueIds": ["p2"],
+      "intent": "从照片堆推入近景，依次查看模糊与重复候选，并把两类问题照片挑出。",
+      "mechanism": "compare-pan",
+      "title": "挑出模糊与重复",
+      "objectIds": ["trip_stack", "blurred_photo", "duplicate_photo"],
+      "beats": [
+        { "at": 3.05, "cueId": "p2", "action": "focus", "targetId": "blurred_photo" },
+        { "at": 4.55, "cueId": "p2", "action": "select", "targetId": "duplicate_photo" }
+      ],
+      "transition": "window",
+      "presenter": "hidden"
+    },
+    {
+      "id": "s3_group",
+      "start": 5.7,
+      "end": 8.9,
+      "cueIds": ["p3"],
+      "intent": "镜头回到俯拍全景，保留照片沿桌面移动并分别进入地点文件夹的空间关系。",
+      "mechanism": "group-sort",
+      "title": "按地点归组",
+      "objectIds": ["kept_city_a", "kept_city_b", "city_folder", "coast_folder"],
+      "beats": [
+        { "at": 6.45, "cueId": "p3", "action": "group", "targetId": "kept_city_a", "withId": "city_folder" },
+        { "at": 7.75, "cueId": "p3", "action": "group", "targetId": "kept_city_b", "withId": "coast_folder" }
+      ],
+      "transition": "circle",
+      "presenter": "hidden"
+    },
+    {
+      "id": "s4_select",
+      "start": 8.9,
+      "end": 12.0,
+      "cueIds": ["p4"],
+      "intent": "先看地点组A中的候选，再横移到地点组B，分别选出作为讲述代表的照片。",
+      "mechanism": "compare-pan",
+      "title": "每组留一张代表",
+      "objectIds": ["city_folder", "coast_folder", "story_city", "story_coast"],
+      "beats": [
+        { "at": 9.65, "cueId": "p4", "action": "select", "targetId": "story_city" },
+        { "at": 11.15, "cueId": "p4", "action": "select", "targetId": "story_coast" }
+      ],
+      "transition": "match",
+      "presenter": "hidden"
+    },
+    {
+      "id": "s5_sequence",
+      "start": 12.0,
+      "end": 15.6,
+      "cueIds": ["p5"],
+      "intent": "两张代表照片沿连续路线进入同一顺序轨道，镜头拉远让观众检查先后衔接。",
+      "mechanism": "route-transfer",
+      "title": "连起来看顺序",
+      "objectIds": ["story_city", "story_coast", "story_sequence"],
+      "beats": [
+        { "at": 12.75, "cueId": "p5", "action": "transfer", "targetId": "story_city", "withId": "story_sequence" },
+        { "at": 13.8, "cueId": "p5", "action": "transfer", "targetId": "story_coast", "withId": "story_sequence" },
+        { "at": 14.75, "cueId": "p5", "action": "focus", "targetId": "story_sequence" }
+      ],
+      "transition": "window",
+      "presenter": "hidden"
+    },
+    {
+      "id": "s6_export",
+      "start": 15.6,
+      "end": 19.2,
+      "cueIds": ["p6"],
+      "intent": "近景明确原图留在一侧，分享副本从原图复制后移向设备，停留展示两个版本并存。",
+      "mechanism": "route-transfer",
+      "title": "原图保留，副本分享",
+      "objectIds": ["original_photo", "share_copy", "share_device"],
+      "beats": [
+        { "at": 16.25, "cueId": "p6", "action": "focus", "targetId": "original_photo" },
+        { "at": 17.65, "cueId": "p6", "action": "transfer", "targetId": "share_copy", "withId": "share_device" },
+        { "at": 18.55, "cueId": "p6", "action": "result", "targetId": "share_device" }
+      ],
+      "transition": "cut",
+      "presenter": "hidden"
+    }
+  ]
+}

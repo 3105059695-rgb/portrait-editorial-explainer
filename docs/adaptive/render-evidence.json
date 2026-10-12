@@ -1,0 +1,134 @@
+[
+  {
+    "topic": "water-filter",
+    "label": "净水器选购",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1080,
+          "height": 1920,
+          "r_frame_rate": "30/1",
+          "nb_frames": "624",
+          "side_data_list": [
+            {}
+          ]
+        }
+      ],
+      "format": {
+        "duration": "20.800000"
+      }
+    },
+    "fullDecodeExit": 0,
+    "sampleSeconds": [
+      3.3,
+      10.5,
+      14.1,
+      18.8
+    ],
+    "preview": "water-filter.mp4",
+    "previewSha256": "70f5a87781e2c0ee0e7a49f0fbd2e5c2b22cbb7d11d2804c4e04dbf4fba8d6a1"
+  },
+  {
+    "topic": "customer-questions",
+    "label": "客户问题整理",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1080,
+          "height": 1920,
+          "r_frame_rate": "30/1",
+          "nb_frames": "558",
+          "side_data_list": [
+            {}
+          ]
+        }
+      ],
+      "format": {
+        "duration": "18.600000"
+      }
+    },
+    "fullDecodeExit": 0,
+    "sampleSeconds": [
+      4.1,
+      6.85,
+      10.0,
+      15.6
+    ],
+    "preview": "customer-questions.mp4",
+    "previewSha256": "9966ca84baf5b0b7b204d47ac0634061eb9fbaf5474ecca0792e680f5169d79e"
+  },
+  {
+    "topic": "artifact-recording",
+    "label": "文物记录",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1080,
+          "height": 1920,
+          "r_frame_rate": "30/1",
+          "nb_frames": "672",
+          "side_data_list": [
+            {}
+          ]
+        }
+      ],
+      "format": {
+        "duration": "22.400000"
+      }
+    },
+    "fullDecodeExit": 0,
+    "sampleSeconds": [
+      1.1,
+      5.8,
+      12.15,
+      17.5
+    ],
+    "preview": "artifact-recording.mp4",
+    "previewSha256": "27b5ef66463be80a6f3eed6c0e56b64c173428f9c027143d5af964268e80538f"
+  },
+  {
+    "topic": "travel-photo",
+    "label": "旅行照片整理",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1080,
+          "height": 1920,
+          "r_frame_rate": "30/1",
+          "nb_frames": "576",
+          "side_data_list": [
+            {}
+          ]
+        }
+      ],
+      "format": {
+        "duration": "19.200000"
+      }
+    },
+    "fullDecodeExit": 0,
+    "sampleSeconds": [
+      4.65,
+      8.1,
+      14.1,
+      18.7
+    ],
+    "preview": "travel-photo.mp4",
+    "previewSha256": "74f50d98289643345b3317a4167516073dfeba80b4506223f6ccb4851dd1d8b6"
+  }
+]

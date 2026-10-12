@@ -1,4 +1,6 @@
-# 已认可的竖屏口播 V3
+# 历史风格基准：已认可的竖屏口播 V3
+
+本页解释风格来源与历史组件，不是 v2 的默认制作模板。新一期先用 [导演手册](director-playbook.md) 根据内容生成 [v2 分镜](storyboard-contract.md)，再编译到通用引擎。主题、对象、镜头顺序与时长由新稿决定。
 
 ## 认可范围
 
@@ -38,7 +40,7 @@
 
 ## 可编辑代码
 
-`--case presenter-v3` 或省略 `--case` 创建该样例，默认 Composition 为 `PresenterEditorialV3`。依赖、锁文件、字体和代码都在样例内，运行时不需要作者的本地目录。
+只有显式 `new_project.py --case presenter-v3 --out <新目录>` 才创建该历史样例，其 Composition 为 `PresenterEditorialV3`。省略 `--case` 时现在默认创建 `adaptive` 通用引擎，Composition 为 `AdaptivePortrait`；不要将两套工程的配置文件和渲染命令混用。两套工程均附有依赖声明、锁文件与代码，运行时不依赖作者的本地目录。
 
 | 文件 | 可复用机制 |
 | --- | --- |
@@ -48,10 +50,10 @@
 | `src/PropsV2.tsx` | 代码原生钱币、纸层、办公楼、轮廓、高光与接触影；V2命名只代表组件来源 |
 | `src/mediaConfig.ts` | `presenterVideo`、`voiceTrack` 可为null；`referenceImage` 为占位SVG。配置路径相对于 `public/` |
 
-当前样例仍是历史字幕、固定10.74秒与绝对时点。换主题时先生成本期字幕/语义事件表，再修改镜头、道具和 Root 时长；仅替换媒体路径或台词不是完成剪辑。新的口播不得被旧样例自动截成10秒。
+这个历史样例保留原来的示例字幕、固定10.74秒与绝对时点，便于研究当时的相机和转场。它不承担自动适配新主题的职责；新的制作入口是 `episode.json → validate_storyboard.py → compile_storyboard.py → AdaptivePortrait`。需要从旧案例借用特殊机制时，只迁移合适的构图／动画实现，不沿用旧台词、物体或时长。仅替换历史媒体路径或台词不是完成剪辑。
 
 ## 验证与可移植性
 
-历史占位提取的验证见 [V3 验证说明](validation-presenter-v3.md)，本次公开发布的实际安装、复制和渲染验证见 [发布验证](../docs/VALIDATION.md)。两者不能代替新主题的视觉与声音验收。
+历史占位提取的验证见 [V3 验证说明](validation-presenter-v3.md)，V1 公开发布记录见 [历史发布验证](../docs/VALIDATION.md)，v2 通用引擎的实际结果见 [当前验证](../docs/VALIDATION-V2.md)。历史风格认可与技术检查都不能代替新主题的视觉与声音验收。
 
 官方 OpenAI 字标和位移图是历史示例资产；新题按实际品牌替换。占位图不可当真实访谈证据。公开包的预览全部来自占位工程，不含原用户或原风格参考视频。
