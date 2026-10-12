@@ -1,4 +1,4 @@
-> 当前入口是 `new_project.py --input PLAN`，经 V2 分镜编译器创建本期 adaptive 工程；数字人 V3 是视觉基准，source-style 仅为辅助 UI 组件。先读[当前方向](../references/approved-editing-direction.md)，不要把任何校准案例当成默认成片。
+> 当前入口是 `new_project.py --input PLAN`。先读[原始完整参考的剪辑方向](../references/approved-editing-direction.md)；V3、净水器和现有UI组件均是局部实现，不是默认全片风格。安装成功不代表现有代码已覆盖原片全部表达。
 
 # 安装与首次运行
 
@@ -38,7 +38,7 @@ cd portrait-editorial-explainer
 
 ### 方式 B：ZIP
 
-下载[当前 main 分支 ZIP](https://github.com/3105059695-rgb/portrait-editorial-explainer/archive/refs/heads/main.zip)，或使用 [v3.1.0-rc.1 完整 Skill 包](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/tag/v3.1.0-rc.1)。解压后进入包含 `SKILL.md` 的那一级目录。旧版 Release 不包含本次可复用剪辑动效。不要只下载 `SKILL.md`：它引用的脚本、规范、字体依赖声明和模板都在其他目录中。
+下载[当前 main 分支 ZIP](https://github.com/3105059695-rgb/portrait-editorial-explainer/archive/refs/heads/main.zip)。解压后进入包含 `SKILL.md` 的那一级目录。历史 v3.1.0-rc.1 包尚未包含“最初完整参考优先”的方向纠正，仅供查看当时的局部实现。不要只下载 `SKILL.md`：它引用的脚本、规范、字体依赖声明和模板都在其他目录中。
 
 不要直接在压缩包浏览窗口里运行脚本。若解压结果多套了一层目录，以能看到 `SKILL.md` 和 `scripts` 的那一层作为仓库根目录。
 
@@ -180,7 +180,7 @@ macOS／Linux 将前两条的 `python -X utf8` 换成 `python3`，其他命令�
 
 ## 用自己的内容创建工程
 
-让 Agent 先读取[当前方向](../references/approved-editing-direction.md)，再读[导演手册](../references/director-playbook.md)与 [v2 分镜契约](../references/storyboard-contract.md)，根据本期最终口播生成 `episode.json`。第一份分镜只写真实开头：从 0 秒起，连续覆盖 10–15 秒，并在完整语义处结束；字幕和素材保持同一起点。主题、对象、场景数量与顺序、配色、时长和动作时点由这份 JSON 决定。先复用已有代码；当前底座表达不了 V3 的关键镜头或转场时，须在本期工程补实现，不能降低视觉目标迁就模板。
+让 Agent 先读取[当前方向](../references/approved-editing-direction.md)，再按本期最终口播生成 `episode.json`。第一份分镜只写0秒起10–15秒的完整语义开头。真实素材、UI、图形、图表、场景顺序与人物布局按内容选择；已有代码适用时复用，不足以表达原始参考的相应机制时扩展，不能改用固定V3或净水器画法迁就模板。
 
 把本期输入放在独立工作目录，例如：
 
@@ -235,7 +235,7 @@ npm run render -- 0.6 2.8 5.6 7.6 9.8
 
 ## 历史案例只用于风格研究
 
-`python scripts/new_project.py --case presenter-v3 --out "../v3-style-study"` 显式复制固定 10.74 秒的 V3 历史机制样例；`--case approved-reference` 复制旧 816×1080 数学案例。这两个选项保留以便阅读过去的相机、材质和转场代码，均不是新主题默认入口，脚本与输出名也不同。仅替换它们的媒体路径不会自动变成新一期。具体边界见 [V3 风格基准](../references/approved-presenter-v3.md)。
+`python scripts/new_project.py --case presenter-v3 --out "../v3-style-study"` 显式复制固定10.74秒的V3历史机制样例；`--case approved-reference` 复制旧816×1080数学案例。两者用于阅读局部代码，均不是默认风格或新主题入口；仅替换媒体路径不会自动变成新一期。具体边界见[V3局部机制](../references/approved-presenter-v3.md)。
 
 ## 更新已有安装
 

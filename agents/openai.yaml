@@ -1,4 +1,4 @@
 interface:
   display_name: "数字人口播动效剪辑"
-  short_description: "沿用已认可V3的镜头、物件与转场，按新口播重新编排，先看真实开头"
-  default_prompt: "请使用 $portrait-editorial-explainer，沿用已认可数字人V3的剪辑方向，根据这期口播重排物件、素材、镜头和转场；先制作本期开头10–15秒。"
+  short_description: "按完整参考的丰富视觉语言组织真实素材、UI与图形，直接制作本期开头"
+  default_prompt: "请使用 $portrait-editorial-explainer，以最初完整参考的视觉语言为依据，按本期口播组合真实素材、UI、图形、镜头和转场。V3和净水器仅作局部机制参考，人物布局按内容与我的要求安排；先直接制作本期开头10–15秒。"
