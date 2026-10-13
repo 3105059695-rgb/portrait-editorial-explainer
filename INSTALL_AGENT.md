@@ -10,10 +10,12 @@
 2. 下载并阅读公开脚本：
    `https://raw.githubusercontent.com/3105059695-rgb/portrait-editorial-explainer/main/scripts/install_release.ps1`
 3. 用宿主允许的 PowerShell 执行方式运行该脚本。脚本默认安装本页配套的 `v3.4.0`。不要修改系统执行策略或使用远程内容管道到 `iex`；若宿主拦截，明确说明限制并遵循其批准流程。
-4. 等待程序完成，读取其打印的 `setup-result.json`。只有退出码为0、`status`为`ready`、Skill文件与`sampleVideo`存在，才告知安装成功。
+4. 等待程序完成，读取其打印的 `setup-result.json`。下载和首次渲染可能需要几分钟；命令工具返回运行中的会话ID时继续等待该会话，不要仅凭启动命令就报告成功。只有退出码为0、`status`为`ready`、Skill文件与`sampleVideo`存在，才告知安装成功。
 5. 返回已安装 Skill 路径、示例视频位置和下面的日常调用语句。提示开一个新会话以发现新 Skill。
 
 安装脚本会从本仓库 GitHub Release 获取完整 ZIP 和 SHA256SUMS，验证后解压，并用 `--headless` 调用已编译安装器。无需用户打开窗口或点击按钮。它检查和补齐 Python、Node/npm、FFmpeg、Remotion依赖与浏览器，最后实际渲染并完整解码12秒公开示例。
+
+每次自动安装都获取上面链接的当前入口脚本；制作运行时使用固定版本 ZIP 和散列。入口脚本可以独立修复网络兼容问题，不要求重新分发整套素材。
 
 默认 Skill 目录为当前进程的 `$CODEX_HOME/skills`，未设置时用当前用户的 `~/.codex/skills`。运行环境在当前用户 LocalAppData 的 `PortraitEditorialExplainer` 下。已有本 Skill 会先备份被替换文件，额外文件保留。其他非空目录拒绝覆盖。该安装不需要管理员权限，不修改全局 PATH，不安装／登录 Codex 或 ChatCut。
 
