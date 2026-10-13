@@ -74,7 +74,7 @@ $process.WaitForExit()
 if ($process.ExitCode -ne 0) { throw "Installation failed with exit code $($process.ExitCode). Check the installation log." }
 $runtimeRoot = if ($AppHome) { [IO.Path]::GetFullPath($AppHome) } else { Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) 'PortraitEditorialExplainer' }
 $resultPath = Join-Path $runtimeRoot 'setup-result.json'
-$result = Get-Content -LiteralPath $resultPath -Raw | ConvertFrom-Json
+$result = [IO.File]::ReadAllText($resultPath, [Text.Encoding]::UTF8) | ConvertFrom-Json
 if ($result.status -ne 'ready' -or -not (Test-Path -LiteralPath $result.sampleVideo -PathType Leaf) -or -not (Test-Path -LiteralPath (Join-Path $result.skillRoot 'SKILL.md') -PathType Leaf)) { throw 'The installer did not produce a ready result and sample.' }
 Write-Host 'READY: Skill installed, dependencies prepared, sample rendered and decoded.'
 Write-Host "RESULT: $resultPath"
