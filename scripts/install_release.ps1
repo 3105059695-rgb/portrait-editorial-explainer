@@ -4,6 +4,7 @@ param(
     [ValidatePattern('^v[0-9]+\.[0-9]+\.[0-9]+$')][string]$ReleaseTag = 'v3.4.0',
     [string]$AppHome,
     [string]$SkillsDir,
+    [string]$DownloadDirectory,
     [switch]$ForcePortable,
     [switch]$PrepareOnly
 )
@@ -15,7 +16,7 @@ if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT -or -not [Enviro
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $repository = '3105059695-rgb/portrait-editorial-explainer'
 $packageName = "portrait-editorial-explainer-$ReleaseTag.zip"
-$workRoot = Join-Path ([IO.Path]::GetTempPath()) ('portrait-install-' + [Guid]::NewGuid().ToString('N'))
+$workRoot = if ($DownloadDirectory) { [IO.Path]::GetFullPath($DownloadDirectory) } else { Join-Path ([Environment]::GetFolderPath('LocalApplicationData')) "PortraitEditorialExplainer\packages\$ReleaseTag" }
 [IO.Directory]::CreateDirectory($workRoot) | Out-Null
 Write-Host "Downloading $ReleaseTag. Work directory: $workRoot"
 $headers = @{ 'User-Agent' = 'PortraitEditorialExplainer-AutoInstall' }
@@ -23,13 +24,21 @@ $releaseBase = "https://github.com/$repository/releases/download/$ReleaseTag"
 $zipPath = Join-Path $workRoot $packageName
 $hashPath = Join-Path $workRoot 'SHA256SUMS.txt'
 Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/SHA256SUMS.txt" -OutFile $hashPath -Headers $headers
-Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/$packageName" -OutFile $zipPath -Headers $headers
+if (-not (Test-Path -LiteralPath $zipPath)) {
+    $partialPath = $zipPath + '.part-' + [Guid]::NewGuid().ToString('N')
+    Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/$packageName" -OutFile $partialPath -Headers $headers
+    [IO.File]::Move($partialPath, $zipPath)
+}
 $hashLines = @(Get-Content -LiteralPath $hashPath | Where-Object { $_ -match ('^[a-fA-F0-9]{64}\s+\*?' + [Regex]::Escape($packageName) + '$') })
 if ($hashLines.Count -ne 1) { throw 'The ZIP has no unique SHA-256 entry.' }
 $expected = ($hashLines[0] -split '\s+')[0]
-if ((Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash -ne $expected) { throw 'SHA-256 mismatch. The package will not be executed.' }
+$hasher = [Security.Cryptography.SHA256]::Create()
+$inputStream = [IO.File]::OpenRead($zipPath)
+try { $actual = [BitConverter]::ToString($hasher.ComputeHash($inputStream)).Replace('-', '') }
+finally { $inputStream.Dispose(); $hasher.Dispose() }
+if ($actual -ne $expected) { throw 'SHA-256 mismatch. The package will not be executed.' }
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-$extracted = Join-Path $workRoot 'package'
+$extracted = Join-Path $workRoot ('package-' + [Guid]::NewGuid().ToString('N'))
 $zip = [IO.Compression.ZipFile]::OpenRead($zipPath)
 try {
     $total = 0L
