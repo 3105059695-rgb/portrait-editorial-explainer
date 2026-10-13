@@ -19,18 +19,11 @@ $workRoot = Join-Path ([IO.Path]::GetTempPath()) ('portrait-install-' + [Guid]::
 [IO.Directory]::CreateDirectory($workRoot) | Out-Null
 Write-Host "Downloading $ReleaseTag. Work directory: $workRoot"
 $headers = @{ 'User-Agent' = 'PortraitEditorialExplainer-AutoInstall' }
-$release = Invoke-RestMethod -Uri "https://api.github.com/repos/$repository/releases/tags/$ReleaseTag" -Headers $headers
-$zipAsset = @($release.assets | Where-Object { $_.name -eq $packageName })
-$hashAsset = @($release.assets | Where-Object { $_.name -eq 'SHA256SUMS.txt' })
-if ($zipAsset.Count -ne 1 -or $hashAsset.Count -ne 1) { throw 'The complete release ZIP or checksum is missing.' }
-$allowedPrefix = "https://github.com/$repository/releases/download/$ReleaseTag/"
-foreach ($asset in @($zipAsset[0], $hashAsset[0])) {
-    if (-not $asset.browser_download_url.StartsWith($allowedPrefix, [StringComparison]::Ordinal)) { throw 'Unexpected release download address.' }
-}
+$releaseBase = "https://github.com/$repository/releases/download/$ReleaseTag"
 $zipPath = Join-Path $workRoot $packageName
 $hashPath = Join-Path $workRoot 'SHA256SUMS.txt'
-Invoke-WebRequest -UseBasicParsing -Uri $hashAsset[0].browser_download_url -OutFile $hashPath -Headers $headers
-Invoke-WebRequest -UseBasicParsing -Uri $zipAsset[0].browser_download_url -OutFile $zipPath -Headers $headers
+Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/SHA256SUMS.txt" -OutFile $hashPath -Headers $headers
+Invoke-WebRequest -UseBasicParsing -Uri "$releaseBase/$packageName" -OutFile $zipPath -Headers $headers
 $hashLines = @(Get-Content -LiteralPath $hashPath | Where-Object { $_ -match ('^[a-fA-F0-9]{64}\s+\*?' + [Regex]::Escape($packageName) + '$') })
 if ($hashLines.Count -ne 1) { throw 'The ZIP has no unique SHA-256 entry.' }
 $expected = ($hashLines[0] -split '\s+')[0]
