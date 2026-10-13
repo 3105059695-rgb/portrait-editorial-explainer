@@ -1,265 +1,141 @@
-> 3.3首选 `start_episode.py` 接入简化分镜与SRT；完整v3/v2 JSON仍用 `new_project.py --input PLAN`。视觉实现沿用已确认的3.2完整机制库。直接调用见[本期素材入口](../references/direct-use.md)。
+# 安装与首次使用
 
-# 安装与首次运行
+把一段指令发给这台电脑上的Codex，Agent负责下载、校验、安装、补齐依赖和示例试跑。使用者不需要手动下载解压或敲终端命令。当前自动安装支持Windows 10及以上的x64电脑；macOS／Linux保留手动安装方式，本次没有新增这两种系统的自动安装或实测结论。
 
-本教程分为两件事：**把 Skill 放进 Agent 能发现的位置**，以及**准备 Remotion 工程的运行环境**。只安装 Skill 可以先阅读、调用流程；要导出样例或正式视频，还需要后面的制作工具。
+返回 [README](../README.md) · [直接使用](../references/direct-use.md) · [故障排查](TROUBLESHOOTING.md)
 
-返回 [README](../README.md) · 下一步 [完整工作流](WORKFLOW.md) · 遇到问题 [故障排查](TROUBLESHOOTING.md)
+## 复制给Codex的安装指令
 
-## 准备运行环境
+```text
+请阅读 https://raw.githubusercontent.com/3105059695-rgb/portrait-editorial-explainer/main/INSTALL_AGENT.md ，按说明在这台电脑安装 portrait-editorial-explainer，自动检查补齐依赖并试跑，完成后告诉我如何调用。
+```
 
-| 工具或条件 | 何时需要 | 说明 |
-| --- | --- | --- |
-| 能读取 Skill 与本地文件的 Agent | 使用本 Skill | 支持程度取决于宿主；不是所有聊天界面都能访问本地工程 |
-| Python 3.10+ | 安装器、诊断、分镜校验和编译 | Python 脚本使用标准库，无需 `pip install` |
-| Git | 用 `git clone` 下载 | 使用 ZIP 时可不安装 Git |
-| Node.js 与 npm | 安装与运行 Remotion | 建议 Node.js 22+；使用锁定的 `package-lock.json` 配合 `npm ci` |
-| FFmpeg 与 ffprobe | 音轨提取、成片探测、完整解码 | 需要命令能在当前终端找到 |
-| 兼容浏览器 | Remotion 渲染 | 可由 Remotion 下载，或设置已有浏览器路径；不随本仓库分发 |
-| ChatCut 连接与授权 | 真人原始口播的默认粗剪 | 要在 Agent 端单独检查；安装 Skill 不会安装或登录 ChatCut |
-| 足够的本地空间 | npm 依赖、素材、输出 | 容量取决于视频长度、素材和缓存，仓库下载大小不代表制作所需空间 |
+Codex需具备当前电脑的本地文件和命令执行能力。普通网页聊天如果不能访问本机，就不能替这台电脑完成安装。Agent按 [INSTALL_AGENT.md](../INSTALL_AGENT.md) 下载并核对发布包，运行底层安装器的headless入口，读取实际结果；不要把用户引导回手动下载、解压和命令列表。
 
-当前完整效果库验证见 [FULL-EFFECTS-3.2.md](FULL-EFFECTS-3.2.md)，本次入口验证见 [DIRECT-USE-3.3.md](DIRECT-USE-3.3.md)。V2/V1记录保留为历史实现证据。工具在某台机器通过检查，不等于所有操作系统和所有版本已实际测试；本页提供 Windows 与 macOS／Linux 命令，不将命令说明当作跨平台测试结果。
+首次需要联网，耗时取决于网络和磁盘。Agent会处理正常的环境准备，并报告实际失败阶段；只有示例渲染、探测和完整解码通过，才说明安装可用。完成后应给出Skill安装位置、样例视频位置和调用方式。它不会替使用者绕过系统或组织的必要确认。
 
-不要把账号密码、API Key 或私人授权配置写进 Skill 文件。这里的安装与样例运行不要求提交任何此类信息。
+## 自动安装会做什么
 
-## 下载仓库
+| 步骤 | 实际动作 |
+|---|---|
+| 检查工具 | 检查Python 3.10+、Node.js 22+及npm、FFmpeg与ffprobe，优先复用符合要求的工具 |
+| 补齐环境 | 下载缺少的portable工具，按包内清单校验SHA256，然后放入当前用户的独立目录 |
+| 安装Skill | 复制完整规则、脚本、模板和公开示例；升级已有本Skill时备份将被替换的文件，保留额外文件 |
+| 准备工程 | 创建独立的公开quickstart工程，按锁文件执行npm ci，由Remotion准备渲染浏览器 |
+| 验证可运行 | 执行工程检查，实际渲染12秒示例，检查视频尺寸、时长等信息并完整解码 |
+| 完成 | 只有以上步骤成功且结果状态为ready，Agent才报告可用，并给出安装位置、示例和调用方法 |
 
-### 方式 A：Git
+安装过程不申请管理员权限，不修改全局PATH。依赖路径只传入当前安装或制作进程。它不会安装／登录Codex或ChatCut，也不会调用付费配音、数字人服务或上传视频。
 
-选择一个普通工作目录，在终端运行：
+示例是“整理旅行照片”的无声草案，包含公开图形和演示字幕；没有私人声音、人物视频或作者账号。示例能渲染证明当前制作环境可运行，不代表本期素材已完成剪辑。完整风格仍包含排版、真实素材、UI、空间镜头、图表和漫画，参考 [完整效果库](../references/full-effects-guide.md)。
+
+## 文件放在哪里
+
+| 内容 | 默认位置 |
+|---|---|
+| Skill | `$CODEX_HOME/skills/portrait-editorial-explainer`；未设置CODEX_HOME时为当前用户的 `~/.codex/skills/portrait-editorial-explainer` |
+| 安装运行目录 | `%LOCALAPPDATA%\PortraitEditorialExplainer` |
+| 本机工具配置 | 上述运行目录下的 `runtime.json` |
+| 安装结果 | 上述运行目录下的 `setup-result.json`，成功状态为 `ready` |
+| 日志 | 上述运行目录下的 `logs/install-时间-随机ID.log` |
+| 升级备份 | 上述运行目录下的 `backups/` |
+
+示例工程与视频的实际位置写在 `setup-result.json` 的 `projectRoot`、`sampleVideo` 中；Agent根据本次结果提供位置。自定义目录以实际安装结果为准。本机配置保存真实路径，不应复制到公开仓库或当作别人的运行配置。
+
+## 在Agent中调用
+
+安装完成后在Codex开新会话，必要时重新启动应用。发送：
+
+```text
+使用 $portrait-editorial-explainer。
+这是本期数字人／口播视频／最终配音：<文件路径>，字幕：<若已有则提供>。
+按完整参考的剪辑风格，根据本期内容重新选择素材、物件、镜头与转场。
+请负责选效果、生成分镜和可编辑工程，先交本期10–15秒开头。
+```
+
+真人原始口播先ChatCut粗剪；已有粗剪直接沿用；数字人跳过这一步。Agent负责脚本与命令，普通使用者不必手写JSON。如果自动发现失败，把已安装 `SKILL.md` 的实际路径交给Agent，请它直接读取。
+
+这台电脑上可以没有全局 `python` 或 `node` 命令。**Agent优先使用Skill根目录的 `Use-Skill.cmd`，不要在已成功安装后又要求使用者手装同一套工具。** 该入口调用本机runtime配置。以下命令仅供Agent或需要排查的人使用：
+
+```powershell
+& "<实际Skill目录>\Use-Skill.cmd" doctor.py -- --profile production
+& "<实际Skill目录>\Use-Skill.cmd" effect_library.py -- describe reference-search --json
+& "<实际Skill目录>\Use-Skill.cmd" start_episode.py -- --brief brief.json --srt captions.srt --media-dir media --voice final.wav --source-type narration --out ../this-episode
+& "<实际Skill目录>\Use-Skill.cmd" run_project.py -- --project ../this-episode --action render
+```
+
+`Use-Skill.cmd`接收白名单中的脚本名，`--`后传该脚本参数。完整素材分流与示例见 [直接使用指南](../references/direct-use.md#自动安装后的运行入口)。
+
+通常由Agent直接运行制作与渲染。需要自己打开工程时，也可以双击其中的备用入口：
+
+- `Open-Preview.cmd`：启动Remotion预览，保留服务窗口；结束时关闭窗口或按Ctrl+C。
+- `Render-Opening.cmd`：导出本期代表开头。
+- `Render-Full.cmd`：导出完整视频。
+
+这些入口在需要时按锁文件安装该工程的依赖，然后运行。素材路径、镜头和动作来自本期分镜；运行环境准备好不会自动替你完成素材选择和字幕对齐。
+
+## 更新已有安装
+
+**自动安装用户：** 再把上方安装指令发给Codex，并说明“更新已有安装”。Agent下载当前发布包并执行安装流程。安装器识别已有的同名Skill后，先备份本次会替换的文件，再写入新版；额外文件保留。备份放在运行目录的 `backups/`，不在Skill扫描目录内。无法识别的非空目录会被拒绝，不当作可覆盖目标。
+
+本期视频工程和素材应独立存放，升级Skill不会改它们。若修改过Skill自带文件，可以从备份查看旧内容并按需要合并；不要把整份旧版本覆盖回新版。升级后开新会话，让Agent读到当前规则。
+
+**旧手动安装用户：** `scripts/install_skill.py`仍是只复制Skill的轻量工具，拒绝覆盖非空目录，没有 `--force`。使用该脚本更新时，先保存并备份旧Skill到扫描目录之外，让正式目标不存在或为空，再执行安装；或者改用自动安装器处理受识别的旧版。
+
+## 备用图形安装器
+
+希望自己操作窗口时，可以下载 [v3.4.0完整ZIP](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/download/v3.4.0/portrait-editorial-explainer-v3.4.0.zip)，全部解压，在含 `SKILL.md` 的目录双击 `OneClick-Install.exe`，点击 **安装并准备环境**。完成后提供 **打开示例**、**复制调用指令**和 **打开日志**按钮。
+
+源码ZIP或 `git clone`没有预编译exe时，可双击 `Install-Windows.cmd`，使用Windows.NET Framework编译器构建并打开安装器。若系统显示来源提示，核对仓库下载来源后正常确认；不需要禁用防护或修改PowerShell执行策略。
+
+图形窗口和Agent自动安装复用相同的环境准备、备份与渲染验证流程。默认仍推荐把安装指令发给Codex，由Agent完成全部步骤。
+
+![备用Windows图形安装界面](installer-window.png)
+
+## 手动安装与其他系统
+
+这部分供macOS／Linux、其他Agent或已经管理好工具的使用者。Python脚本使用标准库；需要Python 3.10+、Node.js/npm、FFmpeg/ffprobe和Remotion兼容浏览器。建议Node.js 22+。Git仅用于clone，下载ZIP不需要Git。ChatCut只在真人原片粗剪分支需要另行连接。
+
+下载完整仓库或解压ZIP后，在含 `SKILL.md` 的目录运行：
 
 ```shell
 git clone https://github.com/3105059695-rgb/portrait-editorial-explainer.git
 cd portrait-editorial-explainer
+python scripts/install_skill.py --dry-run
+python scripts/install_skill.py
+python scripts/doctor.py --profile production
 ```
 
-当前目录中应直接出现 `SKILL.md`、`scripts/`、`references/`、`assets/`。后文的相对命令都以这个目录为起点，除非明确写了进入新工程。
+macOS／Linux将 `python` 换成 `python3`；Windows可用 `python -X utf8`，部分环境的命令是 `py -3`。`--dry-run`仅展示检查与复制计划，不安装依赖。`doctor.py --profile skill`只检查Skill资源和Python；默认production还检查Node/npm/FFmpeg/ffprobe，**doctor不会渲染视频**。
 
-### 方式 B：ZIP
+安装到其他宿主时，`--skills-dir`传技能父目录，例如：
 
-下载[3.3.0完整ZIP](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/download/v3.3.0/portrait-editorial-explainer-v3.3.0.zip)。解压后进入包含 `SKILL.md` 的那一级目录。不要只下载 `SKILL.md`：它引用的脚本、规范、字体依赖声明和模板都在其他目录中。
-
-不要直接在压缩包浏览窗口里运行脚本。若解压结果多套了一层目录，以能看到 `SKILL.md` 和 `scripts` 的那一层作为仓库根目录。
-
-## 安装到 Codex
-
-### Windows PowerShell
-
-在仓库根目录运行：
-
-```powershell
-python --version
-python -X utf8 scripts/install_skill.py --dry-run
-python -X utf8 scripts/install_skill.py
-python -X utf8 scripts/doctor.py --profile skill
+```shell
+python scripts/install_skill.py --skills-dir /path/to/agent/skills
 ```
 
-如果 `python` 不可用而 `py` 可用：
+安装器会追加 `portrait-editorial-explainer`，不要把名称在参数中再写一遍。工具只复制文件，不替其他Agent修改配置。宿主必须具备实际读取文件、执行命令的能力；本机安装不会自动出现在远程Agent中。
 
-```powershell
-py -3 --version
-py -3 -X utf8 scripts/install_skill.py --dry-run
-py -3 -X utf8 scripts/install_skill.py
-py -3 -X utf8 scripts/doctor.py --profile skill
-```
+手动环境首次试跑：
 
-`--dry-run` 先检查来源与目标并显示计划；不复制文件。确认输出路径符合当前使用者环境后，运行不带 `--dry-run` 的安装命令。
-
-### macOS／Linux
-
-```bash
-python3 --version
-python3 scripts/install_skill.py --dry-run
-python3 scripts/install_skill.py
-python3 scripts/doctor.py --profile skill
-```
-
-安装器采用当前运行进程的 `CODEX_HOME`。未设置时使用当前用户的 `~/.codex`；然后添加 `skills/portrait-editorial-explainer`。
-
-例如默认位置可以表示为：
-
-```text
-~/.codex/skills/portrait-editorial-explainer/
-├── SKILL.md
-├── agents/
-├── scripts/
-├── references/
-└── assets/
-```
-
-以安装器打印的实际路径为准。如果终端和 Agent 使用不同账号、不同主机或不同 `CODEX_HOME`，请先对齐环境；安装在本机不会自动出现在远程 Agent 中。
-
-## 安装到自定义目录或其他 Agent
-
-`--skills-dir` 接收的是**技能父目录**，安装器会自动在其中创建 `portrait-editorial-explainer` 子目录。
-
-Windows 示例：
-
-```powershell
-python -X utf8 scripts/install_skill.py --skills-dir "D:\MyAgent\skills" --dry-run
-python -X utf8 scripts/install_skill.py --skills-dir "D:\MyAgent\skills"
-```
-
-macOS／Linux 示例：
-
-```bash
-python3 scripts/install_skill.py --skills-dir "$HOME/my-agent/skills" --dry-run
-python3 scripts/install_skill.py --skills-dir "$HOME/my-agent/skills"
-```
-
-这两个路径只是示例；必须改为目标 Agent 实际支持的目录。不要把参数设成 `.../skills/portrait-editorial-explainer`，否则会多嵌套一层。
-
-安装器只负责复制文件，不会替其他 Agent 修改配置，也不保证其发现规则、插件接口或系统权限兼容。若该宿主不能自动发现 Skill，可以让它显式读取已安装的 `SKILL.md`，再检查是否有本地文件、命令执行与所需插件能力。
-
-## 在 Agent 中直接调用
-
-安装后重新打开会话，必要时重启宿主应用。发送：
-
-```text
-请使用 $portrait-editorial-explainer。
-这是本期视频/配音：<路径>，这是已有字幕：<有则提供>。
-按完整机制库的风格，根据本期内容重新选素材、镜头和转场，先交10–15秒开头。
-请负责生成简化brief和工程，不需要我手写JSON。
-```
-
-正常制作应采用真人先ChatCut粗剪、数字人跳过、已有粗剪沿用的分流。Agent查所需效果参数，按本期内容选择物体、机制和动作，通过SRT入口或完整分镜生成工程。动效以最终口播时间轴为准，不能默认复制旧案例。无需先让Agent答一份流程问卷。
-
-如果自动发现失败，改用明确路径：
-
-```text
-请读取 <Skill 安装目录>/SKILL.md 和它引用的 presenter-workflow.md，按里面的流程处理。
-```
-
-不要仅以“Agent 知道这个名字”判断安装成功。应确认它读到了当前文件，而不是凭记忆描述了一个同名工作流。
-
-## 检查制作环境
-
-在仓库根目录运行：
-
-```powershell
-python -X utf8 scripts/doctor.py
-```
-
-默认等价于 `--profile production`；只想验证 Skill 本身时用 `--profile skill`。保存机器可读报告可以运行：
-
-```powershell
-python -X utf8 scripts/doctor.py --profile production --json
-```
-
-| 检查模式 | 检查范围 |
-| --- | --- |
-| `skill` | Python 版本、必要文件、样例包与锁文件的根依赖一致性 |
-| `production` | 上述内容，加 Node.js／npm／FFmpeg／ffprobe 的命令与版本 |
-
-返回码 `0` 表示所选模式的必要检查通过；`1` 表示有必需项缺失或版本不支持；命令行参数错误通常返回 `2`。诊断脚本不会安装依赖、渲染成片，也不能证明浏览器可启动、字幕已同步或 ChatCut 已授权。
-
-ChatCut 是否可用应由当前 Agent 通过其连接状态与实际工具能力检查。不要把终端诊断成功当作 ChatCut 登录成功。
-
-## 第一次运行：编译一个跨主题草案
-
-仍在仓库根目录运行。随包“整理旅行照片”分镜是明确标注的静音示意，不需要账号、配音或私人媒体：
-
-```powershell
-python -X utf8 scripts/start_episode.py --brief examples/quickstart/brief.json --srt examples/quickstart/captions.srt --out "../my-first-portrait" --draft
-cd "../my-first-portrait"
+```shell
+python scripts/start_episode.py --brief examples/quickstart/brief.json --srt examples/quickstart/captions.srt --out ../my-first-opening --draft
+cd ../my-first-opening
 npm ci
 npm run check
 npm run render
 ```
 
-macOS／Linux 将 `python -X utf8` 换成 `python3`，其他命令相同。示例保留草案状态且没有定稿声音；不要修改状态来掩盖这些事实。
+输出 `out/opening.mp4`，静音与草案标记是预期状态。`npm run dev`打开预览，`npm run render:full`导出v3全片。输出目录必须不存在或为空，并放在Skill之外。入口不会覆盖旧工程。首次渲染需要联网准备浏览器；自带浏览器路径配置见 [故障排查](TROUBLESHOOTING.md#浏览器下载失败或找不到浏览器)。
 
-新工程目录必须不存在或为空，不能位于 Skill 目录内，也不能是 Skill 或输入资料的祖先目录；推荐使用仓库的同级新目录。入口调用编译器复制通用引擎、分镜和明确引用的本地媒体，生成 `src/episode.json`、方向约束 `STYLE_TARGET.md` 与记录来源哈希的 `BUILD_REPORT.json`，不会安装依赖、调用模型或开始渲染。这样更新 Skill 不会覆盖正在编辑的视频工程。
+## 本期素材与导出
 
-`npm ci` 会根据工程内锁文件安装依赖；它不会生成新的台词、人物或声音。首次联网安装需要耐心等待，查看终端的真实结果。`npm run check` 是 TypeScript 检查，不是画面或声音验收。
+已有SRT优先使用 [字幕与声音入口](../references/direct-use.md)。已有完整v3分镜或需要兼容v2自由图层时，用 `new_project.py --input episode.json --media-dir media-root --out ../this-episode`。媒体路径相对于本期素材根目录，不能写作者机器盘符；真人／数字人／配音按真实来源接入。
 
-`npm run render`输出 `out/opening.mp4`，示例没有定稿声音，静音是预期行为。需要交互预览时另开终端执行 `npm run dev`，实际地址由终端给出。浏览器预览应由使用者实际打开检查，本教程不预先宣称该环境已成功。
+v3的 `npm run render` 导出 `out/opening.mp4`，`render:full`导出 `out/full.mp4`。v2原生render导出整个传入计划到 `out/adaptive-portrait.mp4`；通过一键入口导出v2开头时，再按现有字幕在10–15秒内的句末选择切点，另存 `out/opening.mp4`，没有合适句末会报错。v2计划仍应先写本期代表开头。历史 `--case presenter-v3`、`approved-reference` 只用于局部研究，不能作为新题默认模板。
 
-若只想查看通用引擎校准案例，显式使用 `python scripts/new_project.py --case adaptive --out "../my-adaptive-study"`；内置 `src/episode.json` 是示意，不是空白工程或本期成片。正式工作使用 `new_project.py --input PLAN`；不传 `--input` 或显式 `--case` 会报错，不会替你选择案例。`--case` 不能与 `--input`、`--media-dir`、`--draft` 混用。
+正式输入需要定稿声音、实测字幕与相应粗剪状态；素材未就绪时明确使用 `--draft`，不伪造完成状态。用户给出材料和意图后由Agent完成这些配置。每期交付可播放视频、可编辑工程与素材来源，做必要成片检查即可。
 
-## 用自己的内容创建工程
+## 卸载与保留工程
 
-让 Agent 先读取[当前方向](../references/approved-editing-direction.md)，再按本期最终口播生成 `episode.json`。第一份分镜只写0秒起10–15秒的完整语义开头。真实素材、UI、图形、图表、场景顺序与人物布局按内容选择；已有代码适用时复用，不足以表达原始参考的相应机制时扩展，不能改用固定V3或净水器画法迁就模板。
-
-把本期输入放在独立工作目录，例如：
-
-```text
-episode-work/
-├── episode.json
-└── media-root/
-    └── media/
-        ├── presenter-final.mp4
-        ├── voice-final.wav
-        └── evidence.png
-```
-
-JSON 路径相对于媒体根目录，不加 `public/`，例如 `media.voice` 为 `media/voice-final.wav`。静态资料通过 `assets` 和对象的 `assetId` 引用；当前引擎支持 SVG、PNG、JPEG、WebP。一般视频不能作为静态图像素材直接接入，人物视频使用 `media.presenter`。
-
-从 Skill／仓库根目录执行，以下路径按自己的目录调整：
-
-```powershell
-python -X utf8 scripts/validate_storyboard.py "../episode-work/episode.json" --mode production --json
-python -X utf8 scripts/new_project.py --input "../episode-work/episode.json" --media-dir "../episode-work/media-root" --out "../my-opening-portrait"
-cd "../my-opening-portrait"
-npm ci
-npm run check
-npm run render
-```
-
-macOS／Linux 使用 `python3`。校验器默认生产模式，编译器未传 `--draft` 也默认生产模式：必须有实测 `timing: "measured"`、定稿声音及符合输入类型的粗剪状态；真人／数字人还必须有对应人物文件。具体文件存在与安全路径在编译阶段检查。只有稿件或未完成素材时，用 `--mode draft` 与编译的 `--draft`，输出会显示草案标记；不能捏造实测时间、粗剪完成状态或来源来通过校验。
-
-`BUILD_REPORT.json` 只记录结构、声明与文件字节检查，不证明实际声音对齐、ChatCut 已剪完、素材权利或画面好看。最终仍按 [工作流](WORKFLOW.md) 检查真实结果。
-
-## 导出视频和静帧
-
-在新工程目录执行：
-
-```powershell
-npm run render
-```
-
-默认输出 `out/adaptive-portrait.mp4`。渲染脚本使用 `AdaptivePortrait` Composition，由 `src/episode.json` 的 `duration`、`fps`、尺寸与场景数据决定成片，不再固定为 537 帧或 10.74 秒。**`npm run render` 会渲染整个传入计划，不会自动截成 10–15 秒。** 因此先传入本期开头分镜，等使用者实际确认风格后，再扩展完整时间轴。
-
-选择数个秒数导出静帧：
-
-```powershell
-npm run render -- 0.6 2.8 5.6 7.6 9.8
-```
-
-对应输出 `out/frame-0.60.png` 等文件。参数单位是秒，必须满足 `0 <= 时间 < episode.duration`；短片应相应减少或修改采样时点。不要把帧号作为秒数传入。
-
-首次渲染时，Remotion 可能需要准备兼容浏览器。若你已安装兼容浏览器，`render.cjs` 也支持进程环境变量 `REMOTION_BROWSER_EXECUTABLE`。该变量只供此自定义脚本读取，不要假设所有其他命令都自动使用它。示例见[浏览器问题](TROUBLESHOOTING.md#浏览器下载失败或找不到浏览器)。
-
-修改分镜后重新校验，并编译到新目录保留前一版；若直接编辑已生成的 `src/episode.json`，也须运行校验与实际渲染。总时长变化不会替你重测字幕，必须同步更新最后一镜、字幕与动作落点。
-
-## 历史案例只用于风格研究
-
-`python scripts/new_project.py --case presenter-v3 --out "../v3-style-study"` 显式复制固定10.74秒的V3历史机制样例；`--case approved-reference` 复制旧816×1080数学案例。两者用于阅读局部代码，均不是默认风格或新主题入口；仅替换媒体路径不会自动变成新一期。具体边界见[V3局部机制](../references/approved-presenter-v3.md)。
-
-## 更新已有安装
-
-安装器有意拒绝覆盖非空目录，没有 `--force` 开关。更新时：
-
-1. 保存现有视频工程；这些工程应独立放在 Skill 目录之外。
-2. 下载新版仓库到一个新的目录，先运行 `--dry-run` 与 `doctor.py --profile skill`。
-3. 检查旧 Skill 是否有自己的改动，备份旧安装目录；如果由 Agent 移动或替换重要目录，先明确确认目标与范围。
-4. 将旧版本备份移到技能扫描目录之外，确保正式目标不存在或为空，再运行新版安装器。
-5. 重新打开 Agent 会话，确认它读取新版 `SKILL.md`。需要保留的自定义规则可人工合并，不要直接覆盖新版文件。
-
-不要通过在旧目录里直接解压来混合版本，也不要删除整个 `.codex/skills`。备份放在扫描目录内可能形成两个被发现的同名 Skill。
-
-## 卸载
-
-先确认安装器当时打印的确切目录，并备份其中自己的改动。只移走／删除 `portrait-editorial-explainer` 这个 Skill 目录，随后重新打开 Agent 会话。不要影响旁边其他 Skill。
-
-卸载 Skill 不会自动卸载 Python、Node.js、FFmpeg、ChatCut，也不应删除独立的视频工程和素材。本仓库没有自动卸载或清理脚本。
-
-## 第一次使用前的自查
-
-- 能打开安装目录中的 `SKILL.md`，且引用的目录都在。
-- `doctor.py` 的所选检查模式没有必需项失败。
-- Agent 确实读到了当前 Skill。
-- 样例在独立目录完成依赖安装、预览和导出；真实结果按自己的运行记录填写。
-- 真人原始素材任务已确认 ChatCut 的当前可用连接；没有连接时不把该步骤记为完成。
-- 准备了本期输入，并明确它属于真人原片、数字人、已粗剪、旁白或稿件。
+本包没有自动卸载或清理按钮。确需卸载时，先核对实际Skill和运行目录、备份个人改动与需要的示例工程，再处理这两个明确目录；不要删除整个 `.codex/skills` 或其他工具目录。独立视频工程、素材、Codex和ChatCut不随Skill卸载。

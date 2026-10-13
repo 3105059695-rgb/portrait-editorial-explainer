@@ -7,7 +7,15 @@ description: 将已有口播、数字人或配音剪成参考片同类的多媒�
 
 最高视觉基准是[最初完整参考](references/approved-editing-direction.md)。数字人、职业、净水器等后来案例只是局部应用，不会升级为固定风格。保留排版、真实素材、UI、信息图、空间镜头和漫画之间丰富且连贯的变化；不能把所有内容变成同一种插画或同一软件界面。
 
-当前沿用已确认的3.2完整机制库。新调用者可直接看包内 `docs/full-effects-preview.mp4`，不用私人原片。3.3增加选效果与接入字幕的工具，保留原有动效；[直接使用指南](references/direct-use.md)给出首次调用和本期素材入口。
+当前3.4支持把一段安装指令发给Codex，由Agent自动下载、补齐Windows环境并验证。沿用已确认的3.2完整机制库与3.3字幕入口。新调用者可直接看包内 `docs/full-effects-preview.mp4`，不用私人原片；[直接使用指南](references/direct-use.md)给出首次调用和本期素材入口。
+
+## 先选择本机运行入口
+
+Windows自动安装后，优先使用本Skill根目录的 `Use-Skill.cmd`，不要假定全局 `python`、`node` 或 `npm` 可用。它读取本机runtime配置，通过已安装的工具运行白名单脚本。下文示例 `python scripts/脚本.py 参数` 在这种安装下对应 `Use-Skill.cmd 脚本.py -- 参数`；PowerShell中用 `& "<实际Skill路径>\Use-Skill.cmd" ...`。
+
+例如 `Use-Skill.cmd effect_library.py -- describe reference-search --json`；创建工程用 `Use-Skill.cmd start_episode.py -- --brief ...`。生成后用 `Use-Skill.cmd run_project.py -- --project "<本期工程>" --action render`，或双击工程中的 `Render-Opening.cmd`。预览／全片分别用 `--action preview`／`full`；缺少npm依赖时由该入口准备。详细配置、命令与手动环境的区别见[运行入口](references/direct-use.md#自动安装后的运行入口)。
+
+没有本地runtime桥时，用户可直接发送：“请阅读 https://raw.githubusercontent.com/3105059695-rgb/portrait-editorial-explainer/main/INSTALL_AGENT.md ，按说明在这台电脑安装 portrait-editorial-explainer，自动检查补齐依赖并试跑，完成后告诉我如何调用。” Agent负责实际下载、校验、执行headless安装并核对结果，不要求使用者自己下载解压或敲命令。详见[安装指南](docs/INSTALL.md)；macOS／Linux仍用手动环境。不把全局命令找不到当作安装失败，也不重复要求用户手装已经存在的portable工具。
 
 ## 直接执行
 

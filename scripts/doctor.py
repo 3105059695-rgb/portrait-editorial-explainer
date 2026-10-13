@@ -14,6 +14,7 @@ import sys
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_FILES = (
+    "scripts/setup_runtime.py", "scripts/run_project.py", "scripts/runtime_support.py",
     "scripts/start_episode.py", "scripts/effect_recipes.py", "references/direct-use.md",
     "examples/quickstart/brief.json", "examples/quickstart/captions.srt",
     "scripts/effect_library.py", "assets/effects-catalog.json", "references/full-effects-guide.md",

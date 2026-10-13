@@ -244,6 +244,9 @@ def execute_build(plan):
         target.parent.mkdir(parents=True, exist_ok=True)
         with target.open("xb") as writer:
             writer.write(content)
+    sys.path.insert(0, str(SCRIPT_ROOT))
+    from runtime_support import write_project_launchers
+    write_project_launchers(destination)
     return destination
 
 

@@ -315,6 +315,10 @@ def build(input_path,out,media_dir=None,production=False):
         inventory.append({'path':rel,'sha256':hashlib.sha256(target.read_bytes()).hexdigest()})
     report={'version':3,'episodeSha256':hashlib.sha256(planbytes).hexdigest(),'validation':'production' if production else 'draft','styleApproval':'pending','assets':inventory,'sourceType':p['source']['type'],'defaultExport':{'start':0,'end':p['sample']['duration']}}
     (dest/'BUILD_REPORT.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
+    # Import only while building: the standalone copied validator has no helper dependencies.
+    sys.path.insert(0,str(Path(__file__).resolve().parent))
+    from runtime_support import write_project_launchers
+    write_project_launchers(dest)
     return report
 
 def main():

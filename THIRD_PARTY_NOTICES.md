@@ -14,6 +14,7 @@
 | Remotion | 依赖版本锁定为4.0.534；Remotion 有自身使用许可与适用条件，请查阅[官方许可说明](https://www.remotion.dev/license)。本仓库的开源许可不替代该依赖许可。 |
 | React、TypeScript 与其他 npm 依赖 | 各自许可随依赖包提供；锁文件记录精确版本。`private: true` 防止误发 npm，与本仓库代码采用 MIT 不冲突。 |
 | ChatCut | 独立第三方工具/服务；本仓库包含工作流说明，不包含其源码、账号、授权或付费额度。使用者按自己的可用连接与服务条件使用。 |
+| Windows 便携运行环境 | 安装器按固定版本从 Python、Node.js 官方和 Remotion 官方 npm 媒体工具包下载，验证 SHA-256 后解压；不随 Skill ZIP 重分发这些运行时。来源、校验依据和许可证见 [安装器说明](installer/README.md)。 |
 
 公开预览从本仓库占位或自绘样例渲染：`docs/editorial-career-preview.mp4` 使用示意人物和访谈，`docs/editorial-water-preview.mp4` 使用原创安装示意；历史 `docs/public-preview.mp4` 同样使用几何占位人物。原委托者的真实数字人样段只向其交付。仓库不包含原用户真人/数字人视频、原风格参考视频、私人声音/克隆模型、访谈人物照片、账号凭证或签名素材下载地址。
 

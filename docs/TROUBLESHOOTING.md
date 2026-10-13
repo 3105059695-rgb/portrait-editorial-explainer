@@ -4,6 +4,52 @@
 
 返回 [README](../README.md) · [安装教程](INSTALL.md) · [完整工作流](WORKFLOW.md)
 
+## 把安装指令发给Codex后，没有开始安装
+
+先确认这次会话能在目标电脑读取文件和执行命令。安装指令是：
+
+```text
+请阅读 https://raw.githubusercontent.com/3105059695-rgb/portrait-editorial-explainer/main/INSTALL_AGENT.md ，按说明在这台电脑安装 portrait-editorial-explainer，自动检查补齐依赖并试跑，完成后告诉我如何调用。
+```
+
+Agent应读取说明、下载校验发布包并运行headless安装，不应只返回一份让使用者手动执行的命令清单。网页聊天或只读环境不能代替目标电脑执行安装；需要在有本机工具能力的Codex中运行。当前自动路径支持Windows 10及以上x64，其他系统见[手动安装](INSTALL.md#手动安装与其他系统)。
+
+如果GitHub页面或安装说明无法访问，Agent应报告真实网络错误并在连接恢复后重试，不能把“已给出步骤”当作安装完成。
+
+## 备用图形安装窗口打不开或找不到exe
+
+先全部解压v3.4.0完整安装ZIP，在能看到 `SKILL.md` 的目录双击 `OneClick-Install.exe`。GitHub的源码ZIP和clone不包含预编译exe时，双击同目录 `Install-Windows.cmd`，它会使用Windows自带.NET Framework编译器构建并打开安装器。
+
+这一入口面向Windows 10及以上x64。若启动脚本提示.NET编译器不可用，保留具体提示，使用完整release ZIP中的exe，或让Agent按该电脑的实际系统组件排查。macOS／Linux使用[手动安装](INSTALL.md#手动安装与其他系统)。如果系统要求确认文件来源，核对仓库下载来源后正常确认；不要关闭系统防护或把执行策略改成无限制。
+
+## 自动安装下载、校验或渲染失败
+
+让Agent查看最后失败的阶段。默认日志在 `%LOCALAPPDATA%\PortraitEditorialExplainer\logs`；本次结果在同目录上一级的 `setup-result.json`。成功必须为 `status: "ready"`，失败不能仅凭已有MP4文件报告完成。使用备用图形入口时，也可以点 **打开日志**查看。
+
+- 下载失败：确认当前网络能访问日志中的下载站点；恢复连接后重试安装。不要为了绕过下载换成来源不明的exe。
+- SHA256不匹配：该包不会执行。让Agent重新获取官方发布包并保留报错；不要修改期望哈希来强行通过。
+- npm或浏览器失败：按日志确认网络、空间和权限，修复后重新安装。安装器会复用可用环境，仍以本次示例实际渲染结果为准。
+- 示例渲染或解码失败：把错误末尾交给Agent排查；没有准备完成时，不把依赖下载成功当作可用。
+
+默认是联网安装；代理、防火墙、离线机器或组织管理限制不会由安装器自动改动。分享日志前查看其中的本地路径与个人信息。
+
+## 装好了，却提示找不到Python／Node／npm
+
+自动安装不会写全局PATH，系统终端找不到这些命令可以是正常情况。让Agent用已安装Skill根目录的 `Use-Skill.cmd`，或在生成的工程中双击 `Open-Preview.cmd`、`Render-Opening.cmd`、`Render-Full.cmd`。
+
+```powershell
+& "<实际Skill目录>\Use-Skill.cmd" doctor.py -- --profile production
+& "<实际Skill目录>\Use-Skill.cmd" run_project.py -- --project "<实际工程目录>" --action render
+```
+
+双击 `Use-Skill.cmd`本身显示帮助，不会凭空知道本期素材。Agent需要传脚本名和参数。若报runtime配置缺失，检查 `%LOCALAPPDATA%\PortraitEditorialExplainer\runtime.json`或安装时选择的目录；迁移到另一台电脑要先在对方电脑安装，不能复用作者的工具路径。自定义环境可以给运行脚本显式传 `--runtime-file`，或在当前进程设置 `PORTRAIT_RUNTIME_FILE`。
+
+## 双击工程入口后没有立刻打开视频
+
+首次运行该工程可能还需要npm依赖；预览入口会保持一个服务窗口。查看窗口真实进度与错误，不要反复连点多个渲染。导出完成后按窗口显示的输出位置打开视频。v3开头通常是 `out/opening.mp4`，全片是 `out/full.mp4`。
+
+新工程入口通过本机runtime查找工具；从别人处收到工程时，也先在自己的电脑完成自动安装。若工程原本是手动环境生成、没有这些入口，可以让Agent通过本机 `Use-Skill.cmd run_project.py -- --project ... --action render`运行。
+
 ## 3.3字幕入口报错
 
 `start_episode.py`默认生成正式工程，需要对应最终声音的SRT，以及声音或有声人物视频。无声试跑使用随包quickstart并显式加 `--draft`；正式输入失败不会自动降级。
@@ -18,7 +64,7 @@
 
 ## 下载了文件，为什么 Agent 还找不到 Skill？
 
-下载仓库并不等于安装到当前 Agent 的扫描目录。先在含 `SKILL.md` 的目录运行：
+下载仓库并不等于安装到当前Agent的扫描目录。自动安装后先让Agent查看 `setup-result.json`里的 `skillRoot`，确认当前Agent使用同一个账号、主机和 `CODEX_HOME`，然后开新会话。手动安装用户在含 `SKILL.md` 的目录运行：
 
 ```powershell
 python -X utf8 scripts/install_skill.py --dry-run
@@ -30,13 +76,13 @@ python -X utf8 scripts/install_skill.py --dry-run
 
 ## “Destination already exists / not empty” 怎么办？
 
-这是覆盖保护。安装器不会覆盖已有非空 Skill 目录；`compile_storyboard.py` 和 `new_project.py` 也不会覆盖已有工程。编译输出还不能与 Skill、输入 JSON 或素材所在目录冲突。
+这是覆盖保护。旧手动安装脚本 `install_skill.py`不会覆盖非空Skill目录；v3.4自动安装器可识别本Skill并先备份再更新，但拒绝无关非空目录。`compile_storyboard.py`和 `new_project.py`仍不会覆盖已有工程。编译输出不能与Skill、输入JSON或素材所在目录冲突。
 
 - 首次试用：换一个尚不存在的新工程目录。
-- 更新 Skill：按[更新说明](INSTALL.md#更新已有安装)先保存、备份旧版本，再为新版腾出正式目录。
+- 更新Skill：优先按[更新说明](INSTALL.md#更新已有安装)让Agent执行新版自动安装流程；仍用旧手动脚本时，先备份旧版本并为新版腾出正式目录。
 - 复制中断：检查该次创建的目录，确认没有自己的重要文件，再选择新目录重试；不要为了方便删除上级目录。
 
-不要寻找或添加 `--force`；当前安装器没有这个选项。
+不要给手动脚本添加不存在的 `--force`，也不要为了通过检查删除整个技能父目录。
 
 ## `--skills-dir` 安装出两层同名目录
 
@@ -45,6 +91,8 @@ python -X utf8 scripts/install_skill.py --dry-run
 确认正确的父目录，重新进行 `--dry-run`。旧误装目录先检查并备份，避免在不清楚内容时直接删除。
 
 ## Python 命令不可用或中文乱码
+
+自动安装用户先用上面的runtime入口，不需要修全局Python。以下针对手动环境：
 
 Windows 可能提供 `py` 而非 `python`：
 
@@ -61,7 +109,7 @@ Windows 中文路径或终端输出异常时，优先使用 `-X utf8`，并为�
 
 `--profile skill` 只检查 Skill 资源与 Python；默认 `production` 另外检查 Node.js、npm、FFmpeg、ffprobe 的命令与版本。它们都没有安装 npm 依赖、启动浏览器、渲染项目或验证 ChatCut 授权。
 
-继续在独立工程中执行 `npm ci`、`npm run check` 和实际渲染，并按具体报错处理。安装检查、渲染成功和成片质量是三个不同问题。
+继续在独立工程中实际渲染并按具体报错处理。自动安装环境用工程双击入口或 `run_project.py`；手动环境执行 `npm ci`、`npm run check` 和渲染。与doctor不同，自动安装完成状态包含示例实际渲染和完整解码；本期素材仍需自身的剪辑检查。
 
 ## ChatCut 不可用，还能使用这个 Skill 吗？
 
@@ -86,6 +134,8 @@ Windows 中文路径或终端输出异常时，优先使用 `-X utf8`，并为�
 保留锁文件；不要为了消除错误先删除它或盲目升级全部依赖。新复制的未修改工程若仍失败，记录命令、版本和错误末尾。若你主动修改了依赖声明，应在该独立工程中有意识地同步锁文件，再重新检查。
 
 ## Windows 提示 `npm.ps1` 不能运行
+
+自动安装的制作入口直接通过Node调用npm CLI，不依赖PowerShell执行 `.ps1`。优先使用工程双击入口。手动环境可采用下面的方法：
 
 某些 PowerShell 环境不允许执行 `.ps1` 启动脚本。可以尝试调用同一 npm 安装提供的 `.cmd` 启动器：
 

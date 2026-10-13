@@ -2,6 +2,16 @@
 
 这份Skill的使用者只需给出材料和任务，Agent负责准备配置与运行。效果实现来自已确认的完整机制库；简化的是操作，不把风格变成固定分镜。
 
+## 还没安装时，先发这一段
+
+在有本地文件和命令执行能力的Codex中发送：
+
+```text
+请阅读 https://raw.githubusercontent.com/3105059695-rgb/portrait-editorial-explainer/main/INSTALL_AGENT.md ，按说明在这台电脑安装 portrait-editorial-explainer，自动检查补齐依赖并试跑，完成后告诉我如何调用。
+```
+
+Agent负责下载、校验、安装与示例渲染。当前自动路径支持Windows 10及以上x64，不需要使用者下载解压或手敲命令。完成后开新会话即可按下方方式给本期任务；其他系统见[安装说明](../docs/INSTALL.md#手动安装与其他系统)。
+
 ## 给Agent的一句话
 
 ```text
@@ -12,6 +22,30 @@
 ```
 
 没有SRT时，Agent从最终音轨转写并核对；不能伪造时间。如果当前环境缺少转写能力，明确所缺能力，仍可先准备视觉草案。真人原始素材先按[口播流程](presenter-workflow.md)完成ChatCut粗剪，数字人跳过。不要把风格参考视频误作本期声音。
+
+## 自动安装后的运行入口
+
+Windows使用者安装完成后只需在Agent中提供材料和意图。Agent先定位安装后的Skill根目录，用其中的 `Use-Skill.cmd` 调用脚本。不要要求使用者先运行 `python --version` 或重装全局Node：portable工具可能只对当前运行入口可见。
+
+以下为Agent在PowerShell中的调用示例；路径占位换成这台机器实际位置，`--`用于分隔脚本参数：
+
+```powershell
+& "<Skill目录>\Use-Skill.cmd" effect_library.py -- describe reference-search --json
+& "<Skill目录>\Use-Skill.cmd" start_episode.py -- --brief brief.json --srt captions.srt --media-dir media --voice final.wav --source-type narration --out ../this-episode
+& "<Skill目录>\Use-Skill.cmd" run_project.py -- --project ../this-episode --action render
+```
+
+`Use-Skill.cmd`接收脚本文件名，不是 `start`、`effects` 等别名。`run_project.py`的action为 `preview`、`render`、`full`、`check`。它读取本地工具路径，按锁文件准备工程依赖，再运行相应npm脚本；只设置子进程环境，不写全局PATH。新工程也提供双击入口：
+
+| 文件 | 动作 |
+|---|---|
+| `Open-Preview.cmd` | 打开Remotion预览；保留服务窗口，结束时关闭窗口或按Ctrl+C |
+| `Render-Opening.cmd` | 导出本期代表开头 |
+| `Render-Full.cmd` | 导出全片 |
+
+默认运行配置是 `%LOCALAPPDATA%\PortraitEditorialExplainer\runtime.json`；自定义安装由生成的入口记录实际路径。Agent需要显式调用时，可读取配置中的 `installerExecutable`，使用 `--runtime-file "<配置文件>" --run-script new_project.py -- --input episode.json --media-dir media --out ../this-episode`。不要把开发者机器路径写进新工程；转移工程到另一台电脑后，使用对方自己的运行环境。
+
+后文的 `python scripts/...`、`npm ...` 是手动环境写法，说明脚本参数。在自动安装机器上按上述入口运行相同脚本；不因文档简写而绕回全局命令。示例视频已由安装器实际生成，无需为了开始新一期反复渲染目录演示。
 
 ## 不熟悉组件时如何选择
 
@@ -68,7 +102,7 @@ python scripts/start_episode.py --brief brief.json --srt captions.srt --media-di
 
 数字人与单独声音同时存在时加 `--voice final.wav`，人像视频静音而沿用同一声音母带。真人的source和mapping沿用已完成的实际粗剪记录，详见[生产契约](source-style-contract.md)。缺少媒体、主音轨长度不足、路径越界、动作不在关联字幕区间或输出目录非空会报错，不会覆盖旧工程或暗中切换成草案。
 
-生成后运行 `npm ci` 和 `npm run render`；需要全片时 `npm run render:full`。入口负责生成工程，不会自行调用付费服务、安装npm依赖或启动渲染。
+生成后，自动安装环境用 `run_project.py --project <新工程> --action render`，或双击 `Render-Opening.cmd`；全片用 `--action full` 或 `Render-Full.cmd`。手动环境运行 `npm ci` 和 `npm run render`，全片用 `npm run render:full`。`start_episode.py`本身只负责生成工程，不会调用付费服务、安装npm依赖或开始渲染。
 
 ## Agent填写的简化分镜
 

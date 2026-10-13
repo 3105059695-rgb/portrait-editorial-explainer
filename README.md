@@ -2,9 +2,11 @@
 
 把已有数字人、真人口播或配音剪成与最初完整参考同类的竖屏讲解：排版、真实素材、软件UI、信息图、空间镜头和漫画按内容变化。使用 Remotion；物件、数量、时长、镜头和顺序都能重组。
 
-**当前版本3.3：直接接入本期素材。** 沿用已确认的3.2完整机制库，40段效果演示、46个调用入口。新增逐效果参数查询，以及“SRT字幕＋已有声音/数字人＋简化分镜 → 独立Remotion工程”的命令入口。镜头与动作按本期字幕安排，保持原有丰富视觉表达。
+**当前版本3.4：一段指令自动安装。** 把下方指令发给这台电脑上的Codex，由Agent下载安装、检查环境、补齐依赖并渲染一个12秒示例。沿用已确认的3.2完整机制库与3.3字幕入口：40段效果演示、46个调用入口。镜头与动作仍按本期内容重新设计，保持原有丰富视觉表达。
 
-[下载3.3.0完整包](https://github.com/3105059695-rgb/portrait-editorial-explainer/releases/download/v3.3.0/portrait-editorial-explainer-v3.3.0.zip) · [Skill入口](SKILL.md) · [直接使用](references/direct-use.md) · [完整效果与参数](references/full-effects-guide.md) · [安装教程](docs/INSTALL.md)
+[自动安装说明](INSTALL_AGENT.md) · [Skill入口](SKILL.md) · [直接使用](references/direct-use.md) · [完整效果与参数](references/full-effects-guide.md) · [安装教程](docs/INSTALL.md)
+
+本版实际检查见 [自动安装验证记录](docs/AUTO-INSTALL-3.4.md)。
 
 ## 先看画面
 
@@ -14,17 +16,19 @@
 
 参考原片仍是风格基准。早期数字人V3、职业、净水器样段只代表局部用法，不能把整个Skill重新定义成它们的一种画法。
 
-## 下载、安装、直接调用
+## 把这一段发给Codex即可安装
 
-需要Python3.10+、Node.js/npm；渲染使用Remotion浏览器；音视频处理需要FFmpeg/ffprobe。ChatCut只在真人原片粗剪分支需要。源码和锁文件随包提供，不需要作者的账号、文件路径或私人素材。
+当前自动安装支持Windows 10及以上的x64电脑。把下面整段发给能在这台电脑读取文件、执行命令的Codex：
 
-```shell
-git clone https://github.com/3105059695-rgb/portrait-editorial-explainer.git
-cd portrait-editorial-explainer
-python scripts/install_skill.py
+```text
+请阅读 https://raw.githubusercontent.com/3105059695-rgb/portrait-editorial-explainer/main/INSTALL_AGENT.md ，按说明在这台电脑安装 portrait-editorial-explainer，自动检查补齐依赖并试跑，完成后告诉我如何调用。
 ```
 
-默认安装到 `$CODEX_HOME/skills` 或 `~/.codex/skills`，其他宿主用 `--skills-dir`。已有同名非空目录不会覆盖，升级前保留旧目录备份。
+不需要使用者下载解压、先装Python或手敲终端命令。Agent读取仓库安装说明后，负责下载校验完整包、运行无窗口交互的安装入口并检查结果。缺少的Python、Node.js/npm、FFmpeg/ffprobe会下载到当前用户的独立目录，并校验锁定的SHA256；已有本Skill升级前会备份被替换文件，保留额外文件。不改全局PATH、不申请管理员权限。
+
+安装流程还会准备Remotion工程依赖与渲染浏览器，并实际渲染和完整解码示例。Agent确认这些步骤成功后，再告诉使用者安装位置、示例位置和调用方法。它不会安装或登录Codex、ChatCut，也不附带私人数字人或声音。真人原始口播需要另有ChatCut连接；数字人和已粗剪素材可以直接进入后续制作。
+
+默认Skill位置是 `$CODEX_HOME/skills` 或 `~/.codex/skills`；运行环境在 `%LOCALAPPDATA%\PortraitEditorialExplainer`。macOS／Linux仍走[手动安装](docs/INSTALL.md#手动安装与其他系统)。[图形安装器](docs/INSTALL.md#备用图形安装器)保留为可选备用入口。
 
 调用：
 
@@ -37,7 +41,17 @@ python scripts/install_skill.py
 
 用户给材料和意图即可，Agent负责选效果、填brief与运行命令，不需要使用者手写JSON。包内预览与规范可直接读取，不依赖私人原片或历史会话。
 
-## 3.3的最短入口
+装好后继续让Agent按本期素材制作即可。Agent会使用准备好的本地运行环境，不要求系统终端能找到全局Python或Node。新建工程也附有 `Open-Preview.cmd`、`Render-Opening.cmd`、`Render-Full.cmd`，供需要自行双击预览或导出的人使用。
+
+## 给Agent与手动使用者的入口
+
+Windows自动安装后，Agent使用Skill根目录的 `Use-Skill.cmd`。例如查询效果：
+
+```bat
+Use-Skill.cmd effect_library.py -- describe reference-search --json
+```
+
+以下 `python` / `npm` 示例供已自行准备工具的环境使用；自动安装对应命令见[直接使用指南](references/direct-use.md#自动安装后的运行入口)。
 
 首次试跑，不用准备媒体：
 
@@ -80,7 +94,7 @@ python scripts/new_project.py --input examples/full-effects/desk-opening.json --
 
 较轻模型只需读Skill入口、效果用途表和相应参数，选择机制并填写素材与语义时间点；运动代码不用重写。先按真实口播写 `brief.json` 或完整 `episode.json`：
 
-已有SRT优先用上方3.3入口。下面保留完整v3/v2编排兼容方式：
+已有SRT优先用上方字幕入口。下面保留完整v3/v2编排兼容方式：
 
 ```shell
 python scripts/effect_library.py list

@@ -15,7 +15,7 @@ import sys
 SKILL_NAME = "portrait-editorial-explainer"
 SOURCE_ROOT = Path(__file__).absolute().parents[1]
 REQUIRED_ENTRIES = ("SKILL.md", "agents", "scripts", "references", "assets")
-OPTIONAL_ENTRIES = ("README.md", "docs", "examples", "LICENSE", "THIRD_PARTY_NOTICES.md")
+OPTIONAL_ENTRIES = ("README.md", "docs", "examples", "LICENSE", "THIRD_PARTY_NOTICES.md", "installer", "Install-Windows.cmd", "INSTALL_AGENT.md")
 IGNORED_PATTERNS = (
     "node_modules", "out", ".git", "__pycache__", ".env", ".env.*", "*.pyc", "*.pyo",
     ".pytest_cache", ".mypy_cache", ".ruff_cache", ".coverage", ".coverage.*", "htmlcov",

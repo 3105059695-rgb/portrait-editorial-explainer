@@ -1,0 +1,36 @@
+{
+  "version": "3.4.0",
+  "platform": "windows-x64",
+  "packages": [
+    {
+      "id": "python",
+      "version": "3.13.16",
+      "url": "https://www.python.org/ftp/python/3.13.16/python-3.13.16-embeddable-amd64.zip",
+      "sha256": "589dc1e9d02549ca5f680710307ff9b77f6e3ffc4aa3efccd7fa54eeeafac94b",
+      "executables": {
+        "python": "python.exe"
+      }
+    },
+    {
+      "id": "node",
+      "version": "24.21.0",
+      "url": "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip",
+      "sha256": "158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541",
+      "executables": {
+        "node": "node-v24.21.0-win-x64/node.exe",
+        "npmCli": "node-v24.21.0-win-x64/node_modules/npm/bin/npm-cli.js"
+      }
+    },
+    {
+      "id": "ffmpeg",
+      "version": "remotion-4.0.534",
+      "url": "https://registry.npmjs.org/@remotion/compositor-win32-x64-msvc/-/compositor-win32-x64-msvc-4.0.534.tgz",
+      "sha256": "255443e2c689ea3466096ec43d51410fc047e929cb79559fc3b82de0aad614b4",
+      "executables": {
+        "ffmpeg": "package/ffmpeg.exe",
+        "ffprobe": "package/ffprobe.exe"
+      },
+      "archiveFormat": "tar.gz"
+    }
+  ]
+}
